@@ -1,0 +1,1885 @@
+<!doctype html>
+<html lang="ro" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#112c41" />
+  <title>Smilesoft Dashboard Mockup</title>
+  <link rel="icon" type="image/png" href="Assets/favicon.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <button class="icon-button sidebar-toggle" type="button" aria-label="Restrange meniul" aria-expanded="true" aria-controls="dashboard-sidebar" data-sidebar-toggle>
+          <i class="ph ph-sidebar-simple icon-expanded" aria-hidden="true"></i>
+          <i class="ph ph-sidebar icon-collapsed" aria-hidden="true"></i>
+        </button>
+        <img class="brand-logo" src="Assets/logo-smilesoft-dark.svg" alt="Smilesoft" />
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-button" type="button" aria-label="Cauta" title="Cauta" data-topbar-search><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+        <div class="notif-menu" data-notif-menu>
+          <button class="icon-button notification-button" type="button" aria-label="Notificari necitite" aria-haspopup="true" aria-expanded="false" data-notif-toggle><i class="ph ph-bell" aria-hidden="true"></i></button>
+          <div class="notif-dropdown" role="menu" aria-label="Notificari">
+            <div class="notif-dropdown__head">
+              <strong>Notificări</strong>
+              <span class="notif-badge">3 noi</span>
+            </div>
+            <div class="notif-list">
+              <button class="notif-item is-unread" type="button" role="menuitem">
+                <span class="notif-item__icon" aria-hidden="true"><i class="ph ph-calendar-check"></i></span>
+                <span class="notif-item__body">
+                  <span class="notif-item__title">Ioana Pop a confirmat programarea de mâine, 10:30</span>
+                  <span class="notif-item__meta">acum 5 min</span>
+                </span>
+              </button>
+              <button class="notif-item is-unread" type="button" role="menuitem">
+                <span class="notif-item__icon" aria-hidden="true"><i class="ph ph-chat-circle-text"></i></span>
+                <span class="notif-item__body">
+                  <span class="notif-item__title">Mesaj nou de la Andrei Ene</span>
+                  <span class="notif-item__meta">acum 1 oră</span>
+                </span>
+              </button>
+              <button class="notif-item is-unread" type="button" role="menuitem">
+                <span class="notif-item__icon" aria-hidden="true"><i class="ph ph-flask"></i></span>
+                <span class="notif-item__body">
+                  <span class="notif-item__title">Rezultat de laborator disponibil — fișă #2041</span>
+                  <span class="notif-item__meta">acum 3 ore</span>
+                </span>
+              </button>
+              <button class="notif-item" type="button" role="menuitem">
+                <span class="notif-item__icon" aria-hidden="true"><i class="ph ph-credit-card"></i></span>
+                <span class="notif-item__body">
+                  <span class="notif-item__title">Plată înregistrată: 450 lei</span>
+                  <span class="notif-item__meta">ieri, 17:20</span>
+                </span>
+              </button>
+            </div>
+            <div class="notif-foot">
+              <button class="notif-see-all" type="button">Vezi toate notificările<i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <button class="icon-button theme-toggle" type="button" aria-label="Activeaza modul luminos" data-theme-toggle>
+          <i class="ph ph-sun theme-icon-light" aria-hidden="true"></i>
+          <i class="ph ph-moon theme-icon-dark" aria-hidden="true"></i>
+        </button>
+        <div class="profile-menu" data-profile-menu>
+          <button class="profile-chip" type="button" aria-label="Profil utilizator" aria-haspopup="true" aria-expanded="false" data-profile-toggle>AM</button>
+          <div class="profile-dropdown" role="menu" aria-label="Meniu profil">
+            <div class="profile-dropdown__head">
+              <span class="profile-dropdown__avatar" aria-hidden="true">AM</span>
+              <div class="profile-dropdown__id">
+                <strong>Andrei Marin</strong>
+                <small>Cont stomatolog</small>
+              </div>
+            </div>
+            <div class="profile-dropdown__list">
+              <button class="profile-dropdown__item" type="button" role="menuitem">
+                <i class="ph ph-pencil-simple" aria-hidden="true"></i>
+                <span>Editare stomatologie</span>
+              </button>
+              <button class="profile-dropdown__item" type="button" role="menuitem">
+                <i class="ph ph-receipt" aria-hidden="true"></i>
+                <span>Abonament &amp; facturare</span>
+              </button>
+              <button class="profile-dropdown__item" type="button" role="menuitem">
+                <i class="ph ph-lifebuoy" aria-hidden="true"></i>
+                <span>Ajutor &amp; suport</span>
+              </button>
+              <div class="profile-dropdown__sep" aria-hidden="true"></div>
+              <button class="profile-dropdown__item" type="button" role="menuitem">
+                <i class="ph ph-sign-out" aria-hidden="true"></i>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="shell">
+      <aside class="sidebar" id="dashboard-sidebar" aria-label="Navigatie dashboard">
+        <nav class="nav">
+          <a class="nav-link is-active" href="./"><i class="ph ph-squares-four" aria-hidden="true"></i><span>Dashboard</span></a>
+
+          <span class="nav-group">Flow Clinic</span>
+          <a class="nav-link" href="#"><i class="ph ph-clipboard-text" aria-hidden="true"></i><span>Planuri tratament</span></a>
+          <a class="nav-link" href="./programari"><i class="ph ph-calendar-dots" aria-hidden="true"></i><span>Programări</span><span class="count">22</span></a>
+          <a class="nav-link" href="#"><i class="ph ph-file-text" aria-hidden="true"></i><span>Fișe tratament</span></a>
+          <a class="nav-link" href="#"><i class="ph ph-credit-card" aria-hidden="true"></i><span>Încasări</span></a>
+
+          <span class="nav-group">Pacienți</span>
+          <a class="nav-link" href="./pacienti"><i class="ph ph-users" aria-hidden="true"></i><span>Pacienți</span></a>
+          <a class="nav-link" href="./chestionare"><i class="ph ph-clipboard-text" aria-hidden="true"></i><span>Chestionare</span><span class="count">2</span></a>
+          <a class="nav-link" href="./radiografii"><i class="ph ph-scan" aria-hidden="true"></i><span>Radiografii</span><span class="count">2</span></a>
+          <a class="nav-link" href="./file-manager"><i class="ph ph-folder-open" aria-hidden="true"></i><span>Documente</span></a>
+          <div class="nav-dropdown" data-nav-dropdown>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="prescriptions-menu">
+              <i class="ph ph-scroll" aria-hidden="true"></i>
+              <span>Rețete</span>
+              <i class="ph ph-caret-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-submenu" id="prescriptions-menu">
+              <a class="nav-sub-link" href="./prescriptions/create">Adaugă Rețetă</a>
+              <a class="nav-sub-link" href="./prescriptions">Listare Rețete</a>
+              <a class="nav-sub-link" href="./prescriptions-templates">Șabloane Rețete</a>
+              <a class="nav-sub-link" href="./prescriptions-series">Serii rețete</a>
+            </div>
+          </div>
+
+          <span class="nav-group">Administrare</span>
+          <a class="nav-link" href="#"><i class="ph ph-sparkle" aria-hidden="true"></i><span>Asistent AI</span></a>
+
+          <div class="nav-dropdown" data-nav-dropdown>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="communication-menu">
+              <i class="ph ph-chat-text" aria-hidden="true"></i>
+              <span>Comunicare</span>
+              <i class="ph ph-caret-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-submenu" id="communication-menu">
+              <a class="nav-sub-link" href="./appointment-sms"><span>SMS-uri</span><span class="count">2</span></a>
+              <a class="nav-sub-link" href="#">Notificări periodice</a>
+              <a class="nav-sub-link" href="#">Recomandări revenire</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown" data-nav-dropdown>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="settings-menu">
+              <i class="ph ph-gear" aria-hidden="true"></i>
+              <span>Configurare</span>
+              <i class="ph ph-caret-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-submenu" id="settings-menu">
+              <a class="nav-sub-link" href="./chestionar-stomatolog">Chestionar</a>
+              <a class="nav-sub-link" href="./unituri">Unituri dentare</a>
+              <a class="nav-sub-link" href="./personal">Personal</a>
+              <a class="nav-sub-link" href="./tratamente">Servicii / Tratamente</a>
+              <a class="nav-sub-link" href="#">Statusuri</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown" data-nav-dropdown>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="shop-menu">
+              <i class="ph ph-shopping-bag" aria-hidden="true"></i>
+              <span>Shop</span>
+              <i class="ph ph-caret-down nav-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="nav-submenu" id="shop-menu">
+              <a class="nav-sub-link" href="./shop/orders">Comenzi efectuate</a>
+              <a class="nav-sub-link" href="./shop/categories">Categorii</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a class="nav-link" href="./setari"><i class="ph ph-gear" aria-hidden="true"></i><span>Setări</span></a>
+        </div>
+      </aside>
+
+      <div class="main">
+        <main class="content">
+          <div class="hero-row">
+            <section class="hero hero--aura" aria-label="Aura — asistent">
+              <div class="aura__top">
+                <span class="aura__name">Aura</span>
+                <span class="aura__state"><span class="aura__state-dot" aria-hidden="true"></span><span class="aura__state-label">Inactiv</span></span>
+              </div>
+
+              <div class="aura__core">
+                <div class="aura__orb" aria-hidden="true"></div>
+                <h1>Cum te pot ajuta?</h1>
+              </div>
+
+              <div class="aura__foot">
+                <div class="aura__sugg">
+                  <span class="aura__sugg-label">Sugestii</span>
+                  <div class="aura__chips">
+                    <button class="aura__chip" type="button"><i class="ph ph-calendar-plus" aria-hidden="true"></i>Adaugă programare</button>
+                    <button class="aura__chip" type="button"><i class="ph ph-magnifying-glass" aria-hidden="true"></i>Caută pacient</button>
+                    <button class="aura__chip" type="button"><i class="ph ph-clipboard-text" aria-hidden="true"></i>Vezi planuri</button>
+                  </div>
+                </div>
+                <form class="aura__ask" onsubmit="return false">
+                  <input class="aura__ask-input" type="text" placeholder="Scrie o comandă sau întreabă Aura…" aria-label="Întreabă Aura" />
+                  <button class="aura__mic" type="button" data-aura-mic aria-label="Pornește ascultarea"><i class="ph ph-microphone" aria-hidden="true"></i></button>
+                </form>
+              </div>
+            </section>
+            <aside class="hero-aside" aria-label="Programări azi">
+              <div class="appts__head">
+                <h2 class="appts__title">Programări azi</h2>
+                <a class="appts__all" href="#">Vezi toate</a>
+              </div>
+              <ul class="appts__list">
+                <li class="appt">
+                  <span class="appt__time">09:00</span>
+                  <span class="appt__rail" aria-hidden="true"><span class="appt__dot"></span></span>
+                  <span class="appt__body">
+                    <span class="appt__name">Ana Maria Ionescu</span>
+                    <span class="appt__type">Consultație generală</span>
+                  </span>
+                  <span class="appt__status">Confirmată</span>
+                </li>
+                <li class="appt">
+                  <span class="appt__time">10:30</span>
+                  <span class="appt__rail" aria-hidden="true"><span class="appt__dot"></span></span>
+                  <span class="appt__body">
+                    <span class="appt__name">Mihai Dumitrescu</span>
+                    <span class="appt__type">Control periodic</span>
+                  </span>
+                  <span class="appt__status">Confirmată</span>
+                </li>
+                <li class="appt appt--pending">
+                  <span class="appt__time">12:00</span>
+                  <span class="appt__rail" aria-hidden="true"><span class="appt__dot"></span></span>
+                  <span class="appt__body">
+                    <span class="appt__name">Ioana Pop</span>
+                    <span class="appt__type">Rezultate analize</span>
+                  </span>
+                  <span class="appt__status">În așteptare</span>
+                </li>
+                <li class="appt">
+                  <span class="appt__time">14:00</span>
+                  <span class="appt__rail" aria-hidden="true"><span class="appt__dot"></span></span>
+                  <span class="appt__body">
+                    <span class="appt__name">Andrei Radu</span>
+                    <span class="appt__type">Consultație</span>
+                  </span>
+                  <span class="appt__status">Confirmată</span>
+                </li>
+                <li class="appt">
+                  <span class="appt__time">15:30</span>
+                  <span class="appt__rail" aria-hidden="true"><span class="appt__dot"></span></span>
+                  <span class="appt__body">
+                    <span class="appt__name">Elena Georgescu</span>
+                    <span class="appt__type">Follow-up</span>
+                  </span>
+                  <span class="appt__status">Confirmată</span>
+                </li>
+              </ul>
+              <button class="appts__cta" type="button">
+                <i class="ph ph-calendar-dots" aria-hidden="true"></i>
+                Calendar complet
+                <i class="ph ph-arrow-right appts__cta-arrow" aria-hidden="true"></i>
+              </button>
+            </aside>
+          </div>
+
+          <section class="kpis" aria-label="Elemente de rezolvat">
+            <a class="kpi" href="#">
+              <div class="kpi__head">
+                <span class="kpi__label"><i class="ph ph-calendar-dots" aria-hidden="true"></i>Programări</span>
+              </div>
+              <strong class="kpi__value">3</strong>
+              <div class="kpi__foot">
+                <span class="kpi__swap">
+                  <span class="kpi__meta">fără confirmare</span>
+                  <span class="kpi__cta">Confirmă</span>
+                </span>
+                <i class="ph ph-arrow-right kpi__arrow" aria-hidden="true"></i>
+              </div>
+            </a>
+            <a class="kpi" href="#">
+              <div class="kpi__head">
+                <span class="kpi__label"><i class="ph ph-file-text" aria-hidden="true"></i>Fișe tratament</span>
+              </div>
+              <strong class="kpi__value">2</strong>
+              <div class="kpi__foot">
+                <span class="kpi__swap">
+                  <span class="kpi__meta">nesemnate</span>
+                  <span class="kpi__cta">Semnează</span>
+                </span>
+                <i class="ph ph-arrow-right kpi__arrow" aria-hidden="true"></i>
+              </div>
+            </a>
+            <a class="kpi" href="#">
+              <div class="kpi__head">
+                <span class="kpi__label"><i class="ph ph-scan" aria-hidden="true"></i>Radiografii</span>
+              </div>
+              <strong class="kpi__value">4</strong>
+              <div class="kpi__foot">
+                <span class="kpi__swap">
+                  <span class="kpi__meta">neasociate</span>
+                  <span class="kpi__cta">Asociază</span>
+                </span>
+                <i class="ph ph-arrow-right kpi__arrow" aria-hidden="true"></i>
+              </div>
+            </a>
+            <a class="kpi" href="#">
+              <div class="kpi__head">
+                <span class="kpi__label"><i class="ph ph-receipt" aria-hidden="true"></i>Facturi</span>
+              </div>
+              <strong class="kpi__value">5</strong>
+              <div class="kpi__foot">
+                <span class="kpi__swap">
+                  <span class="kpi__meta">netrimise</span>
+                  <span class="kpi__cta">Trimite</span>
+                </span>
+                <i class="ph ph-arrow-right kpi__arrow" aria-hidden="true"></i>
+              </div>
+            </a>
+          </section>
+
+          <div class="midrow">
+            <aside class="recall" aria-label="Recomandări revenire">
+              <h2 class="recall__title">Recomandări revenire</h2>
+              <ul class="recall__list">
+                <li class="recall__item">
+                  <span class="recall__body">
+                    <span class="recall__name">Maria Ionescu</span>
+                    <span class="recall__reason">Igienizare · acum 6 luni</span>
+                  </span>
+                  <span class="recall__actions">
+                    <span class="recall__phone"><i class="ph ph-phone" aria-hidden="true"></i>0721 234 567</span>
+                    <button class="iconpill recall__btn" type="button" data-sms data-confirm="Trimiți un SMS de reamintire către Maria Ionescu?" aria-label="Trimite SMS — Maria Ionescu" title="Trimite SMS"><i class="ph ph-chat-circle" aria-hidden="true"></i></button>
+                    <button class="iconpill iconpill--danger recall__btn" type="button" data-confirm="Ești sigur că vrei să ștergi recomandarea pentru Maria Ionescu?" aria-label="Șterge recomandarea — Maria Ionescu" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                  </span>
+                </li>
+                <li class="recall__item">
+                  <span class="recall__body">
+                    <span class="recall__name">Pop Adrian</span>
+                    <span class="recall__reason">Control implant · 12 luni</span>
+                  </span>
+                  <span class="recall__actions">
+                    <span class="recall__phone"><i class="ph ph-phone" aria-hidden="true"></i>0743 112 980</span>
+                    <button class="iconpill recall__btn" type="button" data-sms data-confirm="Trimiți un SMS de reamintire către Pop Adrian?" aria-label="Trimite SMS — Pop Adrian" title="Trimite SMS"><i class="ph ph-chat-circle" aria-hidden="true"></i></button>
+                    <button class="iconpill iconpill--danger recall__btn" type="button" data-confirm="Ești sigur că vrei să ștergi recomandarea pentru Pop Adrian?" aria-label="Șterge recomandarea — Pop Adrian" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                  </span>
+                </li>
+                <li class="recall__item recall__item--urgent">
+                  <span class="recall__body">
+                    <span class="recall__name">Elena D.</span>
+                    <span class="recall__reason">Tratament întrerupt</span>
+                  </span>
+                  <span class="recall__actions">
+                    <span class="recall__phone"><i class="ph ph-phone" aria-hidden="true"></i>0759 661 204</span>
+                    <button class="iconpill recall__btn" type="button" data-sms data-confirm="Trimiți un SMS de reamintire către Elena D.?" aria-label="Trimite SMS — Elena D." title="Trimite SMS"><i class="ph ph-chat-circle" aria-hidden="true"></i></button>
+                    <button class="iconpill iconpill--danger recall__btn" type="button" data-confirm="Ești sigur că vrei să ștergi recomandarea pentru Elena D.?" aria-label="Șterge recomandarea — Elena D." title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                  </span>
+                </li>
+              </ul>
+              <div class="empty-state" hidden>
+                <i class="ph ph-smiley" aria-hidden="true"></i>
+                <p>Nu există recomandări de revenire</p>
+              </div>
+              <button class="recall__all" type="button"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>Vezi toate recomandările</button>
+            </aside>
+
+            <aside class="facturi" aria-label="Facturi de trimis">
+              <header class="facturi__head">
+                <div class="facturi__heading">
+                  <h2>Facturi de trimis</h2>
+                  <span class="facturi__count">3</span>
+                </div>
+                <div class="facturi__sum">
+                  <strong>18.450 <small>lei</small></strong>
+                  <span>facturat săpt.</span>
+                </div>
+              </header>
+
+              <ul class="facturi__list">
+                <li class="facturow">
+                  <span class="facturow__info">
+                    <span class="facturow__name">Andreea Pop</span>
+                    <span class="facturow__meta">Factura #0420 · 30.01.2026</span>
+                  </span>
+                  <span class="facturow__amount">720 lei</span>
+                  <span class="facturow__actions">
+                    <button class="iconpill iconpill--ok facturow__btn" type="button" data-confirm="Trimiți factura #0420 în e-Factura?" aria-label="Trimite factura #0420 în e-Factura" title="Trimite în e-Factura"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></button>
+                    <button class="iconpill facturow__btn" type="button" aria-label="Vezi factura #0420" title="Vezi factura"><i class="ph ph-eye" aria-hidden="true"></i></button>
+                    <button class="iconpill iconpill--danger facturow__btn" type="button" data-confirm="Ești sigur că vrei să ștergi factura #0420?" aria-label="Șterge factura #0420" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                  </span>
+                </li>
+                <li class="facturow">
+                  <span class="facturow__info">
+                    <span class="facturow__name">Mihai Ionescu</span>
+                    <span class="facturow__meta">Factura #0417 · 29.01.2026</span>
+                  </span>
+                  <span class="facturow__amount">450 lei</span>
+                  <span class="facturow__actions">
+                    <button class="iconpill iconpill--ok facturow__btn" type="button" data-confirm="Trimiți factura #0417 în e-Factura?" aria-label="Trimite factura #0417 în e-Factura" title="Trimite în e-Factura"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></button>
+                    <button class="iconpill facturow__btn" type="button" aria-label="Vezi factura #0417" title="Vezi factura"><i class="ph ph-eye" aria-hidden="true"></i></button>
+                    <button class="iconpill iconpill--danger facturow__btn" type="button" data-confirm="Ești sigur că vrei să ștergi factura #0417?" aria-label="Șterge factura #0417" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                  </span>
+                </li>
+                <li class="facturow">
+                  <span class="facturow__info">
+                    <span class="facturow__name">Elena Dumitrescu</span>
+                    <span class="facturow__meta">Factura #0415 · 29.01.2026</span>
+                  </span>
+                  <span class="facturow__amount">2.030 lei</span>
+                  <span class="facturow__actions">
+                    <button class="iconpill iconpill--ok facturow__btn" type="button" data-confirm="Trimiți factura #0415 în e-Factura?" aria-label="Trimite factura #0415 în e-Factura" title="Trimite în e-Factura"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></button>
+                    <button class="iconpill facturow__btn" type="button" aria-label="Vezi factura #0415" title="Vezi factura"><i class="ph ph-eye" aria-hidden="true"></i></button>
+                    <button class="iconpill iconpill--danger facturow__btn" type="button" data-confirm="Ești sigur că vrei să ștergi factura #0415?" aria-label="Șterge factura #0415" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                  </span>
+                </li>
+              </ul>
+
+              <div class="empty-state" hidden>
+                <i class="ph ph-smiley" aria-hidden="true"></i>
+                <p>Nu există facturi de trimis</p>
+              </div>
+
+              <button class="facturi__all" type="button"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>Trimite toate în e-Factura</button>
+            </aside>
+          </div>
+
+          <section class="tablecard" aria-label="Chestionare nevalidate">
+            <header class="tablecard__head">
+              <div class="tablecard__heading">
+                <span class="tablecard__icon" aria-hidden="true"><i class="ph ph-clipboard-text"></i></span>
+                <h2>Chestionare nevalidate</h2>
+              </div>
+              <div class="tablecard__tools">
+                <label class="tablecard__length">
+                  <select aria-label="Rezultate pe pagină">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  <span>rezultate</span>
+                </label>
+                <div class="tablecard__search">
+                  <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                  <input type="search" placeholder="Caută" aria-label="Caută în tabel" data-table-search />
+                </div>
+              </div>
+            </header>
+
+            <div class="tablecard__scroll">
+              <table class="dtable">
+                <thead>
+                  <tr>
+                    <th class="dtable__col-id dtable__sortable is-sorted-desc" scope="col" aria-sort="descending"><span>#</span><i class="ph ph-caret-down" aria-hidden="true"></i></th>
+                    <th class="dtable__sortable" scope="col"><span>Nume pacient</span><i class="ph ph-caret-up-down" aria-hidden="true"></i></th>
+                    <th class="dtable__sortable" scope="col"><span>Document</span><i class="ph ph-caret-up-down" aria-hidden="true"></i></th>
+                    <th class="dtable__col-date dtable__sortable" scope="col"><span>Data semnării</span><i class="ph ph-caret-up-down" aria-hidden="true"></i></th>
+                    <th class="dtable__col-actions" scope="col">Acțiuni</th>
+                  </tr>
+                </thead>
+                <tbody data-table-body>
+                  <tr>
+                    <td class="dtable__id">420</td>
+                    <td><a class="dtable__patient" href="#">Andreea Pop</a></td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>chestionar-medical_Andreea-Pop_2026-01-30.pdf</span></td>
+                    <td class="dtable__date">30.01.2026</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--ok" type="button" aria-label="Validează" title="Validează"><i class="ph ph-check" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează documentul" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dtable__id">417</td>
+                    <td><a class="dtable__patient" href="#">Mihai Ionescu</a></td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>chestionar-medical_Mihai-Ionescu_2026-01-29.pdf</span></td>
+                    <td class="dtable__date">29.01.2026</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--ok" type="button" aria-label="Validează" title="Validează"><i class="ph ph-check" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează documentul" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dtable__id">415</td>
+                    <td><a class="dtable__patient" href="#">Elena Dumitrescu</a></td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>chestionar-medical_Elena-Dumitrescu_2026-01-29.pdf</span></td>
+                    <td class="dtable__date">29.01.2026</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--ok" type="button" aria-label="Validează" title="Validează"><i class="ph ph-check" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează documentul" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="empty-state" hidden>
+              <i class="ph ph-smiley" aria-hidden="true"></i>
+              <p>Nu există chestionare nevalidate</p>
+            </div>
+
+            <footer class="tablecard__foot">
+              <span class="tablecard__info" data-table-info>Arată 1–3 din 3 rezultate</span>
+              <nav class="pager" aria-label="Paginare">
+                <button class="pager__btn pager__btn--icon" type="button" disabled aria-label="Pagina anterioară"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+                <button class="pager__btn pager__btn--num is-active" type="button" aria-current="page">1</button>
+                <button class="pager__btn pager__btn--icon" type="button" disabled aria-label="Pagina următoare"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+              </nav>
+            </footer>
+          </section>
+
+          <section class="tablecard" aria-label="Radiografii neasociate">
+            <header class="tablecard__head">
+              <div class="tablecard__heading">
+                <span class="tablecard__icon" aria-hidden="true"><i class="ph ph-scan"></i></span>
+                <h2>Radiografii neasociate</h2>
+              </div>
+              <div class="tablecard__tools">
+                <label class="tablecard__length">
+                  <select aria-label="Rezultate pe pagină">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  <span>rezultate</span>
+                </label>
+                <div class="tablecard__search">
+                  <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                  <input type="search" placeholder="Caută" aria-label="Caută în tabel" data-table-search />
+                </div>
+              </div>
+            </header>
+
+            <div class="tablecard__scroll">
+              <table class="dtable">
+                <thead>
+                  <tr>
+                    <th class="dtable__col-id dtable__sortable is-sorted-desc" scope="col" aria-sort="descending"><span>#</span><i class="ph ph-caret-down" aria-hidden="true"></i></th>
+                    <th class="dtable__sortable" scope="col"><span>Nume fișier</span><i class="ph ph-caret-up-down" aria-hidden="true"></i></th>
+                    <th class="dtable__col-date dtable__sortable" scope="col"><span>Data radiografiei</span><i class="ph ph-caret-up-down" aria-hidden="true"></i></th>
+                    <th class="dtable__col-date dtable__sortable" scope="col"><span>Data email</span><i class="ph ph-caret-up-down" aria-hidden="true"></i></th>
+                    <th class="dtable__col-actions" scope="col">Acțiuni</th>
+                  </tr>
+                </thead>
+                <tbody data-table-body>
+                  <tr>
+                    <td class="dtable__id">FM210</td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>565_Tomacha_Eduard_radiografie_11.pdf</span></td>
+                    <td class="dtable__date">2026-01-29 08:55:04</td>
+                    <td class="dtable__date">2026-01-29 08:55:04</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--assign" type="button" aria-label="Asociază pacient" title="Asociază pacient"><i class="ph ph-user-plus" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează radiografia" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                        <button class="iconpill iconpill--danger" type="button" aria-label="Șterge" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dtable__id">FM209</td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>562_Galusca_Oana_radiografie_11.pdf</span></td>
+                    <td class="dtable__date">2026-01-29 08:55:03</td>
+                    <td class="dtable__date">2026-01-29 08:55:03</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--assign" type="button" aria-label="Asociază pacient" title="Asociază pacient"><i class="ph ph-user-plus" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează radiografia" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                        <button class="iconpill iconpill--danger" type="button" aria-label="Șterge" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dtable__id">FM207</td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>558_Ionescu_Maria_radiografie_9.pdf</span></td>
+                    <td class="dtable__date">2026-01-28 14:12:20</td>
+                    <td class="dtable__date">2026-01-28 14:12:20</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--assign" type="button" aria-label="Asociază pacient" title="Asociază pacient"><i class="ph ph-user-plus" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează radiografia" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                        <button class="iconpill iconpill--danger" type="button" aria-label="Șterge" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="dtable__id">FM205</td>
+                    <td><span class="dtable__doc"><i class="ph ph-file-pdf" aria-hidden="true"></i>551_Radu_Cristian_radiografie_7.pdf</span></td>
+                    <td class="dtable__date">2026-01-28 11:03:45</td>
+                    <td class="dtable__date">2026-01-28 11:03:45</td>
+                    <td class="dtable__col-actions">
+                      <div class="dtable__actions">
+                        <button class="iconpill iconpill--assign" type="button" aria-label="Asociază pacient" title="Asociază pacient"><i class="ph ph-user-plus" aria-hidden="true"></i></button>
+                        <a class="iconpill" href="#" aria-label="Vizualizează radiografia" title="Vizualizează"><i class="ph ph-eye" aria-hidden="true"></i></a>
+                        <button class="iconpill iconpill--danger" type="button" aria-label="Șterge" title="Șterge"><i class="ph ph-trash" aria-hidden="true"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="empty-state" hidden>
+              <i class="ph ph-smiley" aria-hidden="true"></i>
+              <p>Nu există radiografii neasociate</p>
+            </div>
+
+            <footer class="tablecard__foot">
+              <span class="tablecard__info" data-table-info>Arată 1–4 din 4 rezultate</span>
+              <nav class="pager" aria-label="Paginare">
+                <button class="pager__btn pager__btn--icon" type="button" disabled aria-label="Pagina anterioară"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+                <button class="pager__btn pager__btn--num is-active" type="button" aria-current="page">1</button>
+                <button class="pager__btn pager__btn--icon" type="button" disabled aria-label="Pagina următoare"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+              </nav>
+            </footer>
+          </section>
+
+          <div class="evolutie-row">
+          <section class="panel appointments-chart" aria-label="Evolutie programari">
+            <header class="appointments-chart__head">
+              <div class="appointments-chart__heading">
+                <span class="appointments-chart__icon" aria-hidden="true"><i class="ph ph-chart-bar"></i></span>
+                <div class="appointments-chart__title">
+                <h2>Evoluție programări</h2>
+                <p>Volumul programărilor confirmate în ultima săptămână.</p>
+              </div>
+              </div>
+              <div class="rangepick" data-rangepick>
+                <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                  <i class="ph ph-calendar" aria-hidden="true"></i>
+                  <span data-rangepick-label>Ultimele 7 zile</span>
+                  <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                </button>
+                <div class="rangepick__menu" data-rangepick-menu>
+                  <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
+                  <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
+                  <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
+                  <div class="rangepick__custom" data-rangepick-custom>
+                    <label class="rangepick__field"><span>De la</span><input type="date" value="2026-01-01" aria-label="Data de început" /></label>
+                    <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-01-30" aria-label="Data de sfârșit" /></label>
+                    <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            <div class="appointments-chart__body">
+            <div class="appointments-chart__summary">
+              <strong>196</strong>
+              <span>programări confirmate</span>
+            </div>
+
+            <div class="apptbars" style="--avg: 59">
+              <div class="apptbars__grid">
+                <span class="apptbars__avg" aria-hidden="true"><span class="apptbars__avg-label">29 medie</span></span>
+                <button class="apptbar" type="button" style="--value: 42" aria-label="Luni: 22 programări"><i data-count="22"></i></button>
+                <button class="apptbar" type="button" style="--value: 36" aria-label="Marți: 19 programări"><i data-count="19"></i></button>
+                <button class="apptbar" type="button" style="--value: 68" aria-label="Miercuri: 31 programări"><i data-count="31"></i></button>
+                <button class="apptbar" type="button" style="--value: 46" aria-label="Joi: 24 programări"><i data-count="24"></i></button>
+                <button class="apptbar is-peak" type="button" style="--value: 88" aria-label="Vineri: 42 programări"><i data-count="42"></i></button>
+                <button class="apptbar" type="button" style="--value: 58" aria-label="Sâmbătă: 28 programări"><i data-count="28"></i></button>
+                <button class="apptbar" type="button" style="--value: 78" aria-label="Duminică: 36 programări"><i data-count="36"></i></button>
+              </div>
+              <div class="apptbars__days" aria-hidden="true">
+                <span>Lun</span><span>Mar</span><span>Mie</span><span>Joi</span><span class="is-peak">Vin</span><span>Sâm</span><span>Dum</span>
+              </div>
+            </div>
+            </div>
+          </section>
+          </div>
+
+          <!-- Dashboard parcat temporar; reconstruim pas cu pas (pastrat in template-ul de mai jos). -->
+          <template id="dashboard-archive">
+        <div class="dashboard">
+          <div class="stack">
+            <section class="summary" aria-label="Rezumat zi">
+              <div class="summary-head">
+                <div>
+                  <h2>29 mai / flux operational</h2>
+                  <p>Elementele care au nevoie de atentie azi, intr-o vedere scurta si usor de scanat.</p>
+                </div>
+                <button class="button" type="button"><i class="ph ph-calendar-plus" aria-hidden="true"></i>Adauga programare</button>
+              </div>
+
+              <div class="summary-grid">
+                <article class="summary-item">
+                  <span><i class="ph ph-clock" aria-hidden="true"></i>Urmatoarea programare</span>
+                  <div><strong>09:00</strong><small>Maria Ionescu, Cabinet 1</small></div>
+                </article>
+                <article class="summary-item">
+                  <span><i class="ph ph-clipboard-text" aria-hidden="true"></i>De validat</span>
+                  <div><strong>4</strong><small>2 chestionare, 2 radiografii</small></div>
+                </article>
+                <article class="summary-item">
+                  <span><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>Confirmari</span>
+                  <div><strong>3</strong><small>Pacienti fara raspuns pentru maine</small></div>
+                </article>
+              </div>
+            </section>
+
+            <section class="metrics" aria-label="Indicatori">
+              <article class="metric">
+                <div class="metric-top"><span class="metric-icon"><i class="ph ph-users" aria-hidden="true"></i></span><span class="metric-change">+3 activi</span></div>
+                <div><strong class="metric-value">15</strong><span class="metric-label">Pacienti</span></div>
+              </article>
+              <article class="metric">
+                <div class="metric-top"><span class="metric-icon"><i class="ph ph-calendar-check" aria-hidden="true"></i></span><span class="metric-change">0 active</span></div>
+                <div><strong class="metric-value">22</strong><span class="metric-label">Programari</span></div>
+              </article>
+              <article class="metric">
+                <div class="metric-top"><span class="metric-icon"><i class="ph ph-arrows-clockwise" aria-hidden="true"></i></span><span class="metric-change">3 trecute</span></div>
+                <div><strong class="metric-value">3</strong><span class="metric-label">Recurente</span></div>
+              </article>
+              <article class="metric">
+                <div class="metric-top"><span class="metric-icon"><i class="ph ph-chat-text" aria-hidden="true"></i></span><span class="metric-change">0 esuate</span></div>
+                <div><strong class="metric-value">2</strong><span class="metric-label">SMS trimise</span></div>
+              </article>
+            </section>
+
+            <section class="panel" aria-label="Actiuni prioritare">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-list-checks" aria-hidden="true"></i></span>
+                  <div><h2>Actiuni prioritare</h2><small>Lucruri care blocheaza fluxul clinicii</small></div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="work-list">
+                  <article class="work-row">
+                    <span class="row-icon"><i class="ph ph-clipboard-text" aria-hidden="true"></i></span>
+                    <div><strong>Chestionare nevalidate</strong><small>Test Test si Test Vasile au documente semnate pe 30.01.2026.</small></div>
+                    <span class="badge badge--coral">2</span>
+                  </article>
+                  <article class="work-row">
+                    <span class="row-icon"><i class="ph ph-scan" aria-hidden="true"></i></span>
+                    <div><strong>Radiografii neasociate</strong><small>FM210 si FM209 trebuie legate de pacient inainte de arhivare.</small></div>
+                    <span class="badge badge--coral">2</span>
+                  </article>
+                  <article class="work-row">
+                    <span class="row-icon"><i class="ph ph-warning-diamond" aria-hidden="true"></i></span>
+                    <div><strong>Confirmari pentru maine</strong><small>Trimite reminder pentru pacientii fara raspuns.</small></div>
+                    <span class="badge badge--warn">3</span>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" aria-label="Documente recente">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-file-text" aria-hidden="true"></i></span>
+                  <div><h2>Documente recente</h2><small>Lista compacta pentru verificare rapida</small></div>
+                </div>
+              </header>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Tip</th>
+                      <th>Pacient / fisier</th>
+                      <th>Data</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Chestionar</td>
+                      <td><a class="patient-link" href="#">Test Test</a><br><span class="file-name">chestionar_Test_Test.pdf</span></td>
+                      <td>30.01.2026</td>
+                      <td><span class="badge badge--coral">Necesita validare</span></td>
+                      <td><button class="row-action is-primary" type="button" aria-label="Valideaza"><i class="ph ph-check" aria-hidden="true"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td>Radiografie</td>
+                      <td><span class="file-name">565_Tomacha_Eduard_radiografie_11.pdf</span></td>
+                      <td>29.01.2026</td>
+                      <td><span class="badge">Neasociata</span></td>
+                      <td><button class="row-action" type="button" aria-label="Asociaza"><i class="ph ph-user-plus" aria-hidden="true"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td>SMS</td>
+                      <td><a class="patient-link" href="#">Andrei Pop</a><br><span class="file-name">Reminder consultatie</span></td>
+                      <td>Azi</td>
+                      <td><span class="badge badge--ok">Trimis</span></td>
+                      <td><button class="row-action" type="button" aria-label="Vezi"><i class="ph ph-eye" aria-hidden="true"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" aria-label="Evolutie programari">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-chart-line" aria-hidden="true"></i></span>
+                  <div><h2>Evolutie programari</h2><small>Trend sintetic, fara controale suplimentare</small></div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <svg class="chart" viewBox="0 0 680 240" role="img" aria-label="Grafic programari">
+                  <path class="chart-grid" d="M38 36H650M38 82H650M38 128H650M38 174H650M38 210H650" />
+                  <path class="chart-grid" d="M38 36V210M242 36V210M446 36V210M650 36V210" />
+                  <path class="chart-line chart-line--muted" d="M38 72 C140 98 238 120 344 148 C448 174 542 186 650 194" />
+                  <path class="chart-line" d="M38 62 C140 86 238 110 344 132 C448 152 542 164 650 174" />
+                  <circle class="chart-dot" cx="38" cy="62" r="5" />
+                  <circle class="chart-dot" cx="344" cy="132" r="5" />
+                  <circle class="chart-dot" cx="650" cy="174" r="5" />
+                  <text class="chart-label" x="38" y="232">ian</text>
+                  <text class="chart-label" x="332" y="232">feb</text>
+                  <text class="chart-label" x="626" y="232">mai</text>
+                </svg>
+              </div>
+            </section>
+          </div>
+
+          <aside class="stack">
+            <section class="panel assistant-panel" aria-label="Aura">
+              <div class="panel-body">
+                <div class="assistant-orb"><i class="ph ph-microphone" aria-hidden="true"></i></div>
+                <h3>Aura</h3>
+                <p>Comenzi rapide pentru cautare pacient, programare si validare documente.</p>
+                <div class="assistant-actions">
+                  <button class="action-button" type="button">Cauta pacient</button>
+                  <button class="action-button" type="button">Valideaza</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" aria-label="Calendar lunar">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-calendar-dots" aria-hidden="true"></i></span>
+                  <div><h2>Calendar</h2><small>Mai 2026</small></div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="calendar-head">
+                  <div>
+                    <strong>Mai 2026</strong>
+                    <span>22 programari inregistrate</span>
+                  </div>
+                  <div class="calendar-nav">
+                    <button class="icon-button" type="button" aria-label="Luna anterioara"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+                    <button class="icon-button" type="button" aria-label="Luna urmatoare"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+                <div class="calendar-weekdays" aria-hidden="true">
+                  <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                </div>
+                <div class="calendar-grid" aria-label="Calendar Mai 2026">
+                  <span class="calendar-day is-muted">27</span>
+                  <span class="calendar-day is-muted">28</span>
+                  <span class="calendar-day is-muted">29</span>
+                  <span class="calendar-day is-muted">30</span>
+                  <span class="calendar-day">1</span>
+                  <span class="calendar-day">2</span>
+                  <span class="calendar-day">3</span>
+                  <span class="calendar-day">4</span>
+                  <span class="calendar-day has-event">5</span>
+                  <span class="calendar-day has-event">6</span>
+                  <span class="calendar-day has-event">7</span>
+                  <span class="calendar-day">8</span>
+                  <span class="calendar-day">9</span>
+                  <span class="calendar-day">10</span>
+                  <span class="calendar-day">11</span>
+                  <span class="calendar-day">12</span>
+                  <span class="calendar-day has-event">13</span>
+                  <span class="calendar-day">14</span>
+                  <span class="calendar-day has-event">15</span>
+                  <span class="calendar-day">16</span>
+                  <span class="calendar-day">17</span>
+                  <span class="calendar-day">18</span>
+                  <span class="calendar-day">19</span>
+                  <span class="calendar-day has-event">20</span>
+                  <span class="calendar-day">21</span>
+                  <span class="calendar-day has-event">22</span>
+                  <span class="calendar-day">23</span>
+                  <span class="calendar-day">24</span>
+                  <span class="calendar-day">25</span>
+                  <span class="calendar-day">26</span>
+                  <span class="calendar-day has-event">27</span>
+                  <span class="calendar-day">28</span>
+                  <span class="calendar-day is-today has-event">29</span>
+                  <span class="calendar-day">30</span>
+                  <span class="calendar-day">31</span>
+                </div>
+                <div class="calendar-note">
+                  <div><span class="dot is-ok"></span><span>Detartraj Maria Ionescu</span><time>09:00</time></div>
+                  <div><span class="dot"></span><span>Consultatie Andrei Pop</span><time>10:30</time></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" aria-label="Agenda de azi">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-clock" aria-hidden="true"></i></span>
+                  <div><h2>Agenda de azi</h2><small>Urmatoarele programari</small></div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="schedule">
+                  <div class="schedule-row">
+                    <span class="schedule-time">09:00</span>
+                    <span class="schedule-copy"><strong>Maria Ionescu</strong><span>Detartraj - Cabinet 1</span></span>
+                    <span class="dot is-ok"></span>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="schedule-time">10:30</span>
+                    <span class="schedule-copy"><strong>Andrei Pop</strong><span>Consultatie - Cabinet 2</span></span>
+                    <span class="dot"></span>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="schedule-time">12:00</span>
+                    <span class="schedule-copy"><strong>Elena Dumitrescu</strong><span>Obturatie - Dr. Tomescu</span></span>
+                    <span class="dot is-warn"></span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" aria-label="Activitate recenta">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-clock-clockwise" aria-hidden="true"></i></span>
+                  <div><h2>Activitate recenta</h2><small>Ultimele actiuni importante</small></div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="activity">
+                  <div class="activity-row">
+                    <span class="dot is-ok"></span>
+                    <span><strong>Programare creata</strong><small>Andreea Marinescu, azi 10:00.</small></span>
+                    <time>09:48</time>
+                  </div>
+                  <div class="activity-row">
+                    <span class="dot"></span>
+                    <span><strong>Plan de tratament generat</strong><small>Vlad Tomescu, consultatie.</small></span>
+                    <time>09:45</time>
+                  </div>
+                  <div class="activity-row">
+                    <span class="dot is-warn"></span>
+                    <span><strong>Stoc actualizat</strong><small>Anestezic sub pragul minim.</small></span>
+                    <time>09:30</time>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </aside>
+        </div>
+          </template>
+
+          <footer class="dash-footer">© 2026 Smilesoft</footer>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab-wrap" id="fabWrap">
+    <button class="fab-item" type="button" data-action="search" aria-label="Cauta" title="Cauta">
+      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+    </button>
+    <button class="fab-item" type="button" data-action="write" aria-label="Scrie" title="Scrie">
+      <i class="ph ph-chat-text" aria-hidden="true"></i>
+    </button>
+    <button class="fab-item" type="button" data-action="speak" aria-label="Vorbeste" title="Vorbeste">
+      <i class="ph ph-microphone" aria-hidden="true"></i>
+    </button>
+    <div class="fab-orb" id="stageOrb" data-state="inactive" role="button" tabindex="0" aria-label="Meniu Aura" aria-expanded="false" title="Deschide meniul Aura">
+      <div class="bloom-root">
+        <div class="bloom-shake">
+          <div class="bloom-wobble" id="stageBloomWobble">
+            <div class="bloom-fit" id="stageBloomFit">
+              <div class="orb-main">
+                <div class="glass loc-glass"></div>
+                <div class="shape-a loc-a"></div>
+                <div class="shape-b loc-b"></div>
+                <div class="shape-c loc-c"></div>
+                <div class="shape-d loc-d"></div>
+                <svg class="blob-a" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <defs><linearGradient id="fab-bloom-a-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
+                  <path fill="url(#fab-bloom-a-grad)" d="M23.3,-31.9C28.4,-28.4,29.5,-19.2,31.1,-10.9C32.6,-2.6,34.7,4.7,33.5,11.7C32.3,18.6,27.8,25.3,21.6,28.8C15.5,32.3,7.8,32.6,-0.6,33.5C-9,34.4,-18.1,35.8,-24.8,32.5C-31.5,29.2,-35.9,21.2,-36.5,13.3C-37.2,5.4,-34.1,-2.4,-31.6,-10.4C-29.1,-18.3,-27.2,-26.6,-22.1,-30.1C-16.9,-33.6,-8.4,-32.3,0.3,-32.8C9.1,-33.3,18.2,-35.4,23.3,-31.9Z" transform="translate(50 50)" stroke-width="0"></path>
+                </svg>
+                <svg class="blob-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <defs><linearGradient id="fab-bloom-b-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
+                  <path fill="url(#fab-bloom-b-grad)" d="M19.2,-27.1C25.6,-29.4,32.3,-26,33.8,-20.5C35.3,-15,31.7,-7.5,27.8,-2.2C23.9,3,19.8,6,16.8,8.9C13.8,11.8,11.9,14.6,9.3,18.8C6.7,23,3.3,28.6,-0.7,29.8C-4.7,31,-9.4,27.8,-16.7,26.2C-23.9,24.7,-33.6,24.8,-39.3,20.7C-45.1,16.7,-47,8.3,-45.4,0.9C-43.8,-6.5,-38.8,-13,-32.6,-16.3C-26.4,-19.6,-18.9,-19.7,-13.3,-17.9C-7.6,-16,-3.8,-12.2,1.3,-14.4C6.3,-16.6,12.7,-24.8,19.2,-27.1Z" transform="translate(50 50)" stroke-width="0"></path>
+                </svg>
+                <svg class="blob-shine" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <defs><linearGradient id="fab-bloom-shine-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
+                  <path fill="url(#fab-bloom-shine-grad)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
+                </svg>
+                <svg class="blob-shine shine-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <defs><linearGradient id="fab-bloom-shine-grad-b" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
+                  <path fill="url(#fab-bloom-shine-grad-b)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tmodal" id="searchModal" aria-hidden="true">
+    <div class="tmodal__backdrop" data-close></div>
+    <div class="tmodal__panel" role="dialog" aria-modal="true" aria-label="Cauta">
+      <div class="tmodal__bar">
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <input class="tmodal__input" type="search" placeholder="Cauta in Smilesoft..." autocomplete="off" />
+        <span class="tmodal__esc">Esc</span>
+      </div>
+      <ul class="tmodal__results">
+        <li class="tmodal__result" data-label="Programari"><i class="ph ph-calendar-dots" aria-hidden="true"></i>Programari <span class="tmodal__result-sub">Calendar</span></li>
+        <li class="tmodal__result" data-label="Pacienti"><i class="ph ph-users" aria-hidden="true"></i>Pacienti <span class="tmodal__result-sub">Fise</span></li>
+        <li class="tmodal__result" data-label="Documente"><i class="ph ph-folder-open" aria-hidden="true"></i>Documente <span class="tmodal__result-sub">Manager</span></li>
+        <li class="tmodal__result" data-label="Radiografii"><i class="ph ph-scan" aria-hidden="true"></i>Radiografii <span class="tmodal__result-sub">Clinica</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tmodal" id="chatModal" aria-hidden="true">
+    <div class="tmodal__backdrop" data-close></div>
+    <div class="tmodal__panel" role="dialog" aria-modal="true" aria-label="Chat">
+      <div class="tmodal__chat-head">
+        <div class="tmodal__avatar tmodal__avatar--orb" aria-hidden="true">
+          <div class="bloom-root">
+            <div class="bloom-shake">
+              <div class="bloom-wobble">
+                <div class="bloom-fit">
+                  <div class="orb-main">
+                    <div class="glass loc-glass"></div>
+                    <div class="shape-a loc-a"></div>
+                    <div class="shape-b loc-b"></div>
+                    <div class="shape-c loc-c"></div>
+                    <div class="shape-d loc-d"></div>
+                    <svg class="blob-a" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                      <defs><linearGradient id="chat-bloom-a-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
+                      <path fill="url(#chat-bloom-a-grad)" d="M23.3,-31.9C28.4,-28.4,29.5,-19.2,31.1,-10.9C32.6,-2.6,34.7,4.7,33.5,11.7C32.3,18.6,27.8,25.3,21.6,28.8C15.5,32.3,7.8,32.6,-0.6,33.5C-9,34.4,-18.1,35.8,-24.8,32.5C-31.5,29.2,-35.9,21.2,-36.5,13.3C-37.2,5.4,-34.1,-2.4,-31.6,-10.4C-29.1,-18.3,-27.2,-26.6,-22.1,-30.1C-16.9,-33.6,-8.4,-32.3,0.3,-32.8C9.1,-33.3,18.2,-35.4,23.3,-31.9Z" transform="translate(50 50)" stroke-width="0"></path>
+                    </svg>
+                    <svg class="blob-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                      <defs><linearGradient id="chat-bloom-b-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
+                      <path fill="url(#chat-bloom-b-grad)" d="M19.2,-27.1C25.6,-29.4,32.3,-26,33.8,-20.5C35.3,-15,31.7,-7.5,27.8,-2.2C23.9,3,19.8,6,16.8,8.9C13.8,11.8,11.9,14.6,9.3,18.8C6.7,23,3.3,28.6,-0.7,29.8C-4.7,31,-9.4,27.8,-16.7,26.2C-23.9,24.7,-33.6,24.8,-39.3,20.7C-45.1,16.7,-47,8.3,-45.4,0.9C-43.8,-6.5,-38.8,-13,-32.6,-16.3C-26.4,-19.6,-18.9,-19.7,-13.3,-17.9C-7.6,-16,-3.8,-12.2,1.3,-14.4C6.3,-16.6,12.7,-24.8,19.2,-27.1Z" transform="translate(50 50)" stroke-width="0"></path>
+                    </svg>
+                    <svg class="blob-shine" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                      <defs><linearGradient id="chat-bloom-shine-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
+                      <path fill="url(#chat-bloom-shine-grad)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
+                    </svg>
+                    <svg class="blob-shine shine-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                      <defs><linearGradient id="chat-bloom-shine-grad-b" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
+                      <path fill="url(#chat-bloom-shine-grad-b)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="tmodal__chat-name">Aura</div>
+          <div class="tmodal__chat-status"><i></i> online</div>
+        </div>
+        <button class="tmodal__mic" type="button" aria-label="Vorbeste"><i class="ph ph-microphone" aria-hidden="true"></i></button>
+      </div>
+      <div class="tmodal__messages">
+        <div class="msg msg--ai">Salut! Cu ce te pot ajuta astazi?</div>
+      </div>
+      <form class="tmodal__compose">
+        <input type="text" placeholder="Scrie un mesaj..." autocomplete="off" />
+        <button class="tmodal__send" type="submit" aria-label="Trimite"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="tmodal tmodal--confirm" id="confirmModal" aria-hidden="true">
+    <div class="tmodal__backdrop" data-close></div>
+    <div class="tmodal__panel confirm" role="alertdialog" aria-modal="true" aria-labelledby="confirmText">
+      <p class="confirm__text" id="confirmText">Ești sigur?</p>
+      <div class="confirm__actions">
+        <button class="confirm__btn confirm__btn--cancel" type="button" data-confirm-cancel>Anulează</button>
+        <button class="confirm__btn confirm__btn--confirm is-danger" type="button" data-confirm-ok>Șterge</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script>
+    const app = document.querySelector('.app');
+    const shell = document.querySelector('.shell');
+    const sidebarToggle = document.querySelector('[data-sidebar-toggle]');
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    const brandLogo = document.querySelector('.brand-logo');
+    const fabWrap = document.querySelector('#fabWrap');
+    const fabItems = document.querySelectorAll('.fab-item');
+    const stageOrb = document.querySelector('#stageOrb');
+    const stageBloomWobble = document.querySelector('#stageBloomWobble');
+    const stageBloomFit = document.querySelector('#stageBloomFit');
+    const searchModal = document.querySelector('#searchModal');
+    const chatModal = document.querySelector('#chatModal');
+    const voiceModal = document.querySelector('#voiceModal');
+    const modalFor = { search: searchModal, write: chatModal }; // speak now toggles the orb's listening state instead of opening voiceModal
+    let activeModal = null;
+
+    document.querySelectorAll('.nav-link, .nav-toggle').forEach((item) => {
+      const label = item.querySelector('span:not(.count)')?.textContent?.trim();
+
+      if (label) {
+        item.setAttribute('aria-label', label);
+        item.setAttribute('title', label);
+      }
+    });
+
+    if (shell && sidebarToggle) {
+      const storageKey = 'smilesoft-sidebar-collapsed';
+      const dropdowns = document.querySelectorAll('[data-nav-dropdown]');
+
+      const getStoredState = () => {
+        try {
+          return window.localStorage.getItem(storageKey) === 'true';
+        } catch {
+          return false;
+        }
+      };
+
+      const setStoredState = (collapsed) => {
+        try {
+          window.localStorage.setItem(storageKey, String(collapsed));
+        } catch {
+          // Storage can be unavailable when the file is opened directly.
+        }
+      };
+
+      const closeDropdowns = () => {
+        dropdowns.forEach((dropdown) => {
+          const toggle = dropdown.querySelector('.nav-toggle');
+
+          dropdown.classList.remove('is-open');
+          toggle?.setAttribute('aria-expanded', 'false');
+        });
+      };
+
+      const setSidebarState = (collapsed) => {
+        if (collapsed) {
+          closeDropdowns();
+        }
+
+        app?.classList.toggle('is-sidebar-collapsed', collapsed);
+        shell.classList.toggle('is-sidebar-collapsed', collapsed);
+        sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+        sidebarToggle.setAttribute('aria-label', collapsed ? 'Extinde meniul' : 'Restrange meniul');
+        sidebarToggle.setAttribute('title', collapsed ? 'Extinde meniul' : 'Restrange meniul');
+      };
+
+      setSidebarState(getStoredState());
+
+      sidebarToggle.addEventListener('click', () => {
+        const collapsed = !shell.classList.contains('is-sidebar-collapsed');
+
+        setSidebarState(collapsed);
+        setStoredState(collapsed);
+      });
+
+      dropdowns.forEach((dropdown) => {
+        const toggle = dropdown.querySelector('.nav-toggle');
+
+        toggle?.addEventListener('click', () => {
+          if (shell.classList.contains('is-sidebar-collapsed')) {
+            setSidebarState(false);
+            setStoredState(false);
+          }
+
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+
+          dropdown.classList.toggle('is-open', !expanded);
+          toggle.setAttribute('aria-expanded', String(!expanded));
+        });
+      });
+    }
+
+    if (themeToggle) {
+      const themeStorageKey = 'smilesoft-theme';
+
+      const getStoredTheme = () => {
+        try {
+          return window.localStorage.getItem(themeStorageKey);
+        } catch {
+          return null;
+        }
+      };
+
+      const setStoredTheme = (theme) => {
+        try {
+          window.localStorage.setItem(themeStorageKey, theme);
+        } catch {
+          // Storage can be unavailable when the file is opened directly.
+        }
+      };
+
+      const setTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        brandLogo?.setAttribute('src', theme === 'dark' ? 'Assets/logo-smilesoft-dark.svg' : 'Assets/Logo_smilesoft.svg');
+        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Activeaza modul luminos' : 'Activeaza modul intunecat');
+        themeToggle.setAttribute('title', theme === 'dark' ? 'Mod luminos' : 'Mod intunecat');
+      };
+
+      const initialTheme = getStoredTheme() || document.documentElement.getAttribute('data-theme') || 'dark';
+
+      setTheme(initialTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+
+        setTheme(nextTheme);
+        setStoredTheme(nextTheme);
+      });
+    }
+
+    const dropdownMenus = [
+      { menu: document.querySelector('[data-profile-menu]'), toggle: '[data-profile-toggle]', closeOn: '.profile-dropdown__item' },
+      { menu: document.querySelector('[data-notif-menu]'), toggle: '[data-notif-toggle]', closeOn: '.notif-item, .notif-see-all' }
+    ].filter((entry) => entry.menu);
+
+    if (dropdownMenus.length) {
+      const setMenuOpen = (entry, open) => {
+        entry.menu.classList.toggle('is-open', open);
+        const toggleBtn = entry.menu.querySelector(entry.toggle);
+        if (toggleBtn) {
+          toggleBtn.setAttribute('aria-expanded', String(open));
+        }
+      };
+
+      const closeAllMenus = (except) => {
+        dropdownMenus.forEach((entry) => {
+          if (entry !== except) {
+            setMenuOpen(entry, false);
+          }
+        });
+      };
+
+      dropdownMenus.forEach((entry) => {
+        const toggleBtn = entry.menu.querySelector(entry.toggle);
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const willOpen = !entry.menu.classList.contains('is-open');
+            closeAllMenus(entry);
+            setMenuOpen(entry, willOpen);
+          });
+        }
+
+        entry.menu.querySelectorAll(entry.closeOn).forEach((item) => {
+          item.addEventListener('click', () => setMenuOpen(entry, false));
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        const insideAny = dropdownMenus.some((entry) => entry.menu.contains(event.target));
+        if (!insideAny) {
+          closeAllMenus();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeAllMenus();
+        }
+      });
+    }
+
+    // Range picker (Evoluție programări): 7 / 30 zile / perioadă personalizată
+    document.querySelectorAll('[data-rangepick]').forEach((pick) => {
+      const toggle = pick.querySelector('[data-rangepick-toggle]');
+      const label = pick.querySelector('[data-rangepick-label]');
+      const opts = pick.querySelectorAll('.rangepick__opt');
+      const applyBtn = pick.querySelector('[data-rangepick-apply]');
+      const inputs = pick.querySelectorAll('.rangepick__field input');
+      if (!toggle) return;
+
+      const open = (state) => {
+        pick.classList.toggle('is-open', state);
+        toggle.setAttribute('aria-expanded', String(state));
+      };
+
+      toggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        open(!pick.classList.contains('is-open'));
+      });
+
+      opts.forEach((opt) => {
+        opt.addEventListener('click', (event) => {
+          event.stopPropagation();
+          opts.forEach((o) => o.classList.remove('is-active'));
+          opt.classList.add('is-active');
+          if (opt.dataset.range === 'custom') {
+            pick.classList.add('is-custom'); // keep menu open to pick dates
+          } else {
+            pick.classList.remove('is-custom');
+            label.textContent = opt.textContent;
+            open(false);
+          }
+        });
+      });
+
+      applyBtn?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const fmt = (v) => { if (!v) return ''; const p = v.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; };
+        const from = fmt(inputs[0]?.value);
+        const to = fmt(inputs[1]?.value);
+        if (from && to) label.textContent = from + ' – ' + to;
+        open(false);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!pick.contains(event.target)) open(false);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') open(false);
+      });
+    });
+
+    if (fabWrap && stageOrb && window.gsap) {
+      const items = Array.from(fabItems);
+      const radius = 132;
+      const startAngle = 180;
+      const endAngle = 270;
+      const angleStep = (endAngle - startAngle) / Math.max(items.length - 1, 1);
+      let fabTimeline;
+      let isFabOpen = false;
+
+      /* ── Bloom orb controller (the orb is the FAB trigger) ──
+         States differ only by SCALE (boost), animation SPEED and WOBBLE.
+         rot/hue/wob are playbackRate multipliers (1 = the fixed CSS reference
+         speed), so opening the menu ramps the speed down from the current blob
+         positions instead of re-snapping them (smooth decel), and closing ramps
+         it back up. */
+      const ORB_BASE_SIZE = 82;
+      const ORB_STATE = {
+        inactive:  { rot: 1.000, hue: 1.000, wob: 1.000, boost: 0.92, wobAmp: 0.30 },
+        menu:      { rot: 0.125, hue: 0.083, wob: 0.444, boost: 1.04, wobAmp: 0.12 },
+        listening: { rot: 4.750, hue: 2.167, wob: 2.963, boost: 1.12, wobAmp: 1.10 }
+      };
+      const ORB_TITLE = {
+        inactive:  'Deschide meniul Aura',
+        menu:      'Inchide meniul',
+        listening: 'Apasa pentru a opri ascultarea'
+      };
+      const orbSpeed = { rot: ORB_STATE.inactive.rot, hue: ORB_STATE.inactive.hue, wob: ORB_STATE.inactive.wob };
+
+      const applyOrbSpeed = () => {
+        for (const a of stageOrb.getAnimations({ subtree: true })) {
+          const n = a.animationName;
+          if (n === 'rotateDiagonal' || n === 'bloomExpand' || n === 'bloomExpandB') a.playbackRate = orbSpeed.rot;
+          else if (n === 'hueShift') a.playbackRate = orbSpeed.hue;
+          else if (n === 'bloomWobble') a.playbackRate = orbSpeed.wob;
+        }
+      };
+      const tweenOrbSpeed = (cfg, dur) => {
+        gsap.killTweensOf(orbSpeed);
+        if (dur <= 0) {
+          orbSpeed.rot = cfg.rot; orbSpeed.hue = cfg.hue; orbSpeed.wob = cfg.wob;
+          applyOrbSpeed();
+        } else {
+          gsap.to(orbSpeed, { rot: cfg.rot, hue: cfg.hue, wob: cfg.wob, duration: dur, ease: 'power2.out', onUpdate: applyOrbSpeed });
+        }
+      };
+      const applyOrbScale = (cfg) => {
+        const box = stageOrb.clientWidth || 72;
+        stageBloomFit.style.transform = `scale(${((box / ORB_BASE_SIZE) * cfg.boost).toFixed(3)})`;
+      };
+      const setOrbState = (state, instant) => {
+        const cfg = ORB_STATE[state] || ORB_STATE.inactive;
+        stageOrb.dataset.state = state;
+        stageOrb.setAttribute('title', ORB_TITLE[state] || ORB_TITLE.inactive);
+        stageBloomWobble.style.setProperty('--wobble-amp', String(cfg.wobAmp));
+        applyOrbScale(cfg);
+        tweenOrbSpeed(cfg, instant ? 0 : 0.6);
+      };
+      window.addEventListener('resize', () => applyOrbScale(ORB_STATE[stageOrb.dataset.state] || ORB_STATE.inactive));
+      setOrbState('inactive', true);
+      requestAnimationFrame(applyOrbSpeed); // catch the animations once they're live
+
+      const setFabItemsPointer = (enabled) => {
+        items.forEach((item) => {
+          item.style.pointerEvents = enabled ? 'auto' : 'none';
+        });
+      };
+
+      const buildFabTimeline = () => {
+        gsap.set(items, { x: 0, y: 0, scale: 0, opacity: 0 });
+        setFabItemsPointer(false);
+        fabTimeline = gsap.timeline({
+          paused: true,
+          onStart: () => setFabItemsPointer(true),
+          onReverseComplete: () => setFabItemsPointer(false)
+        });
+
+        items.forEach((item, index) => {
+          const angle = (startAngle + angleStep * index) * (Math.PI / 180);
+
+          fabTimeline.to(item, {
+            x: Math.cos(angle) * radius,
+            y: Math.sin(angle) * radius,
+            scale: 1,
+            opacity: 1,
+            duration: .6,
+            ease: 'elastic.out(1, 0.5)'
+          }, index * .05);
+        });
+      };
+
+      // Opening nearly halts the orb and grows it a touch; closing speeds it
+      // back up. setOrbState drives the smooth playbackRate decel/accel.
+      const toggleFab = () => {
+        isFabOpen = !isFabOpen;
+        stageOrb.setAttribute('aria-expanded', String(isFabOpen));
+        if (isFabOpen) { setOrbState('menu'); fabTimeline.timeScale(1).play(); }
+        else { setOrbState('inactive'); fabTimeline.timeScale(1.6).reverse(); }
+      };
+
+      // Snappy collapse used by the mic: the items clear out first, THEN the
+      // callback runs, so the orb only starts blooming once they're gone.
+      const collapseItemsThen = (done) => {
+        isFabOpen = false;
+        stageOrb.setAttribute('aria-expanded', 'false');
+        fabTimeline.eventCallback('onReverseComplete', () => {
+          setFabItemsPointer(false);
+          fabTimeline.eventCallback('onReverseComplete', () => setFabItemsPointer(false)); // restore default
+          if (done) done();
+        });
+        fabTimeline.timeScale(2.4).reverse();
+      };
+
+      // Orb click is context-aware: while listening, a single click stops it;
+      // otherwise it opens / closes the radial menu.
+      const activateOrb = () => {
+        if (stageOrb.dataset.state === 'listening') { setOrbState('inactive'); return; }
+        toggleFab();
+      };
+
+      const closeModal = (modal) => {
+        if (!modal) return;
+
+        const panel = modal.querySelector('.tmodal__panel');
+
+        gsap.killTweensOf([modal, panel]);
+        gsap.to(panel, { y: -10, duration: .2, ease: 'power2.in' });
+        gsap.to(modal, {
+          autoAlpha: 0,
+          duration: .22,
+          ease: 'power2.in',
+          onComplete: () => {
+            modal.style.pointerEvents = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        if (activeModal === modal) {
+          activeModal = null;
+        }
+      };
+
+      const openModal = (modal) => {
+        if (!modal) return;
+
+        if (activeModal && activeModal !== modal) {
+          closeModal(activeModal);
+        }
+
+        activeModal = modal;
+        modal.style.pointerEvents = 'auto';
+        modal.setAttribute('aria-hidden', 'false');
+
+        const panel = modal.querySelector('.tmodal__panel');
+
+        gsap.killTweensOf([modal, panel]);
+        gsap.to(modal, { autoAlpha: 1, duration: .25, ease: 'power2.out' });
+        gsap.fromTo(panel, { y: -16, scale: .98 }, { y: 0, scale: 1, duration: .45, ease: 'back.out(1.4)' });
+
+        const field = modal.querySelector('input, textarea');
+
+        if (field) {
+          field.value = '';
+          field.dispatchEvent(new Event('input'));
+          gsap.delayedCall(.08, () => field.focus());
+        }
+      };
+
+      buildFabTimeline();
+
+      stageOrb.addEventListener('click', (event) => {
+        event.stopPropagation();
+        activateOrb();
+      });
+      stageOrb.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activateOrb();
+        }
+      });
+
+      items.forEach((item) => {
+        item.addEventListener('click', (event) => {
+          event.stopPropagation();
+
+          const action = item.dataset.action;
+          if (action === 'speak') {
+            // Collapse the items first, then bloom the orb into listening.
+            // (Stopping is a single click on the orb itself.)
+            collapseItemsThen(() => setOrbState('listening'));
+            return;
+          }
+
+          if (isFabOpen) {
+            toggleFab();
+          }
+
+          openModal(modalFor[action]);
+        });
+      });
+
+      const topbarSearch = document.querySelector('[data-topbar-search]');
+
+      if (topbarSearch) {
+        topbarSearch.addEventListener('click', () => openModal(searchModal));
+      }
+
+      // The orb lives in the Aura panel; clone the bloom visual into it, and
+      // give it its OWN controller so grow + speed match the bottom-right blob.
+      // (Separate instance — does NOT touch #stageOrb.)
+      const auraOrbSlot = document.querySelector('.aura__orb');
+      let auraBloomFit = null;
+      let auraBloomWob = null;
+      if (auraOrbSlot) {
+        const bloom = stageOrb.querySelector('.bloom-root');
+        if (bloom) {
+          const clone = bloom.cloneNode(true);
+          clone.querySelectorAll('#stageBloomWobble, #stageBloomFit').forEach((el) => el.removeAttribute('id'));
+          auraOrbSlot.appendChild(clone);
+          auraBloomFit = clone.querySelector('.bloom-fit');
+          auraBloomWob = clone.querySelector('.bloom-wobble');
+        }
+      }
+
+      const auraSpeed = { rot: ORB_STATE.inactive.rot, hue: ORB_STATE.inactive.hue, wob: ORB_STATE.inactive.wob };
+      const applyAuraSpeed = () => {
+        if (!auraOrbSlot) return;
+        for (const a of auraOrbSlot.getAnimations({ subtree: true })) {
+          const n = a.animationName;
+          if (n === 'rotateDiagonal' || n === 'bloomExpand' || n === 'bloomExpandB') a.playbackRate = auraSpeed.rot;
+          else if (n === 'hueShift') a.playbackRate = auraSpeed.hue;
+          else if (n === 'bloomWobble') a.playbackRate = auraSpeed.wob;
+        }
+      };
+      const setAuraOrbState = (cfg, instant) => {
+        if (auraBloomFit) auraBloomFit.style.transform = `scale(${cfg.boost.toFixed(3)})`;
+        if (auraBloomWob) auraBloomWob.style.setProperty('--wobble-amp', String(cfg.wobAmp));
+        if (window.gsap) gsap.killTweensOf(auraSpeed);
+        if (instant || !window.gsap) {
+          auraSpeed.rot = cfg.rot; auraSpeed.hue = cfg.hue; auraSpeed.wob = cfg.wob;
+          applyAuraSpeed();
+        } else {
+          gsap.to(auraSpeed, { rot: cfg.rot, hue: cfg.hue, wob: cfg.wob, duration: 0.6, ease: 'power2.out', onUpdate: applyAuraSpeed });
+        }
+      };
+      requestAnimationFrame(() => setAuraOrbState(ORB_STATE.inactive, true));
+
+      // Aura panel mic — its OWN listening state, independent of the bottom-right blob
+      const auraSection = document.querySelector('.hero--aura');
+      const auraStateLabel = auraSection?.querySelector('.aura__state-label');
+      const auraMic = document.querySelector('[data-aura-mic]');
+      if (auraMic && auraSection) {
+        auraMic.addEventListener('click', () => {
+          const listening = auraSection.classList.toggle('is-listening');
+          if (auraStateLabel) auraStateLabel.textContent = listening ? 'Ascult…' : 'Inactiv';
+          auraMic.setAttribute('aria-label', listening ? 'Oprește ascultarea' : 'Pornește ascultarea');
+          setAuraOrbState(listening ? ORB_STATE.listening : ORB_STATE.inactive);
+        });
+      }
+
+      // suggestion chips prefill the ask input
+      const auraInput = document.querySelector('.aura__ask-input');
+      document.querySelectorAll('.aura__chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          if (!auraInput) return;
+          auraInput.value = chip.textContent.trim();
+          auraInput.focus();
+        });
+      });
+
+      document.querySelectorAll('.tmodal__backdrop').forEach((backdrop) => {
+        backdrop.addEventListener('click', () => closeModal(backdrop.closest('.tmodal')));
+      });
+
+      // confirmation dialog — wired to every action button (delete + positive). View is excluded.
+      const confirmModal = document.querySelector('#confirmModal');
+      if (confirmModal) {
+        const confirmText = confirmModal.querySelector('.confirm__text');
+        const confirmOk = confirmModal.querySelector('[data-confirm-ok]');
+        const confirmCancel = confirmModal.querySelector('[data-confirm-cancel]');
+        let confirmCb = null;
+        const sectionLabel = (btn) => {
+          const sec = btn.closest('section[aria-label], aside[aria-label]');
+          return (sec && sec.getAttribute('aria-label')) || '';
+        };
+        const actionConfig = (btn) => {
+          const msg = btn.dataset.confirm;
+          if (btn.hasAttribute('data-sms')) {
+            return { message: msg || 'Trimiți un SMS de reamintire acestui pacient?', label: 'Trimite SMS', variant: 'ok' };
+          }
+          if (btn.classList.contains('iconpill--danger')) {
+            let m = msg;
+            if (!m) {
+              const l = sectionLabel(btn);
+              if (/chestionare/i.test(l)) m = 'Ești sigur că vrei să ștergi acest chestionar?';
+              else if (/radiografii/i.test(l)) m = 'Ești sigur că vrei să ștergi această radiografie?';
+              else m = 'Ești sigur că vrei să ștergi acest element?';
+            }
+            return { message: m, label: 'Șterge', variant: 'danger' };
+          }
+          if (btn.classList.contains('iconpill--assign')) {
+            return { message: msg || 'Asociezi un pacient acestei radiografii?', label: 'Asociază', variant: 'assign' };
+          }
+          if (btn.classList.contains('facturi__all')) {
+            return { message: msg || 'Trimiți toate facturile în e-Factura?', label: 'Trimite toate', variant: 'ok' };
+          }
+          if (btn.classList.contains('iconpill--ok')) {
+            const l = sectionLabel(btn);
+            if (/facturi/i.test(l)) return { message: msg || 'Trimiți această factură în e-Factura?', label: 'Trimite', variant: 'ok' };
+            if (/chestionare/i.test(l)) return { message: msg || 'Validezi acest chestionar?', label: 'Validează', variant: 'ok' };
+            return { message: msg || 'Confirmi această acțiune?', label: 'Confirmă', variant: 'ok' };
+          }
+          return { message: msg || 'Confirmi această acțiune?', label: 'Confirmă', variant: 'ok' };
+        };
+        const openConfirm = (cfg, cb) => {
+          if (confirmText) confirmText.textContent = cfg.message;
+          if (confirmOk) {
+            confirmOk.textContent = cfg.label;
+            confirmOk.classList.remove('is-danger', 'is-ok', 'is-assign');
+            confirmOk.classList.add('is-' + cfg.variant);
+          }
+          confirmCb = cb;
+          openModal(confirmModal);
+          gsap.delayedCall(0.1, () => confirmCancel && confirmCancel.focus());
+        };
+        confirmCancel && confirmCancel.addEventListener('click', () => { confirmCb = null; closeModal(confirmModal); });
+        confirmOk && confirmOk.addEventListener('click', () => {
+          const cb = confirmCb;
+          confirmCb = null;
+          closeModal(confirmModal);
+          if (cb) cb();
+        });
+        const refreshEmpty = (card) => {
+          if (!card) return;
+          const empty = card.querySelector('.empty-state');
+          if (!empty) return;
+          const rows = card.querySelectorAll('.recall__item, .facturow, tbody tr');
+          const isEmpty = rows.length === 0;
+          empty.hidden = !isEmpty;
+          card.querySelectorAll('.recall__list, .facturi__list, .tablecard__scroll, .tablecard__foot, .recall__all, .facturi__all').forEach((el) => {
+            el.style.display = isEmpty ? 'none' : '';
+          });
+          const count = card.querySelector('.facturi__count');
+          if (count) count.textContent = String(rows.length);
+        };
+        document.querySelectorAll('.iconpill--danger, .iconpill--ok, .iconpill--assign, .facturi__all, [data-sms]').forEach((btn) => {
+          btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const card = btn.closest('.recall, .facturi, .tablecard');
+            openConfirm(actionConfig(btn), () => {
+              if (btn.hasAttribute('data-sms')) {
+                // SMS reminder doesn't resolve the recall — keep the row
+              } else if (btn.classList.contains('facturi__all')) {
+                if (card) card.querySelectorAll('.facturow').forEach((r) => r.remove());
+              } else {
+                const row = btn.closest('li, tr');
+                if (row) row.remove();
+              }
+              refreshEmpty(card);
+            });
+          });
+        });
+      }
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+
+        if (activeModal) {
+          closeModal(activeModal);
+        } else if (isFabOpen) {
+          toggleFab();
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (isFabOpen && !fabWrap.contains(event.target)) {
+          toggleFab();
+        }
+      });
+
+      searchModal?.querySelector('.tmodal__input')?.addEventListener('input', (event) => {
+        const query = event.target.value.trim().toLowerCase();
+
+        searchModal.querySelectorAll('.tmodal__result').forEach((result) => {
+          result.hidden = query.length > 0 && !result.dataset.label.toLowerCase().includes(query);
+        });
+      });
+
+      const chatForm = chatModal?.querySelector('.tmodal__compose');
+      const chatInput = chatForm?.querySelector('input');
+      const chatMessages = chatModal?.querySelector('.tmodal__messages');
+
+      chatForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const text = chatInput.value.trim();
+
+        if (!text) return;
+
+        const message = document.createElement('div');
+        message.className = 'msg msg--user';
+        message.textContent = text;
+        chatMessages.appendChild(message);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+
+      const voiceMic = voiceModal?.querySelector('.voice-modal__mic');
+      const voiceOrb = voiceModal?.querySelector('#voiceOrb');
+      const voiceOrbClassic = voiceModal?.querySelector('#voiceOrbClassic');
+      const voiceBloomWobble = voiceModal?.querySelector('#voiceBloomWobble');
+      const voiceBloomFit = voiceModal?.querySelector('#voiceBloomFit');
+      const voiceCaption = voiceModal?.querySelector('.voice-modal__caption');
+      const voiceStateButtons = voiceModal?.querySelectorAll('.voice-modal__state') || [];
+      const voiceStateOrder = ['inactive', 'listening', 'searching', 'speaking', 'done'];
+      const voiceStateCopy = {
+        inactive: 'Aura sta pregatita.',
+        listening: 'Te ascult. Spune ce ai nevoie.',
+        searching: 'Caut informatia potrivita.',
+        speaking: 'Iti raspund acum.',
+        done: 'Am finalizat actiunea.'
+      };
+      // Bloom orb (Var. 07): fixed coral palette; states differ by speed + wobble.
+      // base/hue = animation cadence; boost = scale; wobble = wobble period (s);
+      // wobAmp = wobble amplitude. Idle is small + barely moving; active states grow.
+      const BLOOM_BASE_ORB = 82;
+      const BLOOM_STATE = {
+        inactive:  { base: 0.40, hue: 0.6, boost: 0.80, wobble: 8.0, wobAmp: 0.30 },
+        listening: { base: 1.90, hue: 1.3, boost: 1.10, wobble: 2.7, wobAmp: 1.10 },
+        searching: { base: 2.30, hue: 1.5, boost: 1.08, wobble: 1.9, wobAmp: 1.20 },
+        speaking:  { base: 2.70, hue: 1.6, boost: 1.06, wobble: 1.7, wobAmp: 1.30 },
+        done:      { base: 1.50, hue: 1.0, boost: 1.06, wobble: 3.2, wobAmp: 1.00 }
+      };
+
+      const renderOrb = (state) => {
+        if (!voiceBloomWobble || !voiceBloomFit) return;
+
+        const cfg = BLOOM_STATE[state] || BLOOM_STATE.inactive;
+        const speedBase = cfg.base, speedHue = cfg.hue;
+
+        voiceBloomWobble.style.setProperty('--animation-rotation-speed-base', `${(1 / (speedBase * 0.5)).toFixed(3)}s`);
+        voiceBloomWobble.style.setProperty('--animation-hue-speed-base', `${(1 / (speedHue * 0.5)).toFixed(3)}s`);
+        voiceBloomWobble.style.setProperty('--wobble-dur', `${cfg.wobble}s`);
+        voiceBloomWobble.style.setProperty('--wobble-amp', String(cfg.wobAmp));
+
+        // scale the 82px orb to fill its box (boost grows active states)
+        const box = (voiceOrb && voiceOrb.clientWidth) || 220;
+        const k = (box / BLOOM_BASE_ORB) * 0.72 * cfg.boost;
+        voiceBloomFit.style.transform = `scale(${k.toFixed(3)})`;
+      };
+
+      const setVoiceState = (state) => {
+        if (!voiceStateCopy[state] || !voiceOrb || !voiceOrbClassic || !voiceCaption) return;
+
+        voiceOrb.dataset.state = state;
+        voiceOrbClassic.dataset.state = state;
+        voiceModal.dataset.state = state;
+        voiceCaption.textContent = voiceStateCopy[state];
+
+        voiceStateButtons.forEach((button) => {
+          const isActive = button.dataset.state === state;
+
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        renderOrb(state);
+      };
+
+      const variantButtons = voiceModal?.querySelectorAll('.voice-modal__variant') || [];
+      const orbVariants = voiceModal?.querySelectorAll('.voice-modal__orb .orb-variant') || [];
+      const setOrbVariant = (variant) => {
+        orbVariants.forEach((orb) => orb.classList.toggle('is-active', orb.dataset.variant === variant));
+        variantButtons.forEach((button) => {
+          const isActive = button.dataset.variant === variant;
+
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-selected', String(isActive));
+        });
+      };
+
+      variantButtons.forEach((button) => {
+        button.addEventListener('click', () => setOrbVariant(button.dataset.variant));
+      });
+
+      voiceStateButtons.forEach((button) => {
+        button.addEventListener('click', () => setVoiceState(button.dataset.state));
+      });
+
+      voiceMic?.addEventListener('click', () => {
+        const currentIndex = voiceStateOrder.indexOf(voiceOrb?.dataset.state || 'listening');
+        const nextIndex = (currentIndex + 1) % voiceStateOrder.length;
+
+        setVoiceState(voiceStateOrder[nextIndex]);
+      });
+
+      setOrbVariant('classic');
+      setVoiceState('listening');
+    }
+
+    (function () {
+      document.querySelectorAll('.tablecard').forEach((card) => {
+        const tableSearch = card.querySelector('[data-table-search]');
+        const tableBody = card.querySelector('[data-table-body]');
+        const tableInfo = card.querySelector('[data-table-info]');
+
+        if (!tableSearch || !tableBody) return;
+
+        const rows = Array.from(tableBody.querySelectorAll('tr'));
+        const total = rows.length;
+
+        tableSearch.addEventListener('input', () => {
+          const query = tableSearch.value.trim().toLowerCase();
+          let shown = 0;
+
+          rows.forEach((row) => {
+            const match = !query || row.textContent.toLowerCase().includes(query);
+            row.hidden = !match;
+            if (match) shown += 1;
+          });
+
+          if (tableInfo) {
+            tableInfo.textContent = shown === total
+              ? `Arată 1–${total} din ${total} rezultate`
+              : `Arată ${shown} din ${total} rezultate`;
+          }
+        });
+      });
+    })();
+
+    (function () {
+      const appointmentBars = document.querySelectorAll('.appointments-chart__bar');
+
+      appointmentBars.forEach((bar) => {
+        bar.addEventListener('click', () => {
+          appointmentBars.forEach((item) => {
+            item.classList.remove('is-peak');
+            item.setAttribute('aria-pressed', 'false');
+          });
+
+          window.requestAnimationFrame(() => {
+            bar.classList.add('is-peak');
+            bar.setAttribute('aria-pressed', 'true');
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
