@@ -188,31 +188,61 @@
       <div class="main">
         <main class="content">
           <div class="hero-row">
-            <section class="hero hero--aura" aria-label="Aura — asistent">
-              <div class="aura__top">
+            <section class="hero hero--aura" aria-label="Aura — asistent" data-aura-panel>
+              <div class="aura-panel__glowclip">
+                <div class="aura-panel__edge"></div>
+                <div class="aura-panel__accent aura-panel__accent--top"></div>
+                <div class="aura-panel__accent aura-panel__accent--bottom"></div>
+                <div class="aura-panel__accent aura-panel__accent--left"></div>
+                <div class="aura-panel__accent aura-panel__accent--right"></div>
+              </div>
+
+              <header class="aura-panel__head">
                 <span class="aura__name">Aura</span>
-                <span class="aura__state"><span class="aura__state-dot" aria-hidden="true"></span><span class="aura__state-label">Inactiv</span></span>
-              </div>
+                <span class="aura__state"><span class="aura__state-dot" aria-hidden="true"></span><span class="aura__state-label" data-aura-label>Inactiv</span></span>
+              </header>
 
-              <div class="aura__core">
-                <div class="aura__orb" aria-hidden="true"></div>
-                <h1>Cum te pot ajuta?</h1>
-              </div>
-
-              <div class="aura__foot">
-                <div class="aura__sugg">
-                  <span class="aura__sugg-label">Sugestii</span>
-                  <div class="aura__chips">
-                    <button class="aura__chip" type="button"><i class="ph ph-calendar-plus" aria-hidden="true"></i>Adaugă programare</button>
-                    <button class="aura__chip" type="button"><i class="ph ph-magnifying-glass" aria-hidden="true"></i>Caută pacient</button>
-                    <button class="aura__chip" type="button"><i class="ph ph-clipboard-text" aria-hidden="true"></i>Vezi planuri</button>
+              <div class="aura-panel__orbwrap">
+                <div class="aura aura--panel" role="img" aria-label="Aura orb" data-aura-orb>
+                  <div class="aura__orbits">
+                    <div class="aura__orbit aura__orbit--1"><div class="aura__orbit__shape"></div></div>
+                    <div class="aura__orbit aura__orbit--2"><div class="aura__orbit__shape"></div></div>
+                    <div class="aura__orbit aura__orbit--3"><div class="aura__orbit__shape"></div></div>
                   </div>
+                  <svg class="aura__loader" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle class="track" cx="50" cy="50" r="46" fill="none" stroke="rgba(255,211,218,0.10)" stroke-width="1.1"></circle>
+                    <circle class="arc" cx="50" cy="50" r="46" fill="none" stroke="#FFD3DA" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="70 219"></circle>
+                  </svg>
+                  <div class="aura__core">
+                    <div class="aura__ring"></div>
+                    <div class="aura__body"></div>
+                  </div>
+                  <div class="aura__pulse"></div>
+                  <div class="aura__face">
+                    <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+                    <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+                  </div>
+                  <div class="aura__spark" style="top:8%; left:18%; animation-delay:0s"></div>
+                  <div class="aura__spark" style="top:24%; left:86%; animation-delay:.7s"></div>
+                  <div class="aura__spark" style="top:78%; left:12%; animation-delay:1.2s"></div>
+                  <div class="aura__spark" style="top:86%; left:80%; animation-delay:1.7s"></div>
                 </div>
-                <form class="aura__ask" onsubmit="return false">
-                  <input class="aura__ask-input" type="text" placeholder="Scrie o comandă sau întreabă Aura…" aria-label="Întreabă Aura" />
-                  <button class="aura__mic" type="button" data-aura-mic aria-label="Pornește ascultarea"><i class="ph ph-microphone" aria-hidden="true"></i></button>
-                </form>
               </div>
+
+              <h1 class="aura-panel__ask">Cum te pot ajuta?</h1>
+
+              <div class="aura-panel__states" role="group" aria-label="Stari Aura">
+                <button class="aura-panel__state is-on" type="button" data-aura-state="idle">Idle</button>
+                <button class="aura-panel__state" type="button" data-aura-state="listening">Listening</button>
+                <button class="aura-panel__state" type="button" data-aura-state="searching">Searching</button>
+                <button class="aura-panel__state" type="button" data-aura-state="error">Error</button>
+                <button class="aura-panel__state" type="button" data-aura-state="complete">Complete</button>
+              </div>
+
+              <form class="aura-panel__field" onsubmit="return false">
+                <input class="aura-panel__input" type="text" placeholder="Scrie o comandă sau întreabă Aura…" aria-label="Întreabă Aura" />
+                <button class="aura-panel__mic" type="button" data-aura-panel-mic aria-label="Pornește ascultarea"><i class="ph-fill ph-microphone aura-panel__mic-i aura-panel__mic-i--mic" aria-hidden="true"></i><i class="ph-fill ph-stop aura-panel__mic-i aura-panel__mic-i--stop" aria-hidden="true"></i></button>
+              </form>
             </section>
             <aside class="hero-aside" aria-label="Programări azi">
               <div class="appts__head">
@@ -631,57 +661,93 @@
           </section>
 
           <div class="evolutie-row">
-          <section class="panel appointments-chart" aria-label="Evolutie programari">
-            <header class="appointments-chart__head">
-              <div class="appointments-chart__heading">
-                <span class="appointments-chart__icon" aria-hidden="true"><i class="ph ph-chart-bar"></i></span>
-                <div class="appointments-chart__title">
-                <h2>Evoluție programări</h2>
-                <p>Volumul programărilor confirmate în ultima săptămână.</p>
-              </div>
-              </div>
-              <div class="rangepick" data-rangepick>
-                <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
-                  <i class="ph ph-calendar" aria-hidden="true"></i>
-                  <span data-rangepick-label>Ultimele 7 zile</span>
-                  <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
-                </button>
-                <div class="rangepick__menu" data-rangepick-menu>
-                  <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
-                  <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
-                  <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
-                  <div class="rangepick__custom" data-rangepick-custom>
-                    <label class="rangepick__field"><span>De la</span><input type="date" value="2026-01-01" aria-label="Data de început" /></label>
-                    <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-01-30" aria-label="Data de sfârșit" /></label>
-                    <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+            <section class="panel panel--chart" aria-label="Programări">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-chart-bar" aria-hidden="true"></i></span>
+                  <div><h2>Programări</h2><small>Confirmate pe perioada selectată</small></div>
+                </div>
+                <div class="rangepick" data-rangepick>
+                  <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                    <i class="ph ph-calendar" aria-hidden="true"></i>
+                    <span data-rangepick-label>Ultimele 7 zile</span>
+                    <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="rangepick__menu" data-rangepick-menu>
+                    <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
+                    <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
+                    <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
+                    <div class="rangepick__custom" data-rangepick-custom>
+                      <label class="rangepick__field"><span>De la</span><input type="date" value="2026-01-01" aria-label="Data de început" /></label>
+                      <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-01-30" aria-label="Data de sfârșit" /></label>
+                      <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                    </div>
+                  </div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="appointments-chart__summary">
+                  <strong>196</strong>
+                  <span>confirmate</span>
+                </div>
+                <div class="apptbars" style="--avg: 59">
+                  <div class="apptbars__grid">
+                    <span class="apptbars__avg" aria-hidden="true"><span class="apptbars__avg-label">29 medie</span></span>
+                    <button class="apptbar" type="button" style="--value: 42" aria-label="Luni: 22 programări"><i data-count="22"></i></button>
+                    <button class="apptbar" type="button" style="--value: 36" aria-label="Marți: 19 programări"><i data-count="19"></i></button>
+                    <button class="apptbar" type="button" style="--value: 68" aria-label="Miercuri: 31 programări"><i data-count="31"></i></button>
+                    <button class="apptbar" type="button" style="--value: 46" aria-label="Joi: 24 programări"><i data-count="24"></i></button>
+                    <button class="apptbar is-peak" type="button" style="--value: 88" aria-label="Vineri: 42 programări"><i data-count="42"></i></button>
+                    <button class="apptbar" type="button" style="--value: 58" aria-label="Sâmbătă: 28 programări"><i data-count="28"></i></button>
+                    <button class="apptbar" type="button" style="--value: 78" aria-label="Duminică: 36 programări"><i data-count="36"></i></button>
+                  </div>
+                  <div class="apptbars__days" aria-hidden="true">
+                    <span>Lun</span><span>Mar</span><span>Mie</span><span>Joi</span><span class="is-peak">Vin</span><span>Sâm</span><span>Dum</span>
                   </div>
                 </div>
               </div>
-            </header>
+            </section>
 
-            <div class="appointments-chart__body">
-            <div class="appointments-chart__summary">
-              <strong>196</strong>
-              <span>programări confirmate</span>
-            </div>
-
-            <div class="apptbars" style="--avg: 59">
-              <div class="apptbars__grid">
-                <span class="apptbars__avg" aria-hidden="true"><span class="apptbars__avg-label">29 medie</span></span>
-                <button class="apptbar" type="button" style="--value: 42" aria-label="Luni: 22 programări"><i data-count="22"></i></button>
-                <button class="apptbar" type="button" style="--value: 36" aria-label="Marți: 19 programări"><i data-count="19"></i></button>
-                <button class="apptbar" type="button" style="--value: 68" aria-label="Miercuri: 31 programări"><i data-count="31"></i></button>
-                <button class="apptbar" type="button" style="--value: 46" aria-label="Joi: 24 programări"><i data-count="24"></i></button>
-                <button class="apptbar is-peak" type="button" style="--value: 88" aria-label="Vineri: 42 programări"><i data-count="42"></i></button>
-                <button class="apptbar" type="button" style="--value: 58" aria-label="Sâmbătă: 28 programări"><i data-count="28"></i></button>
-                <button class="apptbar" type="button" style="--value: 78" aria-label="Duminică: 36 programări"><i data-count="36"></i></button>
+            <section class="panel panel--chart" aria-label="Pacienți">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-title__icon"><i class="ph ph-users-three" aria-hidden="true"></i></span>
+                  <div><h2>Pacienți</h2><small>Activi în perioada selectată</small></div>
+                </div>
+                <div class="rangepick" data-rangepick>
+                  <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                    <i class="ph ph-calendar" aria-hidden="true"></i>
+                    <span data-rangepick-label>Ultimele 7 zile</span>
+                    <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                  </button>
+                  <div class="rangepick__menu" data-rangepick-menu>
+                    <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
+                    <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
+                    <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
+                    <div class="rangepick__custom" data-rangepick-custom>
+                      <label class="rangepick__field"><span>De la</span><input type="date" value="2026-01-01" aria-label="Data de început" /></label>
+                      <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-01-30" aria-label="Data de sfârșit" /></label>
+                      <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                    </div>
+                  </div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="appointments-chart__summary">
+                  <strong>1.284</strong>
+                  <span>pacienți activi</span>
+                </div>
+                <svg class="mini-line" viewBox="0 0 680 240" role="img" aria-label="Evoluție pacienți activi">
+                  <path class="mini-line__grid" d="M40 56H640M40 120H640M40 184H640" />
+                  <path class="mini-line__area" d="M40 182 C140 172 224 156 326 134 C432 111 536 86 640 64 L640 210 L40 210 Z" />
+                  <path class="mini-line__path" d="M40 182 C140 172 224 156 326 134 C432 111 536 86 640 64" />
+                  <circle class="mini-line__dot" cx="640" cy="64" r="6" />
+                  <text class="chart-label" x="40" y="232">ian</text>
+                  <text class="chart-label" x="334" y="232">apr</text>
+                  <text class="chart-label" x="628" y="232">iun</text>
+                </svg>
               </div>
-              <div class="apptbars__days" aria-hidden="true">
-                <span>Lun</span><span>Mar</span><span>Mie</span><span>Joi</span><span class="is-peak">Vin</span><span>Sâm</span><span>Dum</span>
-              </div>
-            </div>
-            </div>
-          </section>
+            </section>
           </div>
 
           <!-- Dashboard parcat temporar; reconstruim pas cu pas (pastrat in template-ul de mai jos). -->
@@ -972,44 +1038,37 @@
     </div>
   </div>
 
-  <div class="fab-wrap" id="fabWrap">
+  <div class="fab-wrap aura-float-wrap" id="fabWrap">
     <button class="fab-item" type="button" data-action="search" aria-label="Cauta" title="Cauta">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
     </button>
-    <button class="fab-item" type="button" data-action="write" aria-label="Scrie" title="Scrie">
-      <i class="ph ph-chat-text" aria-hidden="true"></i>
+    <button class="fab-item" type="button" data-action="write" aria-label="Deschide chat" title="Deschide chat">
+      <i class="ph ph-chat-circle-dots" aria-hidden="true"></i>
     </button>
-    <button class="fab-item" type="button" data-action="speak" aria-label="Vorbeste" title="Vorbeste">
+    <button class="fab-item" type="button" data-action="speak" aria-label="Vorbeste cu Aura" title="Vorbeste cu Aura">
       <i class="ph ph-microphone" aria-hidden="true"></i>
     </button>
-    <div class="fab-orb" id="stageOrb" data-state="inactive" role="button" tabindex="0" aria-label="Meniu Aura" aria-expanded="false" title="Deschide meniul Aura">
-      <div class="bloom-root">
-        <div class="bloom-shake">
-          <div class="bloom-wobble" id="stageBloomWobble">
-            <div class="bloom-fit" id="stageBloomFit">
-              <div class="orb-main">
-                <div class="glass loc-glass"></div>
-                <div class="shape-a loc-a"></div>
-                <div class="shape-b loc-b"></div>
-                <div class="shape-c loc-c"></div>
-                <div class="shape-d loc-d"></div>
-                <svg class="blob-a" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <defs><linearGradient id="fab-bloom-a-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
-                  <path fill="url(#fab-bloom-a-grad)" d="M23.3,-31.9C28.4,-28.4,29.5,-19.2,31.1,-10.9C32.6,-2.6,34.7,4.7,33.5,11.7C32.3,18.6,27.8,25.3,21.6,28.8C15.5,32.3,7.8,32.6,-0.6,33.5C-9,34.4,-18.1,35.8,-24.8,32.5C-31.5,29.2,-35.9,21.2,-36.5,13.3C-37.2,5.4,-34.1,-2.4,-31.6,-10.4C-29.1,-18.3,-27.2,-26.6,-22.1,-30.1C-16.9,-33.6,-8.4,-32.3,0.3,-32.8C9.1,-33.3,18.2,-35.4,23.3,-31.9Z" transform="translate(50 50)" stroke-width="0"></path>
-                </svg>
-                <svg class="blob-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <defs><linearGradient id="fab-bloom-b-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
-                  <path fill="url(#fab-bloom-b-grad)" d="M19.2,-27.1C25.6,-29.4,32.3,-26,33.8,-20.5C35.3,-15,31.7,-7.5,27.8,-2.2C23.9,3,19.8,6,16.8,8.9C13.8,11.8,11.9,14.6,9.3,18.8C6.7,23,3.3,28.6,-0.7,29.8C-4.7,31,-9.4,27.8,-16.7,26.2C-23.9,24.7,-33.6,24.8,-39.3,20.7C-45.1,16.7,-47,8.3,-45.4,0.9C-43.8,-6.5,-38.8,-13,-32.6,-16.3C-26.4,-19.6,-18.9,-19.7,-13.3,-17.9C-7.6,-16,-3.8,-12.2,1.3,-14.4C6.3,-16.6,12.7,-24.8,19.2,-27.1Z" transform="translate(50 50)" stroke-width="0"></path>
-                </svg>
-                <svg class="blob-shine" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <defs><linearGradient id="fab-bloom-shine-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
-                  <path fill="url(#fab-bloom-shine-grad)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
-                </svg>
-                <svg class="blob-shine shine-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <defs><linearGradient id="fab-bloom-shine-grad-b" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
-                  <path fill="url(#fab-bloom-shine-grad-b)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
-                </svg>
-              </div>
+    <div class="fab-orb aura-float" id="stageOrb" data-state="inactive" role="button" tabindex="0" aria-label="Aura" aria-expanded="false" title="Aura">
+      <div id="stageBloomWobble" class="aura-float__compat">
+        <div id="stageBloomFit" class="aura-float__compat">
+          <div class="aura aura--float" role="img" aria-label="Aura orb" data-aura-orb data-aura-floating>
+            <div class="aura__orbits">
+              <div class="aura__orbit aura__orbit--1"><div class="aura__orbit__shape"></div></div>
+              <div class="aura__orbit aura__orbit--2"><div class="aura__orbit__shape"></div></div>
+              <div class="aura__orbit aura__orbit--3"><div class="aura__orbit__shape"></div></div>
+            </div>
+            <svg class="aura__loader" viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="track" cx="50" cy="50" r="46" fill="none" stroke="rgba(255,211,218,0.10)" stroke-width="1.1"></circle>
+              <circle class="arc" cx="50" cy="50" r="46" fill="none" stroke="#FFD3DA" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="70 219"></circle>
+            </svg>
+            <div class="aura__core">
+              <div class="aura__ring"></div>
+              <div class="aura__body"></div>
+            </div>
+            <div class="aura__pulse"></div>
+            <div class="aura__face">
+              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
             </div>
           </div>
         </div>
@@ -1039,35 +1098,15 @@
     <div class="tmodal__panel" role="dialog" aria-modal="true" aria-label="Chat">
       <div class="tmodal__chat-head">
         <div class="tmodal__avatar tmodal__avatar--orb" aria-hidden="true">
-          <div class="bloom-root">
-            <div class="bloom-shake">
-              <div class="bloom-wobble">
-                <div class="bloom-fit">
-                  <div class="orb-main">
-                    <div class="glass loc-glass"></div>
-                    <div class="shape-a loc-a"></div>
-                    <div class="shape-b loc-b"></div>
-                    <div class="shape-c loc-c"></div>
-                    <div class="shape-d loc-d"></div>
-                    <svg class="blob-a" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <defs><linearGradient id="chat-bloom-a-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
-                      <path fill="url(#chat-bloom-a-grad)" d="M23.3,-31.9C28.4,-28.4,29.5,-19.2,31.1,-10.9C32.6,-2.6,34.7,4.7,33.5,11.7C32.3,18.6,27.8,25.3,21.6,28.8C15.5,32.3,7.8,32.6,-0.6,33.5C-9,34.4,-18.1,35.8,-24.8,32.5C-31.5,29.2,-35.9,21.2,-36.5,13.3C-37.2,5.4,-34.1,-2.4,-31.6,-10.4C-29.1,-18.3,-27.2,-26.6,-22.1,-30.1C-16.9,-33.6,-8.4,-32.3,0.3,-32.8C9.1,-33.3,18.2,-35.4,23.3,-31.9Z" transform="translate(50 50)" stroke-width="0"></path>
-                    </svg>
-                    <svg class="blob-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <defs><linearGradient id="chat-bloom-b-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="rgb(255,158,170)" offset="0%"></stop><stop stop-color="rgb(241,93,111)" offset="100%"></stop></linearGradient></defs>
-                      <path fill="url(#chat-bloom-b-grad)" d="M19.2,-27.1C25.6,-29.4,32.3,-26,33.8,-20.5C35.3,-15,31.7,-7.5,27.8,-2.2C23.9,3,19.8,6,16.8,8.9C13.8,11.8,11.9,14.6,9.3,18.8C6.7,23,3.3,28.6,-0.7,29.8C-4.7,31,-9.4,27.8,-16.7,26.2C-23.9,24.7,-33.6,24.8,-39.3,20.7C-45.1,16.7,-47,8.3,-45.4,0.9C-43.8,-6.5,-38.8,-13,-32.6,-16.3C-26.4,-19.6,-18.9,-19.7,-13.3,-17.9C-7.6,-16,-3.8,-12.2,1.3,-14.4C6.3,-16.6,12.7,-24.8,19.2,-27.1Z" transform="translate(50 50)" stroke-width="0"></path>
-                    </svg>
-                    <svg class="blob-shine" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <defs><linearGradient id="chat-bloom-shine-grad" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
-                      <path fill="url(#chat-bloom-shine-grad)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
-                    </svg>
-                    <svg class="blob-shine shine-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <defs><linearGradient id="chat-bloom-shine-grad-b" x1="0" x2="1" y1="1" y2="0"><stop stop-color="white" offset="0%"></stop></linearGradient></defs>
-                      <path fill="url(#chat-bloom-shine-grad-b)" d="M12.3,-22.8C17.4,-18.4,23.8,-17.9,26.8,-14.8C29.8,-11.6,29.5,-5.8,29,-0.3C28.6,5.3,28,10.6,26.9,17.1C25.9,23.7,24.3,31.5,19.7,32.2C15.2,32.8,7.6,26.3,0.6,25.3C-6.4,24.3,-12.9,28.9,-16.8,27.9C-20.8,26.9,-22.3,20.3,-23.8,14.7C-25.3,9.2,-26.9,4.6,-30.1,-1.8C-33.3,-8.3,-38.1,-16.5,-35.4,-20.1C-32.7,-23.6,-22.5,-22.4,-15.3,-25.5C-8.2,-28.6,-4.1,-36,-0.2,-35.6C3.6,-35.2,7.3,-27.1,12.3,-22.8Z" transform="translate(50 50)" stroke-width="0"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+          <div class="aura aura--avatar" role="img" aria-label="Aura">
+            <div class="aura__core">
+              <div class="aura__ring"></div>
+              <div class="aura__body"></div>
+            </div>
+            <div class="aura__pulse"></div>
+            <div class="aura__face">
+              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
             </div>
           </div>
         </div>
@@ -1098,6 +1137,27 @@
     </div>
   </div>
 
+  <div class="tmodal" id="assignModal" aria-hidden="true">
+    <div class="tmodal__backdrop" data-close></div>
+    <div class="tmodal__panel" role="dialog" aria-modal="true" aria-label="Asociază pacient">
+      <div class="tmodal__bar">
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <input class="tmodal__input" type="search" placeholder="Caută pacient după nume sau telefon..." autocomplete="off" />
+        <span class="tmodal__esc">Esc</span>
+      </div>
+      <p class="tmodal__assign-file" data-assign-file hidden><i class="ph ph-file-pdf" aria-hidden="true"></i>Asociază <span data-assign-filename></span></p>
+      <ul class="tmodal__results">
+        <li class="tmodal__result" data-label="Maria Ionescu" data-meta="0721 234 567"><i class="ph ph-user-circle" aria-hidden="true"></i>Maria Ionescu <span class="tmodal__result-sub">0721 234 567</span></li>
+        <li class="tmodal__result" data-label="Andrei Pop" data-meta="0744 118 902"><i class="ph ph-user-circle" aria-hidden="true"></i>Andrei Pop <span class="tmodal__result-sub">0744 118 902</span></li>
+        <li class="tmodal__result" data-label="Eduard Tomacha" data-meta="0768 412 770"><i class="ph ph-user-circle" aria-hidden="true"></i>Eduard Tomacha <span class="tmodal__result-sub">0768 412 770</span></li>
+        <li class="tmodal__result" data-label="Oana Gălușcă" data-meta="0755 201 466"><i class="ph ph-user-circle" aria-hidden="true"></i>Oana Gălușcă <span class="tmodal__result-sub">0755 201 466</span></li>
+        <li class="tmodal__result" data-label="Cristian Radu" data-meta="0726 339 158"><i class="ph ph-user-circle" aria-hidden="true"></i>Cristian Radu <span class="tmodal__result-sub">0726 339 158</span></li>
+        <li class="tmodal__result" data-label="Elena Dumitrescu" data-meta="0733 540 217"><i class="ph ph-user-circle" aria-hidden="true"></i>Elena Dumitrescu <span class="tmodal__result-sub">0733 540 217</span></li>
+        <li class="tmodal__result" data-label="Mihai Ionescu" data-meta="0721 884 030"><i class="ph ph-user-circle" aria-hidden="true"></i>Mihai Ionescu <span class="tmodal__result-sub">0721 884 030</span></li>
+      </ul>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/gsap@3.13.0/dist/gsap.min.js"></script>
   <script>
     const app = document.querySelector('.app');
@@ -1113,7 +1173,7 @@
     const searchModal = document.querySelector('#searchModal');
     const chatModal = document.querySelector('#chatModal');
     const voiceModal = document.querySelector('#voiceModal');
-    const modalFor = { search: searchModal, write: chatModal }; // speak now toggles the orb's listening state instead of opening voiceModal
+    const modalFor = { search: searchModal, write: chatModal };
     let activeModal = null;
 
     document.querySelectorAll('.nav-link, .nav-toggle').forEach((item) => {
@@ -1359,6 +1419,7 @@
         menu:      'Inchide meniul',
         listening: 'Apasa pentru a opri ascultarea'
       };
+      const AURA_VISUAL_STATES = ['idle', 'listening', 'searching', 'error', 'complete'];
       const orbSpeed = { rot: ORB_STATE.inactive.rot, hue: ORB_STATE.inactive.hue, wob: ORB_STATE.inactive.wob };
 
       const applyOrbSpeed = () => {
@@ -1380,15 +1441,25 @@
       };
       const applyOrbScale = (cfg) => {
         const box = stageOrb.clientWidth || 72;
-        stageBloomFit.style.transform = `scale(${((box / ORB_BASE_SIZE) * cfg.boost).toFixed(3)})`;
+        if (stageBloomFit) stageBloomFit.style.transform = `scale(${((box / ORB_BASE_SIZE) * cfg.boost).toFixed(3)})`;
       };
-      const setOrbState = (state, instant) => {
+      const setOrbState = (state, instant, visualState) => {
         const cfg = ORB_STATE[state] || ORB_STATE.inactive;
+        const stageAura = stageOrb.querySelector('[data-aura-floating]');
+        const auraState = AURA_VISUAL_STATES.includes(visualState) ? visualState : (state === 'listening' ? 'listening' : 'idle');
         stageOrb.dataset.state = state;
         stageOrb.setAttribute('title', ORB_TITLE[state] || ORB_TITLE.inactive);
-        stageBloomWobble.style.setProperty('--wobble-amp', String(cfg.wobAmp));
+        if (stageAura) {
+          AURA_VISUAL_STATES.forEach((x) => stageAura.classList.remove('is-' + x));
+          stageAura.classList.add('is-' + auraState);
+        }
+        if (stageBloomWobble) stageBloomWobble.style.setProperty('--wobble-amp', String(cfg.wobAmp));
         applyOrbScale(cfg);
         tweenOrbSpeed(cfg, instant ? 0 : 0.6);
+      };
+      window.setAuraFloatingOrbState = (visualState, instant) => {
+        const fabState = visualState === 'listening' ? 'listening' : (isFabOpen ? 'menu' : 'inactive');
+        setOrbState(fabState, instant, visualState);
       };
       window.addEventListener('resize', () => applyOrbScale(ORB_STATE[stageOrb.dataset.state] || ORB_STATE.inactive));
       setOrbState('inactive', true);
@@ -1445,10 +1516,13 @@
         fabTimeline.timeScale(2.4).reverse();
       };
 
-      // Orb click is context-aware: while listening, a single click stops it;
-      // otherwise it opens / closes the radial menu.
+      // The orb remains the FAB trigger; listening can still be stopped with one click.
       const activateOrb = () => {
-        if (stageOrb.dataset.state === 'listening') { setOrbState('inactive'); return; }
+        if (stageOrb.dataset.state === 'listening') {
+          setOrbState('inactive');
+          window.setAuraDashboardState?.('idle');
+          return;
+        }
         toggleFab();
       };
 
@@ -1521,7 +1595,10 @@
           if (action === 'speak') {
             // Collapse the items first, then bloom the orb into listening.
             // (Stopping is a single click on the orb itself.)
-            collapseItemsThen(() => setOrbState('listening'));
+            collapseItemsThen(() => {
+              setOrbState('listening');
+              window.setAuraDashboardState?.('listening');
+            });
             return;
           }
 
@@ -1677,7 +1754,7 @@
           const count = card.querySelector('.facturi__count');
           if (count) count.textContent = String(rows.length);
         };
-        document.querySelectorAll('.iconpill--danger, .iconpill--ok, .iconpill--assign, .facturi__all, [data-sms]').forEach((btn) => {
+        document.querySelectorAll('.iconpill--danger, .iconpill--ok, .facturi__all, [data-sms]').forEach((btn) => {
           btn.addEventListener('click', (event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -1695,6 +1772,44 @@
             });
           });
         });
+
+        // Radiografii: "Asociază pacient" opens a patient search-and-select modal
+        // (find the patient the X-ray belongs to) instead of a yes/no confirm.
+        const assignModal = document.querySelector('#assignModal');
+        if (assignModal) {
+          let assignRow = null;
+          const assignFileEl = assignModal.querySelector('[data-assign-file]');
+          const assignFileName = assignModal.querySelector('[data-assign-filename]');
+          document.querySelectorAll('.iconpill--assign').forEach((btn) => {
+            btn.addEventListener('click', (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              assignRow = btn.closest('tr');
+              const fname = assignRow?.querySelector('.dtable__doc')?.textContent?.trim() || '';
+              if (assignFileName) assignFileName.textContent = fname;
+              if (assignFileEl) assignFileEl.hidden = !fname;
+              openModal(assignModal);
+            });
+          });
+          assignModal.querySelector('.tmodal__input')?.addEventListener('input', (event) => {
+            const q = event.target.value.trim().toLowerCase();
+            assignModal.querySelectorAll('.tmodal__result').forEach((r) => {
+              const hay = (r.dataset.label + ' ' + (r.dataset.meta || '')).toLowerCase();
+              r.hidden = q.length > 0 && !hay.includes(q);
+            });
+          });
+          assignModal.querySelectorAll('.tmodal__result').forEach((r) => {
+            r.addEventListener('click', () => {
+              if (assignRow) {
+                const card = assignRow.closest('.tablecard');
+                assignRow.remove();
+                refreshEmpty(card);
+                assignRow = null;
+              }
+              closeModal(assignModal);
+            });
+          });
+        }
       }
 
       document.addEventListener('keydown', (event) => {
@@ -1832,6 +1947,211 @@
       setOrbVariant('classic');
       setVoiceState('listening');
     }
+
+    (function () {
+      const auraPanel = document.querySelector('[data-aura-panel]');
+      const auraOrbs = Array.from(document.querySelectorAll('[data-aura-orb]'));
+      if (!auraPanel || auraOrbs.length === 0) return;
+
+      const stageOrb = document.querySelector('#stageOrb');
+      const statusLabel = auraPanel.querySelector('[data-aura-label]');
+      const mic = auraPanel.querySelector('[data-aura-panel-mic]');
+      const stateButtons = Array.from(auraPanel.querySelectorAll('[data-aura-state]'));
+      const edge = auraPanel.querySelector('.aura-panel__edge');
+      const pulseLayers = auraOrbs.map((orb) => orb.querySelector('.aura__pulse')).filter(Boolean);
+      const coreLayers = [auraPanel.querySelector('.aura__core')].filter(Boolean);
+      const orbitLayers = [auraPanel.querySelector('.aura__orbits')].filter(Boolean);
+      const accentLayers = [
+        [auraPanel.querySelector('.aura-panel__accent--top'), 'y', 1, 0.0, 2.4],
+        [auraPanel.querySelector('.aura-panel__accent--bottom'), 'y', -1, 1.6, 3.0],
+        [auraPanel.querySelector('.aura-panel__accent--left'), 'x', 1, 3.1, 2.1],
+        [auraPanel.querySelector('.aura-panel__accent--right'), 'x', -1, 4.5, 3.5]
+      ].filter(([el]) => el);
+      const faces = auraOrbs.map((orb) => orb.querySelector('.aura__face')).filter(Boolean);
+      const eyePaths = auraOrbs.flatMap((orb) => Array.from(orb.querySelectorAll('.aura__eye path')));
+      const STATES = ['idle', 'listening', 'searching', 'error', 'complete'];
+      const LABELS = { idle: 'Inactiv', listening: 'Ascult', searching: 'Caut...', error: 'Eroare', complete: 'Gata' };
+      const EYE_HAPPY = 'M1.44 7.22 A9 9 0 0 1 18.56 7.22';
+      const EYE_SAD = 'M1.44 4.78 A9 9 0 0 0 18.56 4.78';
+      let currentState = 'idle';
+      let listening = false;
+      let ampGlow = 0;
+      let ampScale = 0;
+      let ampBase = 0;
+      let breathePhase = 0, lastT = 0;
+      let eyeFollow = true;
+      let eyeTX = 0, eyeTY = 0, eyeX = 0, eyeY = 0;
+      const t0 = performance.now();
+
+      const voiceEnv = (t) => {
+        const a = 0.5 + 0.5 * Math.sin(t * 2.3);
+        const b = 0.5 + 0.5 * Math.sin(t * 1.3 + 1.0);
+        const c = 0.5 + 0.5 * Math.sin(t * 3.7 + 2.1);
+        return Math.min(1, 0.34 + 0.46 * (0.5 * a + 0.3 * b + 0.2 * c));
+      };
+
+      // --- Real microphone input (Web Audio API). Produces the same 0..1 loudness
+      // the orb reacts to; falls back to the simulated voiceEnv if the mic is
+      // blocked/unavailable. Needs a secure context (https, localhost or 127.0.0.1)
+      // plus permission — the mic-button click is the required user gesture. ---
+      let micCtx = null, micAnalyser = null, micBuf = null, micStream = null;
+      // Sensitivity: RMS loudness is mapped from [MIC_FLOOR .. MIC_CEIL] onto 0..1.
+      // MIC_FLOOR gates silence/room noise to 0; LOWER MIC_CEIL = MORE sensitive
+      // (normal speech reaches a full reaction sooner — drop it if you must still
+      // speak up, raise it if it's too twitchy).
+      const MIC_FLOOR = 0.008, MIC_CEIL = 0.05;
+      async function startMic() {
+        if (micAnalyser || !navigator.mediaDevices?.getUserMedia) return;
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          if (!listening) { stream.getTracks().forEach((tr) => tr.stop()); return; } // stopped during prompt
+          micStream = stream;
+          micCtx = micCtx || new (window.AudioContext || window.webkitAudioContext)();
+          if (micCtx.state === 'suspended') await micCtx.resume();
+          const src = micCtx.createMediaStreamSource(micStream);
+          micAnalyser = micCtx.createAnalyser();
+          micAnalyser.fftSize = 1024;
+          micAnalyser.smoothingTimeConstant = 0.6;
+          src.connect(micAnalyser);
+          micBuf = new Uint8Array(micAnalyser.fftSize);
+        } catch (err) {
+          micAnalyser = null; // denied / no device -> simulation fallback
+        }
+      }
+      function stopMic() {
+        if (micStream) { micStream.getTracks().forEach((tr) => tr.stop()); micStream = null; }
+        micAnalyser = null; micBuf = null;
+      }
+      function readMic() {
+        if (!micAnalyser) return null;
+        micAnalyser.getByteTimeDomainData(micBuf);
+        let sum = 0;
+        for (let i = 0; i < micBuf.length; i++) { const v = (micBuf[i] - 128) / 128; sum += v * v; }
+        const rms = Math.sqrt(sum / micBuf.length);
+        return Math.min(1, Math.max(0, (rms - MIC_FLOOR) / (MIC_CEIL - MIC_FLOOR)));
+      }
+
+      const clearReactiveGlow = () => {
+        pulseLayers.forEach((layer) => { layer.style.opacity = ''; });
+        coreLayers.forEach((core) => { core.style.transform = ''; core.style.transition = ''; });
+        orbitLayers.forEach((orbits) => { orbits.style.transform = ''; orbits.style.transition = ''; });
+        if (edge) {
+          edge.style.opacity = '';
+          edge.style.transform = '';
+        }
+        accentLayers.forEach(([el]) => {
+          el.style.opacity = '';
+          el.style.transform = '';
+        });
+      };
+
+      const applyStateClasses = (state) => {
+        auraOrbs.forEach((orb) => {
+          STATES.forEach((x) => orb.classList.remove('is-' + x));
+          orb.classList.add('is-' + state);
+        });
+        auraPanel.classList.toggle('is-listening', state === 'listening');
+        window.setAuraFloatingOrbState?.(state);
+      };
+
+      const setAuraState = (state) => {
+        if (!STATES.includes(state)) state = 'idle';
+        currentState = state;
+        listening = state === 'listening';
+        if (listening) startMic(); else stopMic();
+        applyStateClasses(state);
+        if (statusLabel) statusLabel.textContent = LABELS[state];
+        mic?.classList.toggle('is-active', listening);
+        mic?.setAttribute('aria-label', listening ? 'Opreste ascultarea' : 'Porneste ascultarea');
+        stateButtons.forEach((button) => {
+          const active = button.dataset.auraState === state;
+          button.classList.toggle('is-on', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        eyeFollow = state === 'idle' || state === 'listening';
+        if (!eyeFollow) faces.forEach((face) => { face.style.transform = ''; });
+        eyePaths.forEach((path) => path.setAttribute('d', state === 'error' ? EYE_SAD : EYE_HAPPY));
+        if (!listening) clearReactiveGlow();
+      };
+
+      window.setAuraDashboardState = setAuraState;
+
+      function frame(now) {
+        requestAnimationFrame(frame);
+        const t = (now - t0) / 1000;
+        const dt = Math.min(0.05, Math.max(0, t - lastT)); lastT = t;
+        const rawEnv = listening ? (readMic() ?? voiceEnv(t)) : 0;
+        const env = rawEnv > 0.055 ? Math.sqrt(Math.min(1, (rawEnv - 0.055) / 0.945)) : 0;
+        ampGlow += (env - ampGlow) * 0.28;       // responsive: brightness + glow
+        ampScale += (env - ampScale) * 0.14;     // voice: extra orb growth on top
+        ampBase += ((listening ? 1 : 0) - ampBase) * 0.09; // eases the listening grow in/out
+
+        // orb "breathes" while listening — gentle at rest, faster + bigger when speaking
+        const breatheRate = 0.6 + ampGlow * 1.6;        // cycles per second
+        breathePhase += breatheRate * dt;
+        const breathe = 0.5 - 0.5 * Math.cos(breathePhase * 6.2832); // 0..1
+
+        if (listening || ampGlow > 0.004 || ampScale > 0.004 || ampBase > 0.004) {
+          const s = (1 + ampBase * (0.05 + breathe * 0.12) + ampScale * 0.18).toFixed(3);
+          const orbitS = (1 + ampBase * 0.14 + breathe * ampBase * 0.06 + ampScale * 0.10).toFixed(3);
+          coreLayers.forEach((core) => {
+            core.style.transition = 'none';
+            core.style.transform = `translate3d(0,0,0) scale3d(${s},${s},1)`;
+          });
+          orbitLayers.forEach((orbits) => {
+            orbits.style.transition = 'none';
+            orbits.style.transform = `translate3d(0,0,0) scale3d(${orbitS},${orbitS},1)`;
+          });
+          pulseLayers.forEach((layer) => { layer.style.opacity = (ampGlow * 0.6).toFixed(3); });
+          if (edge) edge.style.opacity = (0.9 + ampGlow * 0.1).toFixed(3); // start at idle level, brighten with voice
+          accentLayers.forEach(([el, axis, dir, phase, freq]) => {
+            const burst = Math.max(0, Math.sin(t * freq + phase));
+            const m = ampGlow * (0.25 + 0.75 * burst * burst);
+            const shift = (dir * m * 30).toFixed(1);
+            el.style.opacity = Math.min(1, m * 1.15).toFixed(3);
+            el.style.transform = axis === 'y'
+              ? `translate3d(0,${shift}px,0)`
+              : `translate3d(${shift}px,0,0)`;
+          });
+        } else {
+          clearReactiveGlow();
+        }
+      }
+      requestAnimationFrame(frame);
+
+      window.addEventListener('pointermove', (event) => {
+        const panelAura = auraPanel.querySelector('.aura--panel');
+        if (!panelAura) return;
+        const r = panelAura.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = event.clientX - cx;
+        const dy = event.clientY - cy;
+        const dist = Math.hypot(dx, dy) || 1;
+        const pull = Math.min(1, dist / 260);
+        eyeTX = (dx / dist) * 5 * pull;
+        eyeTY = (dy / dist) * 3.5 * pull;
+      });
+
+      (function trackEyes() {
+        requestAnimationFrame(trackEyes);
+        if (!eyeFollow) return;
+        eyeX += (eyeTX - eyeX) * 0.12;
+        eyeY += (eyeTY - eyeY) * 0.12;
+        const panelFace = auraPanel.querySelector('.aura--panel .aura__face');
+        if (panelFace) panelFace.style.transform = `translate3d(${eyeX.toFixed(2)}px, ${(3 + eyeY).toFixed(2)}px, 0)`;
+      })();
+
+      stateButtons.forEach((button) => {
+        button.addEventListener('click', () => setAuraState(button.dataset.auraState));
+      });
+
+      mic?.addEventListener('click', () => {
+        setAuraState(currentState === 'listening' ? 'idle' : 'listening');
+      });
+
+      setAuraState('idle');
+    })();
 
     (function () {
       document.querySelectorAll('.tablecard').forEach((card) => {
