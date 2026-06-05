@@ -123,6 +123,7 @@
       gap: 20px;
       padding: 14px 12px 18px;
       background: var(--sidebar);
+      border-right: 1px solid var(--line);
       transition: padding .18s ease;
     }
 
@@ -915,6 +916,22 @@
       font-size: .68rem;
       font-weight: 700;
     }
+
+    /* "asociază" modal: shows which file is being linked, above the patient list */
+    .tmodal__assign-file {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0 0;
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      background: var(--fill);
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 600;
+    }
+    .tmodal__assign-file .ph { color: var(--coral); font-size: 15px; }
+    .tmodal__assign-file span { color: var(--text); }
 
     .tmodal__results {
       list-style: none;
@@ -1773,6 +1790,513 @@
     }
     .aura__chip:hover { background: var(--fill-hover); }
     .aura__chip .ph { font-size: 15px; color: var(--coral); }
+
+    /* ===== Aura assistant panel v2 ===== */
+    .hero--aura {
+      --aura-hot: var(--coral);
+      --aura-soft: #ffd3da;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 13px;
+      padding: 26px 28px;
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      box-shadow: none;
+      color: #f2f4f9;
+      text-align: center;
+    }
+
+    /* Light mode: the panel takes a soft pastel pink in the brand-coral family.
+       That surface is LIGHT, so the panel's white-on-dark controls are flipped to
+       dark-on-light (rose ink) below to keep contrast. Dark mode uses var(--panel)
+       (set above); only the surface changes per theme. */
+    html[data-theme="light"] .hero--aura {
+      background: radial-gradient(135% 120% at 50% 42%, #fdeef1 0%, #f9d3dc 55%, #f4c2d0 100%);
+      color: #5e2230;
+      border-color: rgba(241, 93, 111, .16);
+    }
+    html[data-theme="light"] .hero--aura .aura__name { color: #5e2230; }
+    html[data-theme="light"] .hero--aura .aura__state {
+      background: rgba(255, 255, 255, .6);
+      color: #9a5a6b;
+    }
+    html[data-theme="light"] .hero--aura .aura-panel__state {
+      border-color: rgba(241, 93, 111, .28);
+      color: #7a3343;
+    }
+    html[data-theme="light"] .hero--aura .aura-panel__state:hover,
+    html[data-theme="light"] .hero--aura .aura-panel__state.is-on {
+      border-color: rgba(241, 93, 111, .55);
+      background: rgba(241, 93, 111, .16);
+      color: #a62f43;
+    }
+    html[data-theme="light"] .hero--aura .aura-panel__field {
+      background: rgba(255, 255, 255, .72);
+      border-color: rgba(241, 93, 111, .22);
+    }
+    /* Light mode: drop the multicolor edge-glow layer entirely — it's tuned for
+       the dark panel and clutters the clean pastel-pink surface. (Dark mode keeps
+       it.) The orb itself is unaffected. */
+    html[data-theme="light"] .hero--aura .aura-panel__glowclip { display: none; }
+
+    .aura-panel__glowclip {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .aura-panel__edge {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow:
+        inset 0   30px 34px -30px rgba(150, 92, 228, .62),
+        inset 0  -32px 36px -30px rgba(241, 93, 111, .68),
+        inset  32px 0  35px -32px rgba(228, 92, 182, .56),
+        inset -32px 0  35px -32px rgba(245, 112, 150, .56),
+        inset 0 0 20px -10px rgba(241, 93, 111, .18);
+      animation: auraEdgePulse 4.5s ease-in-out infinite;
+      will-change: opacity;
+    }
+
+    .hero--aura.is-listening .aura-panel__edge { animation: none; }
+
+    .aura-panel__accent {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(34px);
+      opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+    .aura-panel__accent--top { top: -26%; left: 14%; right: 14%; height: 56%; background: radial-gradient(ellipse at 50% 0%, rgba(150, 92, 228, .95), rgba(150, 92, 228, 0) 72%); }
+    .aura-panel__accent--bottom { bottom: -26%; left: 10%; right: 10%; height: 60%; background: radial-gradient(ellipse at 50% 100%, rgba(241, 93, 111, 1), rgba(241, 93, 111, 0) 72%); }
+    .aura-panel__accent--left { left: -22%; top: 14%; bottom: 14%; width: 52%; background: radial-gradient(ellipse at 0% 50%, rgba(228, 92, 182, .92), rgba(228, 92, 182, 0) 72%); }
+    .aura-panel__accent--right { right: -22%; top: 14%; bottom: 14%; width: 52%; background: radial-gradient(ellipse at 100% 50%, rgba(245, 112, 150, .92), rgba(245, 112, 150, 0) 72%); }
+
+    .aura-panel__head,
+    .aura-panel__orbwrap,
+    .aura-panel__ask,
+    .aura-panel__states,
+    .aura-panel__field {
+      position: relative;
+      z-index: 1;
+    }
+
+    .aura-panel__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .aura__name {
+      color: currentColor;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .aura__state {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      color: rgba(242, 244, 249, .68);
+      font-size: .74rem;
+      font-weight: 650;
+    }
+
+    .aura__state-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .55;
+    }
+    .hero--aura.is-listening .aura__state { color: #ffd9df; }
+    .hero--aura.is-listening .aura__state-dot {
+      background: var(--coral);
+      box-shadow: 0 0 8px rgba(241, 93, 111, .9);
+      opacity: 1;
+      animation: auraBadgeBlink 1.1s ease-in-out infinite;
+    }
+
+    .aura-panel__orbwrap {
+      display: grid;
+      place-items: center;
+      min-height: 230px;
+      padding-top: 2px;
+    }
+
+    .aura {
+      --size: 190px;
+      --aura-hot: var(--coral);
+      --aura-soft: #ffd3da;
+      position: relative;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      isolation: isolate;
+      pointer-events: none;
+    }
+
+    .aura--panel { --size: clamp(168px, 17vw, 190px); }
+    .aura--float { --size: 88px; }
+    .aura--avatar { --size: 46px; }
+
+    .aura > * {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .aura__core {
+      inset: 0;
+      z-index: 1;
+      display: block;
+      border-radius: 50%;
+      transform: translateZ(0);
+      transform-origin: 50% 50%;
+      transition: transform .38s cubic-bezier(.2, 0, .2, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    .aura__core > * { position: absolute; pointer-events: none; }
+    .aura.is-listening .aura__core { animation: auraCoreListen 1.9s cubic-bezier(.42, 0, .24, 1) infinite; }
+    /* the PANEL orb's growth is driven by live mic loudness in JS (frame()), so it
+       only grows when you actually speak; the floating orb keeps the timed breathe */
+    .aura--panel.is-listening .aura__core { animation: none; }
+
+    .aura__orbits {
+      inset: 0;
+      z-index: 0;
+      border-radius: 50%;
+      transform: translateZ(0);
+      transform-origin: 50% 50%;
+      transition: transform .38s cubic-bezier(.2, 0, .2, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    .aura.is-listening .aura__orbits { animation: auraOrbitsListen 1.9s cubic-bezier(.42, 0, .24, 1) infinite; }
+    /* PANEL orb listening: the orbiting rings sit steadily larger and spin faster —
+       an "armed/active" look that distinguishes it from idle even when you're not
+       speaking (the float orb keeps its pulse). The .38s transition on .aura__orbits
+       eases the grow in/out. */
+    .aura--panel.is-listening .aura__orbits { animation: none; transform: scale(1.18); }
+    .aura--panel.is-listening .aura__orbit--1 { animation-duration: 4s; }
+    .aura--panel.is-listening .aura__orbit--2 { animation-duration: 6s; }
+    .aura--panel.is-listening .aura__orbit--3 { animation-duration: 7.5s; }
+    .aura__orbits > * { position: absolute; pointer-events: none; }
+
+    .aura__orbit { inset: -2%; border-radius: 50%; }
+    .aura__orbit__shape {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(225, 150, 235, .34);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 170, 200, .14) 0%, rgba(255, 170, 200, .06) 55%, transparent 80%);
+      mix-blend-mode: normal;
+    }
+    .aura__orbit__shape::after {
+      content: "";
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      margin-left: -2.5px;
+      border-radius: 50%;
+      background: #ffd9ea;
+      box-shadow: 0 0 12px 2px rgba(220, 120, 210, .95);
+    }
+    html[data-theme="light"] .aura__orbit--1 .aura__orbit__shape { border-color: rgba(241, 93, 111, .30); }
+    html[data-theme="light"] .aura__orbit--2 .aura__orbit__shape { border-color: rgba(200, 80, 170, .28); }
+    html[data-theme="light"] .aura__orbit--3 .aura__orbit__shape { border-color: rgba(230, 110, 150, .24); }
+
+    .aura__orbit--1 { --tilt: -22deg; transform: rotate(var(--tilt)); animation: auraSpin 9s linear infinite; animation-delay: -2.3s; }
+    .aura__orbit--2 { --tilt: 38deg; transform: rotate(var(--tilt)); animation: auraSpin 13s linear infinite reverse; animation-delay: -6.1s; opacity: .7; }
+    .aura__orbit--3 { --tilt: 96deg; transform: rotate(var(--tilt)); animation: auraSpin 17s linear infinite; animation-delay: -9.7s; opacity: .5; }
+    .aura__orbit--1 .aura__orbit__shape { animation: auraBreathe1 6.5s ease-in-out infinite; animation-delay: -1.1s; border-color: rgba(255, 150, 180, .26); }
+    .aura__orbit--2 .aura__orbit__shape { animation: auraBreathe2 8.2s ease-in-out infinite; animation-delay: -3.7s; border-color: rgba(180, 90, 220, .26); }
+    .aura__orbit--3 .aura__orbit__shape { animation: auraBreathe3 7.1s ease-in-out infinite; animation-delay: -5.2s; border-color: rgba(210, 120, 225, .24); }
+
+    .aura__ring {
+      inset: 9%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 16%, rgba(255, 255, 255, .78) 0%, rgba(255, 255, 255, 0) 28%),
+        conic-gradient(from 0deg, #ffe6ee 0deg, #ff92ae 50deg, #f76b82 95deg, #ff9cc0 150deg, #ffbbd0 180deg, #ff9cc0 210deg, #f76b82 265deg, #ff92ae 312deg, #ffe6ee 360deg);
+      box-shadow:
+        0 0 0 .6px rgba(255, 243, 245, .9),
+        0 0 8px 1px rgba(255, 222, 228, .65),
+        0 -4px 14px 0 rgba(255, 120, 155, .34),
+        0 6px 16px 0 rgba(255, 130, 165, .28),
+        0 0 22px 3px rgba(240, 100, 140, .13),
+        inset 0 0 0 1.5px rgba(255, 240, 243, .85);
+    }
+
+    .aura__body {
+      inset: 17.5%;
+      display: block;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 24%, rgba(255, 236, 242, .24) 0%, rgba(255, 200, 216, .08) 15%, transparent 32%),
+        radial-gradient(circle at 50% 22%, rgba(255, 150, 182, .16) 0%, transparent 48%),
+        radial-gradient(circle at 50% 100%, rgba(241, 93, 111, .20), transparent 52%),
+        radial-gradient(circle at 50% 36%, #1e2c4e 0%, #142039 52%, #0b1424 78%, #060b16 100%);
+      box-shadow:
+        0 0 22px 5px rgba(241, 93, 111, .55),
+        0 0 9px 2px rgba(255, 205, 214, .6),
+        inset 0 11px 26px -4px rgba(255, 140, 175, .62),
+        inset 0 -13px 30px -4px rgba(255, 150, 182, .55),
+        inset 0 0 24px 2px rgba(241, 93, 111, .30);
+    }
+
+    .aura__face {
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      transform: translate3d(0, 3px, 0);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    .aura--float .aura__face {
+      z-index: 6;
+      gap: 10px;
+      transform: translate3d(0, 1.5px, 0);
+    }
+
+    .aura__eye {
+      width: 19px;
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 0 6px rgba(255, 150, 170, .9));
+    }
+    .aura--float .aura__eye {
+      width: 9px;
+      filter: drop-shadow(0 0 7px rgba(255, 185, 200, .98));
+    }
+    .aura__eye path {
+      fill: none;
+      stroke: var(--aura-soft);
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+    .aura--float .aura__eye path { stroke-width: 3.35; }
+
+    /* Aura as the chat-header avatar — a clean mini orb (orbits hidden so the
+       tiny avatar reads as a face, not a busy ring stack). */
+    .aura--avatar .aura__orbits { display: none; }
+    .aura--avatar .aura__face { gap: 5px; transform: translate3d(0, 1px, 0); }
+    .aura--avatar .aura__eye {
+      width: 5px;
+      filter: drop-shadow(0 0 3px rgba(255, 185, 200, .98));
+    }
+    .aura--avatar .aura__eye path { stroke-width: 4; }
+
+    .aura__pulse {
+      inset: 14%;
+      z-index: 2;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 205, 215, .9) 0%, rgba(255, 120, 150, .55) 40%, rgba(255, 120, 150, 0) 70%);
+      opacity: 0;
+      transform: translateZ(0);
+      transform-origin: 50% 50%;
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+    }
+    .aura.is-listening .aura__pulse { animation: auraPulseListen 1.9s cubic-bezier(.42, 0, .24, 1) infinite; }
+
+    .aura__loader {
+      inset: -12%;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity .3s ease;
+      transform-origin: 50% 50%;
+      animation: auraLoaderSpin 1.05s linear infinite;
+    }
+    .aura.is-searching .aura__loader { opacity: 1; }
+    .aura--float .aura__loader {
+      inset: -17%;
+      z-index: 4;
+    }
+    .aura__loader .arc { filter: drop-shadow(0 0 6px rgba(255, 150, 170, .9)); }
+
+    .aura__spark {
+      width: 3px;
+      height: 3px;
+      z-index: 5;
+      border-radius: 50%;
+      background: #ffe0ee;
+      box-shadow: 0 0 8px 1px rgba(225, 130, 205, .9);
+      animation: auraTwinkle 2.4s ease-in-out infinite;
+    }
+    .aura--float .aura__spark { display: none; }
+
+    .hero--aura .aura-panel__ask {
+      margin: 16px 0 0;
+      color: currentColor;
+      font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .aura-panel__states {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .aura-panel__state {
+      min-height: 34px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(242, 244, 249, .74);
+      font-size: .78rem;
+      font-weight: 650;
+      transition: background .16s ease, border-color .16s ease, color .16s ease;
+    }
+    .aura-panel__state:hover,
+    .aura-panel__state.is-on {
+      border-color: rgba(241, 93, 111, .42);
+      background: rgba(241, 93, 111, .16);
+      color: #fff;
+    }
+
+    .aura-panel__field {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin-top: auto;
+      padding: 6px 6px 6px 18px;
+      border: 1px solid rgba(255, 255, 255, .10);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .05);
+    }
+    .aura-panel__input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: currentColor;
+      font-size: .88rem;
+    }
+    .aura-panel__input::placeholder { color: var(--muted); }
+    .aura-panel__mic {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: var(--coral);
+      color: #fff;
+      transition: background .16s ease, box-shadow .16s ease;
+    }
+    .aura-panel__mic:hover,
+    .hero--aura.is-listening .aura-panel__mic {
+      background: var(--coral-hover);
+      box-shadow: 0 0 0 4px rgba(241, 93, 111, .18);
+    }
+    .aura-panel__mic .ph,
+    .aura-panel__mic .ph-fill { font-size: 19px; }
+    /* while listening (mic .is-active) the button shows a stop (square) icon */
+    .aura-panel__mic-i--stop { display: none; }
+    .aura-panel__mic.is-active .aura-panel__mic-i--mic { display: none; }
+    .aura-panel__mic.is-active .aura-panel__mic-i--stop { display: inline-block; }
+
+    .aura.is-searching .aura__face { animation: auraScan 1.5s ease-in-out infinite; }
+    .aura.is-error .aura__face { animation: auraShake .45s ease-in-out 2; }
+    .aura.is-error .aura__eye path { stroke: #ff7a8a; }
+    .aura.is-error .aura__pulse {
+      opacity: .5;
+      background: radial-gradient(circle, rgba(255, 90, 110, .85) 0%, rgba(241, 93, 111, .5) 45%, transparent 72%);
+    }
+    .aura.is-complete .aura__core { animation: auraPop .55s cubic-bezier(.34, 1.56, .64, 1); }
+    .aura.is-complete .aura__eye path { stroke: #eafff2; }
+    .aura.is-complete .aura__pulse {
+      opacity: .45;
+      background: radial-gradient(circle, rgba(220, 255, 235, .75) 0%, rgba(120, 230, 170, .42) 45%, transparent 72%);
+    }
+
+    .aura-float-wrap {
+      right: 34px;
+      bottom: 34px;
+      z-index: 60;
+    }
+    .fab-orb.aura-float {
+      width: 96px;
+      height: 96px;
+      border: 0;
+      box-shadow: none;
+    }
+    .aura-float__compat {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      transform-origin: 50% 50%;
+      transition: transform .38s cubic-bezier(.2, 0, .2, 1);
+    }
+
+    @keyframes auraEdgePulse { 0%, 100% { opacity: .9; } 50% { opacity: 1; } }
+    @keyframes auraBadgeBlink { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+    @keyframes auraSpin { to { transform: rotate(calc(var(--tilt) + 360deg)); } }
+    @keyframes auraCoreListen {
+      0%, 100% { transform: translate3d(0, 0, 0) scale3d(1.015, 1.015, 1); }
+      42% { transform: translate3d(0, 0, 0) scale3d(1.155, 1.155, 1); }
+      68% { transform: translate3d(0, 0, 0) scale3d(1.085, 1.085, 1); }
+    }
+    @keyframes auraPulseListen {
+      0%, 100% { transform: translate3d(0, 0, 0) scale3d(.98, .98, 1); }
+      42% { transform: translate3d(0, 0, 0) scale3d(1.18, 1.18, 1); }
+      68% { transform: translate3d(0, 0, 0) scale3d(1.06, 1.06, 1); }
+    }
+    @keyframes auraOrbitsListen {
+      0%, 100% { transform: translate3d(0, 0, 0) scale3d(1.015, 1.015, 1); }
+      42% { transform: translate3d(0, 0, 0) scale3d(1.155, 1.155, 1); }
+      68% { transform: translate3d(0, 0, 0) scale3d(1.085, 1.085, 1); }
+    }
+    @keyframes auraBreathe1 { 0%, 100% { transform: scale(1) scaleY(.42); } 50% { transform: scale(.85) scaleY(.66); } }
+    @keyframes auraBreathe2 { 0%, 100% { transform: scale(.96) scaleY(.40); } 50% { transform: scale(1.06) scaleY(.58); } }
+    @keyframes auraBreathe3 { 0%, 100% { transform: scale(1.02) scaleY(.46); } 50% { transform: scale(.82) scaleY(.70); } }
+    @keyframes auraTwinkle { 0%, 100% { opacity: .15; transform: scale(.6); } 50% { opacity: 1; transform: scale(1); } }
+    @keyframes auraLoaderSpin { to { transform: rotate(360deg); } }
+    @keyframes auraScan { 0%, 100% { transform: translate3d(-5px, 3px, 0); } 50% { transform: translate3d(5px, 3px, 0); } }
+    @keyframes auraShake {
+      0%, 100% { transform: translate3d(0, 3px, 0); }
+      20% { transform: translate3d(-4px, 3px, 0); }
+      40% { transform: translate3d(4px, 3px, 0); }
+      60% { transform: translate3d(-3px, 3px, 0); }
+      80% { transform: translate3d(3px, 3px, 0); }
+    }
+    @keyframes auraPop {
+      0% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+      35% { transform: translate3d(0, 0, 0) scale3d(1.08, 1.08, 1); }
+      100% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+    }
 
     .hero-aside {
       min-width: 0;
@@ -2698,11 +3222,18 @@
 
     .evolutie-row {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
       margin-top: 20px;
       align-items: stretch;
     }
+
+    /* the graph card must let its range-picker dropdown + bar tooltips overflow
+       (overrides the .panel base overflow:hidden — higher specificity) */
+    .panel.panel--chart { overflow: visible; }
+
+    /* placeholder card next to the graph — empty for now */
+    .panel--empty { min-height: 240px; }
 
     /* mid row: Recomandări revenire (narrow) + Facturi de trimis */
     .midrow {
@@ -2992,6 +3523,252 @@
       padding: 0;
     }
 
+    .analytics-grid {
+      display: grid;
+      /* 2 rows x 2 columns — the four data cards each get a full half-width cell
+         instead of being squeezed into one cramped 4-up row. */
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .analytics-card {
+      min-width: 0;
+      min-height: 284px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(236, 245, 251, .045), rgba(236, 245, 251, .015)),
+        var(--panel-2);
+      overflow: hidden;
+    }
+
+    .analytics-card--wide {
+      min-height: 284px;
+    }
+
+    .analytics-card__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .analytics-card__head span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--soft);
+      font-size: .78rem;
+      font-weight: 750;
+      min-width: 0;
+    }
+
+    .analytics-card__head .ph {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .analytics-card__head em {
+      flex: 0 0 auto;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: var(--success-soft);
+      color: var(--success);
+      font-size: .7rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .analytics-card__metric {
+      display: grid;
+      gap: 7px;
+    }
+
+    .analytics-card__metric strong {
+      color: var(--text);
+      font-size: clamp(1.8rem, 2.8vw, 2.55rem);
+      line-height: .9;
+      letter-spacing: -.05em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .analytics-card__metric span {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 650;
+    }
+
+    .analytics-card__legend {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 650;
+    }
+
+    .analytics-card .appointments-chart__summary {
+      margin-bottom: 8px;
+    }
+
+    .analytics-card .appointments-chart__summary strong {
+      font-size: clamp(2.35rem, 4vw, 3rem);
+    }
+
+    .analytics-card .apptbars__grid {
+      height: 152px;
+      gap: 10px;
+    }
+
+    .analytics-card .apptbars__days {
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mini-line {
+      width: 100%;
+      height: auto;
+      margin-top: auto;
+      overflow: visible;
+    }
+
+    .mini-line__grid {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1;
+    }
+
+    .mini-line__area {
+      fill: rgba(241, 93, 111, .16);
+    }
+
+    .mini-line__path {
+      fill: none;
+      stroke: var(--coral);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 6px 12px rgba(241, 93, 111, .18));
+    }
+
+    .mini-line__dot {
+      fill: var(--panel);
+      stroke: var(--coral);
+      stroke-width: 4;
+    }
+
+    .revenue-bars {
+      height: 136px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      align-items: end;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .revenue-bars span {
+      position: relative;
+      min-width: 0;
+      height: calc(var(--value) * 1%);
+      min-height: 26px;
+      border-radius: 10px 10px 5px 5px;
+      background: linear-gradient(180deg, var(--coral), rgba(241, 93, 111, .45));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.28);
+    }
+
+    .revenue-bars i {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      color: var(--soft);
+      font-size: .68rem;
+      font-style: normal;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .analytics-card--occupancy {
+      align-items: stretch;
+    }
+
+    .occupancy-ring {
+      --ring-size: 132px;
+      position: relative;
+      width: var(--ring-size);
+      height: var(--ring-size);
+      display: grid;
+      place-items: center;
+      align-self: center;
+      margin: 2px 0 0;
+    }
+
+    .occupancy-ring svg {
+      position: absolute;
+      inset: 0;
+      transform: rotate(-90deg);
+    }
+
+    .occupancy-ring__track,
+    .occupancy-ring__value {
+      fill: none;
+      stroke-width: 12;
+    }
+
+    .occupancy-ring__track {
+      stroke: var(--fill);
+    }
+
+    .occupancy-ring__value {
+      stroke: var(--chart-bar-active);
+      stroke-linecap: round;
+      stroke-dasharray: var(--occupancy) 100;
+      filter: drop-shadow(0 6px 12px rgba(37, 99, 235, .22));
+    }
+
+    .occupancy-ring strong {
+      color: var(--text);
+      font-size: 1.85rem;
+      letter-spacing: -.04em;
+    }
+
+    .occupancy-list {
+      display: grid;
+      gap: 9px;
+      margin-top: auto;
+    }
+
+    .occupancy-list span {
+      display: grid;
+      grid-template-columns: 8px 1fr auto;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 650;
+    }
+
+    .occupancy-list i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--chart-bar-active);
+    }
+
+    .occupancy-list strong {
+      color: var(--text);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
     .appointments-chart__summary {
       display: flex;
       align-items: baseline;
@@ -3018,7 +3795,7 @@
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
       align-items: end;
-      gap: 16px;
+      gap: 8px;
       height: 220px;
     }
 
@@ -3036,7 +3813,7 @@
 
     .apptbar i {
       position: relative;
-      width: clamp(26px, 82%, 46px);
+      width: clamp(30px, 90%, 58px);
       height: calc(var(--value) * 1%);
       min-height: 12px;
       display: block;
@@ -3120,7 +3897,7 @@
     .apptbars__days {
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 16px;
+      gap: 8px;
       margin-top: 14px;
     }
     .apptbars__days span {
@@ -3130,6 +3907,14 @@
       font-weight: 600;
     }
     .apptbars__days .is-peak { color: var(--text); }
+
+    /* card surface (the rebuild dropped this base; variants like .tablecard set
+       their own). Used by the brought-back graph + the empty card beside it. */
+    .panel {
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
 
     .panel-header {
       min-height: 64px;
@@ -3579,8 +4364,35 @@
         grid-template-columns: 1fr;
       }
 
+      .evolutie-row {
+        grid-template-columns: 1fr;
+      }
+
       .hero {
         min-height: 0;
+      }
+
+      .hero--aura {
+        min-height: 460px;
+        padding: 22px 18px;
+      }
+
+      .aura-panel__states {
+        gap: 6px;
+      }
+
+      .aura-panel__state {
+        padding-inline: 11px;
+      }
+
+      .aura-float-wrap {
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .fab-orb.aura-float {
+        width: 84px;
+        height: 84px;
       }
 
       .hero-aside {
@@ -3598,6 +4410,21 @@
 
       .tablecard__search {
         flex: 1 1 auto;
+      }
+
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .analytics-card,
+      .analytics-card--wide {
+        min-height: 0;
+        grid-column: auto;
+      }
+
+      .analytics-card .apptbars__grid {
+        height: 168px;
+        gap: 8px;
       }
 
       .shell {
