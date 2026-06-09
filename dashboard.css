@@ -19,12 +19,13 @@
       --chart-line: rgba(184, 194, 255, .52);
       --chart-badge-bg: rgba(62, 69, 207, .24);
       --chart-badge-text: #dfe5ff;
-      --stats-programari: #22d3ee;
-      --stats-programari-alt: #facc15;
+      --stats-programari: #c084fc;
+      --stats-programari-alt: #f15d6f;
       --stats-pacienti: #38bdf8;
       --stats-pacienti-alt: #a78bfa;
-      --stats-incasari: #a3e635;
-      --stats-incasari-alt: #4ade80;
+      --stats-incasari: #c084fc;
+      --stats-incasari-alt: #22d3ee;
+      --stats-ocupare: #22d3ee;
       --stats-primary: var(--stats-programari);
       --stats-free: #2f5874;
       --nav-text: #b9cbd6;
@@ -73,12 +74,13 @@
       --chart-line: rgba(62, 69, 207, .34);
       --chart-badge-bg: rgba(62, 69, 207, .10);
       --chart-badge-text: #3e45cf;
-      --stats-programari: #2563eb;
+      --stats-programari: #7c3aed;
       --stats-programari-alt: #f15d6f;
       --stats-pacienti: #3b82f6;
       --stats-pacienti-alt: #7e57c2;
-      --stats-incasari: #3ecf8e;
-      --stats-incasari-alt: #2bb673;
+      --stats-incasari: #7c3aed;
+      --stats-incasari-alt: #d946ef;
+      --stats-ocupare: #2563eb;
       --stats-primary: var(--stats-programari);
       --stats-free: #2c5677;
       --nav-text: #38596b;
@@ -4318,6 +4320,51 @@
       color: var(--muted);
       font-size: .86rem;
       font-weight: 600;
+    }
+
+    .stats-summary__delta {
+      position: relative;
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      align-self: center;
+      white-space: nowrap;
+    }
+    .stats-summary__delta--up {
+      color: var(--success);
+      background: var(--success-soft);
+    }
+    .stats-summary__delta--down {
+      color: var(--coral);
+      background: var(--coral-soft);
+    }
+    .stats-summary__delta::after {
+      content: 'față de perioada anterioară';
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(128, 128, 128, .15);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .14s ease;
+      z-index: 20;
+    }
+    .stats-summary__delta:hover::after {
+      opacity: 1;
     }
 
     .stats-chart-host {
