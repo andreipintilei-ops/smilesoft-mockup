@@ -694,6 +694,8 @@
                     <div class="rangepick__menu" data-rangepick-menu>
                       <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
                       <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="6m">Ultimele 6 luni</button>
+                      <button class="rangepick__opt" type="button" data-range="12m">Ultimele 12 luni</button>
                       <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
                       <div class="rangepick__custom" data-rangepick-custom>
                         <label class="rangepick__field"><span>De la</span><input type="date" value="2026-05-10" aria-label="Data de început" /></label>
@@ -735,8 +737,10 @@
                     </button>
                     <div class="rangepick__menu" data-rangepick-menu>
                       <button class="rangepick__opt is-active" type="button" data-range="today">Azi</button>
-                      <button class="rangepick__opt" type="button" data-range="week">Săptămâna aceasta</button>
-                      <button class="rangepick__opt" type="button" data-range="month">Luna aceasta</button>
+                      <button class="rangepick__opt" type="button" data-range="7">Ultimele 7 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="6m">Ultimele 6 luni</button>
+                      <button class="rangepick__opt" type="button" data-range="12m">Ultimele 12 luni</button>
                     </div>
                   </div>
                 </div>
@@ -764,6 +768,8 @@
                       <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
                     </button>
                     <div class="rangepick__menu" data-rangepick-menu>
+                      <button class="rangepick__opt" type="button" data-range="7">Ultimele 7 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
                       <button class="rangepick__opt is-active" type="button" data-range="6m">Ultimele 6 luni</button>
                       <button class="rangepick__opt" type="button" data-range="12m">Ultimele 12 luni</button>
                       <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
@@ -797,6 +803,8 @@
                       <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
                     </button>
                     <div class="rangepick__menu" data-rangepick-menu>
+                      <button class="rangepick__opt" type="button" data-range="7">Ultimele 7 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
                       <button class="rangepick__opt is-active" type="button" data-range="6m">Ultimele 6 luni</button>
                       <button class="rangepick__opt" type="button" data-range="12m">Ultimele 12 luni</button>
                       <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
@@ -1412,7 +1420,7 @@
       });
     }
 
-    // Range picker (Evoluție programări): 7 / 30 zile / perioadă personalizată
+    // Stats range pickers
     document.querySelectorAll('[data-rangepick]').forEach((pick) => {
       const toggle = pick.querySelector('[data-rangepick-toggle]');
       const label = pick.querySelector('[data-rangepick-label]');
@@ -2371,12 +2379,13 @@
       const nfLei = (value) => `${nf.format(value)} lei`;
       const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
       const statsColor = (name, fallback) => cssVar(name) || fallback;
-      const statsProgramari = () => statsColor('--stats-programari', '#22d3ee');
-      const statsProgramariAlt = () => statsColor('--stats-programari-alt', '#facc15');
+      const statsProgramari = () => statsColor('--stats-programari', '#c084fc');
+      const statsProgramariAlt = () => statsColor('--stats-programari-alt', '#f15d6f');
       const statsPacienti = () => statsColor('--stats-pacienti', '#38bdf8');
       const statsPacientiAlt = () => statsColor('--stats-pacienti-alt', '#a78bfa');
-      const statsIncasari = () => statsColor('--stats-incasari', '#a3e635');
-      const statsIncasariAlt = () => statsColor('--stats-incasari-alt', '#4ade80');
+      const statsIncasari = () => statsColor('--stats-incasari', '#c084fc');
+      const statsIncasariAlt = () => statsColor('--stats-incasari-alt', '#22d3ee');
+      const statsOcupare = () => statsColor('--stats-ocupare', '#22d3ee');
       const statsFree = () => cssVar('--stats-free') || '#2f5874';
       const hexA = (hex, a) => {
         const c = hex.replace('#', '');
@@ -2418,6 +2427,105 @@
       );
 
       const fmtDay = (d) => `${d.getDate() < 10 ? '0' : ''}${d.getDate()} ${MONTHS[d.getMonth()]}`;
+      const fmtDayCompact = (d) => `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+      const cloneDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      const addDays = (date, days) => {
+        const next = cloneDate(date);
+        next.setDate(next.getDate() + days);
+        return next;
+      };
+      const daysBetween = (from, to) => Math.round((cloneDate(to) - cloneDate(from)) / 86400000) + 1;
+      const normalizedCustom = (custom) => {
+        const from = custom?.from ? new Date(custom.from) : addDays(TODAY, -29);
+        const to = custom?.to ? new Date(custom.to) : TODAY;
+        return from <= to ? { from, to } : { from: to, to: from };
+      };
+      const fmtDateRange = (from, to) => {
+        if (from.getTime() === to.getTime()) return fmtDayCompact(from);
+        if (from.getMonth() === to.getMonth() && from.getFullYear() === to.getFullYear()) {
+          return `${from.getDate()}-${to.getDate()} ${MONTHS[to.getMonth()]}`;
+        }
+        return `${fmtDayCompact(from)} - ${fmtDayCompact(to)}`;
+      };
+      const weekBuckets = (from, to) => {
+        const out = [];
+        let cursor = cloneDate(from);
+        const end = cloneDate(to);
+
+        while (cursor <= end) {
+          const bucketStart = cloneDate(cursor);
+          const bucketEnd = addDays(bucketStart, 6) > end ? end : addDays(bucketStart, 6);
+          out.push({ axis: fmtDateRange(bucketStart, bucketEnd), full: fmtDateRange(bucketStart, bucketEnd) });
+          cursor = addDays(bucketEnd, 1);
+        }
+
+        return out;
+      };
+      const monthBuckets = (from, to) => {
+        const out = [];
+        let cursor = new Date(from.getFullYear(), from.getMonth(), 1);
+        const end = new Date(to.getFullYear(), to.getMonth(), 1);
+
+        while (cursor <= end) {
+          out.push({ axis: MONTHS[cursor.getMonth()], full: `${MONTHS[cursor.getMonth()]} ${cursor.getFullYear()}` });
+          cursor = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1);
+        }
+
+        return out;
+      };
+      const rangeBuckets = (range, custom) => {
+        if (range === '7') {
+          return {
+            granularity: 'day',
+            buckets: lastDays(7).map((d) => ({
+              axis: WDAYS[d.getDay()],
+              full: `${WDAYS[d.getDay()]} ${fmtDay(d)}`
+            }))
+          };
+        }
+
+        if (range === '30') {
+          return {
+            granularity: 'week',
+            buckets: weekBuckets(addDays(TODAY, -29), TODAY)
+          };
+        }
+
+        if (range === '6m' || range === '12m') {
+          return {
+            granularity: 'month',
+            buckets: lastMonths(range === '6m' ? 6 : 12).map((d) => ({
+              axis: MONTHS[d.getMonth()],
+              full: `${MONTHS[d.getMonth()]} ${d.getFullYear()}`
+            }))
+          };
+        }
+
+        const period = normalizedCustom(custom);
+        const days = daysBetween(period.from, period.to);
+
+        if (days <= 14) {
+          return {
+            granularity: 'day',
+            buckets: Array.from({ length: days }, (_, i) => {
+              const d = addDays(period.from, i);
+              return { axis: fmtDayCompact(d), full: `${WDAYS[d.getDay()]} ${fmtDay(d)}` };
+            })
+          };
+        }
+
+        if (days <= 90) {
+          return {
+            granularity: 'week',
+            buckets: weekBuckets(period.from, period.to)
+          };
+        }
+
+        return {
+          granularity: 'month',
+          buckets: monthBuckets(period.from, period.to)
+        };
+      };
 
       const APPT_META = {
         confirmate: { min: 6, max: 18, trend: .22, vol: .5, color: statsProgramari, name: 'Confirmate' },
@@ -2434,31 +2542,48 @@
       const OCC = {
         general: {
           today: [{ k: 'Ocupate', v: 16 }, { k: 'Libere', v: 6 }],
+          '7': [{ k: 'Ocupate', v: 15 }, { k: 'Libere', v: 7 }],
+          '30': [{ k: 'Ocupate', v: 14 }, { k: 'Libere', v: 8 }],
+          '6m': [{ k: 'Ocupate', v: 15 }, { k: 'Libere', v: 7 }],
+          '12m': [{ k: 'Ocupate', v: 13 }, { k: 'Libere', v: 9 }],
           week: [{ k: 'Ocupate', v: 14 }, { k: 'Libere', v: 8 }],
           month: [{ k: 'Ocupate', v: 15 }, { k: 'Libere', v: 7 }],
           unit: 'cabinete'
         },
         u1: {
           today: [{ k: 'Ocupate', v: 6 }, { k: 'Libere', v: 2 }],
+          '7': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 3 }],
+          '30': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 3 }],
+          '6m': [{ k: 'Ocupate', v: 6 }, { k: 'Libere', v: 2 }],
+          '12m': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 3 }],
           week: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 3 }],
           month: [{ k: 'Ocupate', v: 6 }, { k: 'Libere', v: 2 }],
           unit: 'cabinete'
         },
         u2: {
           today: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          '7': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          '30': [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
+          '6m': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          '12m': [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
           week: [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
           month: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
           unit: 'cabinete'
         },
         u3: {
           today: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          '7': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          '30': [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          '6m': [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
+          '12m': [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
           week: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
           month: [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
           unit: 'cabinete'
         }
       };
 
-      const occColors = () => [statsProgramari(), statsFree()];
+      const occColors = () => [statsOcupare(), statsFree()];
+      const occupancyRows = (unit, range) => OCC[unit]?.[range] || OCC[unit]?.today || OCC.general.today;
 
       const tooltipBox = (t) => ({
         backgroundColor: t.panel,
@@ -2479,71 +2604,116 @@
 
       const apptData = (metric, range, custom) => {
         const meta = APPT_META[metric];
-        let days;
+        const { buckets, granularity } = rangeBuckets(range, custom);
+        const scale = {
+          day: { min: meta.min, max: meta.max, vol: meta.vol },
+          week: { min: Math.round(meta.min * 4.3), max: Math.round(meta.max * 5.2), vol: meta.vol * .72 },
+          month: { min: Math.round(meta.min * 17), max: Math.round(meta.max * 22), vol: meta.vol * .5 }
+        }[granularity];
+        const seed = `appt-${metric}-${range}-${granularity}-${buckets.length}-${custom?.from || ''}-${custom?.to || ''}`;
+        const values = series(seed, buckets.length, scale.min, scale.max, { trend: meta.trend, vol: scale.vol });
+        const points = buckets.map((bucket, i) => ({ value: values[i], axis: bucket.axis, full: bucket.full }));
+        const summaryVal = sum(values);
 
-        if (range === '7') days = 7;
-        else if (range === '30') days = 30;
-        else {
-          const from = new Date(custom.from);
-          const to = new Date(custom.to);
-          days = Math.max(2, Math.min(62, Math.round((to - from) / 86400000) + 1));
+        let delta = null;
+        if (range !== 'custom') {
+          const prevValues = series(`prev-${seed}`, buckets.length, scale.min, scale.max, { trend: meta.trend, vol: scale.vol });
+          const prevTotal = sum(prevValues);
+          if (prevTotal > 0) delta = Math.round((summaryVal - prevTotal) / prevTotal * 100);
         }
 
-        let dates = lastDays(days);
-        if (range === 'custom') {
-          const to = new Date(custom.to);
-          dates = Array.from({ length: days }, (_, i) => {
-            const d = new Date(to);
-            d.setDate(to.getDate() - (days - 1 - i));
-            return d;
-          });
-        }
-
-        const values = series(`appt-${metric}-${range}-${days}`, days, meta.min, meta.max, { trend: meta.trend, vol: meta.vol });
-        const points = dates.map((d, i) => ({
-          value: values[i],
-          axis: days <= 7 ? WDAYS[d.getDay()] : String(d.getDate()),
-          full: `${WDAYS[d.getDay()]} ${fmtDay(d)}`
-        }));
-
-        return { points, color: typeof meta.color === 'function' ? meta.color() : meta.color, name: meta.name, fmt: nfInt, summaryVal: sum(values), summaryUnit: 'programări' };
+        return {
+          points,
+          color: typeof meta.color === 'function' ? meta.color() : meta.color,
+          name: meta.name,
+          fmt: nfInt,
+          summaryVal,
+          summaryUnit: 'programări',
+          delta
+        };
       };
 
-      const lineData = (metric, range, custom) => {
+      const patientData = (metric, range, custom) => {
         const meta = LINE_META[metric];
-        let months;
+        const { buckets, granularity } = rangeBuckets(range, custom);
+        const active = metric === 'pac_activi';
+        const scale = active
+          ? {
+              day: { min: 8, max: 20, vol: meta.vol * .7 },
+              week: { min: 35, max: 85, vol: meta.vol * .58 },
+              month: { min: meta.min, max: meta.max, vol: meta.vol }
+            }[granularity]
+          : {
+              day: { min: 1, max: 4, vol: .65 },
+              week: { min: 4, max: 14, vol: .52 },
+              month: { min: meta.min, max: meta.max, vol: meta.vol }
+            }[granularity];
+        const seed = `patient-${metric}-${range}-${granularity}-${buckets.length}-${custom?.from || ''}-${custom?.to || ''}`;
+        const values = series(seed, buckets.length, scale.min, scale.max, { trend: meta.trend, vol: scale.vol });
+        const points = buckets.map((bucket, i) => ({ value: values[i], axis: bucket.axis, full: bucket.full }));
+        const summaryVal = sum(values);
 
-        if (range === '6m') months = 6;
-        else if (range === '12m') months = 12;
-        else {
-          const from = new Date(custom.from);
-          const to = new Date(custom.to);
-          months = Math.max(2, Math.min(24, (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth()) + 1));
+        let delta = null;
+        if (range !== 'custom') {
+          const prevValues = series(`prev-${seed}`, buckets.length, scale.min, scale.max, { trend: meta.trend, vol: scale.vol });
+          const prevSummaryVal = sum(prevValues);
+          if (prevSummaryVal > 0) delta = Math.round((summaryVal - prevSummaryVal) / prevSummaryVal * 100);
         }
 
-        const dates = range === 'custom'
-          ? Array.from({ length: months }, (_, i) => {
-              const to = new Date(custom.to);
-              return new Date(to.getFullYear(), to.getMonth() - (months - 1 - i), 1);
-            })
-          : lastMonths(months);
-        const values = series(`line-${metric}-${months}`, months, meta.min, meta.max, { trend: meta.trend, vol: meta.vol });
-        const points = dates.map((d, i) => ({ value: values[i], axis: MONTHS[d.getMonth()], full: `${MONTHS[d.getMonth()]} ${d.getFullYear()}` }));
-
-        return { points, color: typeof meta.color === 'function' ? meta.color() : meta.color, name: meta.name, fmt: meta.fmt, summaryVal: values[values.length - 1], summaryUnit: '' };
+        return {
+          points,
+          color: typeof meta.color === 'function' ? meta.color() : meta.color,
+          name: meta.name,
+          fmt: meta.fmt,
+          summaryVal,
+          summaryUnit: '',
+          delta
+        };
       };
 
-      const panelData = (panel, state) => (
-        panel.dataset.statsChart === 'programari'
-          ? apptData(state.metric, state.range, state.custom)
-          : lineData(state.metric, state.range, state.custom)
-      );
+      const revenueData = (metric, range, custom) => {
+        const meta = LINE_META[metric];
+        const { buckets, granularity } = rangeBuckets(range, custom);
+
+        const scale = {
+          day: { min: Math.round(meta.min / 12), max: Math.round(meta.max / 8), vol: .54 },
+          week: { min: Math.round(meta.min / 3.2), max: Math.round(meta.max / 2.3), vol: .38 },
+          month: { min: meta.min, max: meta.max, vol: meta.vol }
+        }[granularity];
+        const seed = `revenue-${metric}-${range}-${granularity}-${buckets.length}-${custom?.from || ''}-${custom?.to || ''}`;
+        const values = series(seed, buckets.length, scale.min, scale.max, { trend: meta.trend, vol: scale.vol });
+        const points = buckets.map((bucket, i) => ({ value: values[i], axis: bucket.axis, full: bucket.full }));
+        const summaryVal = sum(values);
+
+        let delta = null;
+        if (range !== 'custom') {
+          const prevValues = series(`prev-${seed}`, buckets.length, scale.min, scale.max, { trend: meta.trend, vol: scale.vol });
+          const prevTotal = sum(prevValues);
+          if (prevTotal > 0) delta = Math.round((summaryVal - prevTotal) / prevTotal * 100);
+        }
+
+        return {
+          points,
+          color: typeof meta.color === 'function' ? meta.color() : meta.color,
+          name: meta.name,
+          fmt: meta.fmt,
+          summaryVal,
+          summaryUnit: '',
+          delta
+        };
+      };
+
+      const panelData = (panel, state) => {
+        if (panel.dataset.statsChart === 'programari') return apptData(state.metric, state.range, state.custom);
+        if (panel.dataset.statsChart === 'incasari') return revenueData(state.metric, state.range, state.custom);
+        return patientData(state.metric, state.range, state.custom);
+      };
 
       const lineOption = (data, filled) => {
         const t = tokens();
 
         return {
-          grid: { left: 4, right: 8, top: 14, bottom: 4, containLabel: true },
+          grid: { left: 12, right: 34, top: 14, bottom: 4, containLabel: true },
           tooltip: Object.assign({
             trigger: 'axis',
             axisPointer: { type: 'line', lineStyle: { color: t.lineStrong, type: 'dashed' } },
@@ -2637,7 +2807,7 @@
 
       const gaugeOption = (unit, range) => {
         const t = tokens();
-        const table = OCC[unit][range];
+        const table = occupancyRows(unit, range);
         const total = sum(table.map((row) => row.v));
         const occupied = Math.round(table[0].v / total * 100);
         const colors = occColors();
@@ -2680,12 +2850,18 @@
         };
       };
 
-      const setSummary = (panel, value, unit, fmt) => {
+      const setSummary = (panel, value, unit, fmt, delta) => {
         const el = panel.querySelector('[data-stats-summary]');
         if (!el) return;
 
+        const deltaHtml = delta != null
+          ? `<span class="stats-summary__delta stats-summary__delta--${delta >= 0 ? 'up' : 'down'}">` +
+            `<i class="ph ph-arrow-${delta >= 0 ? 'up' : 'down'}" aria-hidden="true"></i>${delta >= 0 ? '+' : ''}${delta}%</span>`
+          : '';
+
         el.innerHTML = `<span class="stats-summary__val">${(fmt || nfInt)(value)}</span>` +
-          (unit ? `<span class="stats-summary__unit">${unit}</span>` : '');
+          (unit ? `<span class="stats-summary__unit">${unit}</span>` : '') +
+          deltaHtml;
       };
 
       const controllers = panels.map((panel) => {
@@ -2703,7 +2879,7 @@
         const renderLegend = () => {
           if (!legend) return;
 
-          const table = OCC[state.metric][state.range];
+          const table = occupancyRows(state.metric, state.range);
           const total = sum(table.map((row) => row.v));
           const colors = occColors();
           legend.innerHTML = table.map((row, i) => {
@@ -2739,7 +2915,7 @@
           const option = state.viz === 'bars' ? barsOption(data) : lineOption(data, state.viz === 'area');
           if (disableAnimation && state.viz !== 'bars') option.animation = false;
           chart.setOption(option, true);
-          setSummary(panel, data.summaryVal, data.summaryUnit, data.fmt);
+          setSummary(panel, data.summaryVal, data.summaryUnit, data.fmt, data.delta);
         };
 
         const render = () => {
