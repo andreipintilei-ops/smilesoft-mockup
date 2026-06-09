@@ -19,6 +19,14 @@
       --chart-line: rgba(184, 194, 255, .52);
       --chart-badge-bg: rgba(62, 69, 207, .24);
       --chart-badge-text: #dfe5ff;
+      --stats-programari: #22d3ee;
+      --stats-programari-alt: #facc15;
+      --stats-pacienti: #38bdf8;
+      --stats-pacienti-alt: #a78bfa;
+      --stats-incasari: #a3e635;
+      --stats-incasari-alt: #4ade80;
+      --stats-primary: var(--stats-programari);
+      --stats-free: #2f5874;
       --nav-text: #b9cbd6;
       --nav-group-text: #748b99;
       --coral: #f15d6f;
@@ -65,6 +73,14 @@
       --chart-line: rgba(62, 69, 207, .34);
       --chart-badge-bg: rgba(62, 69, 207, .10);
       --chart-badge-text: #3e45cf;
+      --stats-programari: #2563eb;
+      --stats-programari-alt: #f15d6f;
+      --stats-pacienti: #3b82f6;
+      --stats-pacienti-alt: #7e57c2;
+      --stats-incasari: #3ecf8e;
+      --stats-incasari-alt: #2bb673;
+      --stats-primary: var(--stats-programari);
+      --stats-free: #2c5677;
       --nav-text: #38596b;
       --nav-group-text: #8296a1;
       --coral-soft: rgba(241, 93, 111, .12);
@@ -3805,32 +3821,6 @@
       margin-top: 10px;
     }
 
-    /* ECharts dashboard cards */
-    .panel--pacienti .panel-header,
-    .panel--incasari .panel-header {
-      flex-wrap: wrap;
-    }
-
-    .panel-body--pacienti,
-    .panel-body--incasari {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      min-width: 0;
-      padding-top: 8px;
-    }
-
-    .echart-plot {
-      width: 100%;
-      min-width: 0;
-      max-width: 100%;
-      height: 240px;
-      justify-self: stretch;
-    }
-
-    .echart-plot--gauge {
-      height: 252px;
-    }
-
     .mini-line {
       width: 100%;
       height: auto;
@@ -4206,6 +4196,203 @@
 
     .panel-body {
       padding: 16px 18px 18px;
+    }
+
+    /* Dashboard stats charts (ECharts) */
+    .stats-grid {
+      align-items: stretch;
+    }
+
+    .stats-panel {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .stats-panel.panel--chart .panel-header,
+    .stats-panel.panel--occupancy .panel-header,
+    .stats-panel .panel-header {
+      min-height: 68px;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .stats-panel .panel-title h2 {
+      font-size: 1.1rem;
+      font-weight: 650;
+    }
+
+    .stats-tools {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .metricseg {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--fill);
+    }
+
+    .metricseg__btn {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: .76rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background .16s var(--ease-out), color .16s var(--ease-out);
+    }
+
+    .metricseg__btn:hover { color: var(--text); }
+    .metricseg__btn.is-active {
+      background: rgba(236, 245, 251, .08);
+      color: var(--text);
+    }
+    html[data-theme="light"] .metricseg__btn.is-active { background: #fff; }
+
+    .metricseg__dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--mc, var(--info));
+      opacity: .55;
+      transition: opacity .16s ease;
+    }
+
+    .metricseg__btn.is-active .metricseg__dot { opacity: 1; }
+
+    .stats-panel .appointments-chart__range {
+      border: 0;
+      border-radius: 999px;
+      background: var(--fill);
+    }
+
+    .stats-panel .stats-panel__body {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 22px 22px;
+    }
+
+    .stats-panel .stats-panel__body--occupancy {
+      justify-content: center;
+    }
+
+    .stats-summary {
+      min-height: 40px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .stats-summary__val {
+      color: var(--text);
+      font-size: 2.1rem;
+      font-weight: 750;
+      letter-spacing: -.03em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stats-summary__unit {
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .stats-chart-host {
+      width: 100%;
+      min-width: 0;
+      height: 238px;
+      transition: opacity .17s ease;
+    }
+
+    .stats-occupancy-wrap {
+      min-height: 238px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 4vw, 40px);
+      flex-wrap: wrap;
+    }
+
+    .stats-chart-host--gauge {
+      width: 240px;
+      height: 220px;
+      flex: 0 0 auto;
+    }
+
+    .stats-legend {
+      min-width: 168px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stats-legend__row {
+      display: grid;
+      grid-template-columns: 14px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background .14s ease, border-color .14s ease;
+    }
+
+    .stats-legend__row:hover,
+    .stats-legend__row.is-hot {
+      background: var(--table-hover);
+      border-color: var(--line);
+    }
+
+    .stats-legend__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      background: var(--lgc);
+    }
+
+    .stats-legend__name {
+      color: var(--soft);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+
+    .stats-legend__val {
+      color: var(--text);
+      font-size: .86rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stats-legend__pct {
+      display: block;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 600;
+      text-align: right;
     }
 
     .work-list {
@@ -4680,20 +4867,6 @@
       .analytics-card .apptbars__grid {
         height: 168px;
         gap: 8px;
-      }
-
-      .panel--pacienti .panel-header,
-      .panel--incasari .panel-header {
-        align-items: flex-start;
-      }
-
-      .panel-body--pacienti,
-      .panel-body--incasari {
-        padding-top: 12px;
-      }
-
-      .echart-plot {
-        height: 220px;
       }
 
       .shell {
