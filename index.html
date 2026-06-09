@@ -676,79 +676,142 @@
             </footer>
           </section>
 
-          <div class="evolutie-row">
-            <section class="panel panel--chart" aria-label="Programări">
+          <div class="evolutie-row stats-grid">
+            <section class="panel panel--chart stats-panel" data-stats-chart="programari" data-stats-viz="area" data-range="7" aria-label="Programări">
               <header class="panel-header">
-                <div class="panel-title">
-                  <div><h2>Programări</h2><small>Confirmate pe perioada selectată</small></div>
-                </div>
-                <div class="rangepick" data-rangepick>
-                  <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
-                    <i class="ph ph-calendar" aria-hidden="true"></i>
-                    <span data-rangepick-label>Ultimele 7 zile</span>
-                    <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
-                  </button>
-                  <div class="rangepick__menu" data-rangepick-menu>
-                    <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
-                    <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
-                    <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
-                    <div class="rangepick__custom" data-rangepick-custom>
-                      <label class="rangepick__field"><span>De la</span><input type="date" value="2026-01-01" aria-label="Data de început" /></label>
-                      <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-01-30" aria-label="Data de sfârșit" /></label>
-                      <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                <div class="panel-title"><h2>Programări</h2></div>
+                <div class="stats-tools">
+                  <div class="metricseg" data-metricseg>
+                    <button class="metricseg__btn is-active" type="button" data-metric="confirmate" style="--mc:var(--stats-programari)"><span class="metricseg__dot"></span>Confirmate</button>
+                    <button class="metricseg__btn" type="button" data-metric="anulate" style="--mc:var(--stats-programari-alt)"><span class="metricseg__dot"></span>Anulate</button>
+                  </div>
+                  <div class="rangepick" data-rangepick>
+                    <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                      <i class="ph ph-calendar" aria-hidden="true"></i>
+                      <span data-rangepick-label>Ultimele 7 zile</span>
+                      <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                    </button>
+                    <div class="rangepick__menu" data-rangepick-menu>
+                      <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
+                      <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
+                      <div class="rangepick__custom" data-rangepick-custom>
+                        <label class="rangepick__field"><span>De la</span><input type="date" value="2026-05-10" aria-label="Data de început" /></label>
+                        <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-06-09" aria-label="Data de sfârșit" /></label>
+                        <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </header>
-              <div class="panel-body">
-                <div class="echart-plot echart-plot--bar" data-echart="programari" role="img" aria-label="Programări confirmate pe zile"></div>
+              <div class="panel-body stats-panel__body">
+                <div class="stats-summary" data-stats-summary></div>
+                <div class="stats-chart-host" data-stats-host role="img" aria-label="Evoluție programări"></div>
               </div>
             </section>
 
-            <section class="panel panel--occupancy" aria-label="Grad de ocupare">
+            <section class="panel panel--occupancy stats-panel" data-stats-chart="ocupare" data-stats-viz="gauge" data-range="today" aria-label="Grad de ocupare">
               <header class="panel-header">
-                <div class="panel-title">
-                  <div><h2>Grad de ocupare</h2><small>Capacitate utilizată azi</small></div>
+                <div class="panel-title"><h2>Grad de ocupare</h2></div>
+                <div class="stats-tools">
+                  <div class="rangepick" data-unitpick>
+                    <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-unitpick-toggle>
+                      <i class="ph ph-office-chair" aria-hidden="true"></i>
+                      <span data-unitpick-label>Selectează unit</span>
+                      <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                    </button>
+                    <div class="rangepick__menu" data-unitpick-menu>
+                      <button class="rangepick__opt is-active" type="button" data-unit="general">Toate uniturile</button>
+                      <button class="rangepick__opt" type="button" data-unit="u1">Unit 1</button>
+                      <button class="rangepick__opt" type="button" data-unit="u2">Unit 2</button>
+                      <button class="rangepick__opt" type="button" data-unit="u3">Unit 3</button>
+                    </div>
+                  </div>
+                  <div class="rangepick" data-rangepick>
+                    <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                      <i class="ph ph-calendar" aria-hidden="true"></i>
+                      <span data-rangepick-label>Azi</span>
+                      <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                    </button>
+                    <div class="rangepick__menu" data-rangepick-menu>
+                      <button class="rangepick__opt is-active" type="button" data-range="today">Azi</button>
+                      <button class="rangepick__opt" type="button" data-range="week">Săptămâna aceasta</button>
+                      <button class="rangepick__opt" type="button" data-range="month">Luna aceasta</button>
+                    </div>
+                  </div>
                 </div>
               </header>
-              <div class="panel-body">
-                <div class="echart-plot echart-plot--gauge" data-echart="ocupare" role="img" aria-label="Grad de ocupare 78%"></div>
+              <div class="panel-body stats-panel__body stats-panel__body--occupancy">
+                <div class="stats-occupancy-wrap">
+                  <div class="stats-chart-host stats-chart-host--gauge" data-stats-host role="img" aria-label="Grad de ocupare"></div>
+                  <div class="stats-legend" data-stats-legend></div>
+                </div>
               </div>
             </section>
 
-            <section class="panel panel--chart panel--pacienti" aria-label="Pacienți">
+            <section class="panel panel--chart stats-panel" data-stats-chart="pacienti" data-stats-viz="bars" data-range="6m" aria-label="Pacienți">
               <header class="panel-header">
-                <div class="panel-title">
-                  <div><h2>Pacienți</h2><small>Activi în perioada selectată</small></div>
-                </div>
-                <div class="rangepick" data-rangepick>
-                  <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
-                    <i class="ph ph-calendar" aria-hidden="true"></i>
-                    <span data-rangepick-label>Ultimele 6 luni</span>
-                    <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
-                  </button>
+                <div class="panel-title"><h2>Pacienți</h2></div>
+                <div class="stats-tools">
+                  <div class="metricseg" data-metricseg>
+                    <button class="metricseg__btn is-active" type="button" data-metric="pac_activi" style="--mc:var(--stats-pacienti)"><span class="metricseg__dot"></span>Activi</button>
+                    <button class="metricseg__btn" type="button" data-metric="pac_noi" style="--mc:var(--stats-pacienti-alt)"><span class="metricseg__dot"></span>Noi</button>
+                  </div>
+                  <div class="rangepick" data-rangepick>
+                    <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                      <i class="ph ph-calendar" aria-hidden="true"></i>
+                      <span data-rangepick-label>Ultimele 6 luni</span>
+                      <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                    </button>
+                    <div class="rangepick__menu" data-rangepick-menu>
+                      <button class="rangepick__opt is-active" type="button" data-range="6m">Ultimele 6 luni</button>
+                      <button class="rangepick__opt" type="button" data-range="12m">Ultimele 12 luni</button>
+                      <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
+                      <div class="rangepick__custom" data-rangepick-custom>
+                        <label class="rangepick__field"><span>De la</span><input type="date" value="2025-09-01" aria-label="Data de început" /></label>
+                        <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-06-01" aria-label="Data de sfârșit" /></label>
+                        <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </header>
-              <div class="panel-body panel-body--pacienti">
-                <div class="echart-plot echart-plot--line" data-echart="pacienti" role="img" aria-label="Evoluție pacienți activi"></div>
+              <div class="panel-body stats-panel__body">
+                <div class="stats-summary" data-stats-summary></div>
+                <div class="stats-chart-host" data-stats-host role="img" aria-label="Evoluție pacienți"></div>
               </div>
             </section>
 
-            <section class="panel panel--chart panel--incasari" aria-label="Încasări">
+            <section class="panel panel--chart stats-panel" data-stats-chart="incasari" data-stats-viz="area" data-range="6m" aria-label="Încasări">
               <header class="panel-header">
-                <div class="panel-title">
-                  <div><h2>Încasări</h2><small>Venituri în perioada selectată</small></div>
-                </div>
-                <div class="rangepick" data-rangepick>
-                  <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
-                    <i class="ph ph-calendar" aria-hidden="true"></i>
-                    <span data-rangepick-label>Ultimele 6 luni</span>
-                    <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
-                  </button>
+                <div class="panel-title"><h2>Încasări</h2></div>
+                <div class="stats-tools">
+                  <div class="metricseg" data-metricseg>
+                    <button class="metricseg__btn is-active" type="button" data-metric="inc_incasat" style="--mc:var(--stats-incasari)"><span class="metricseg__dot"></span>Încasat</button>
+                    <button class="metricseg__btn" type="button" data-metric="inc_facturat" style="--mc:var(--stats-incasari-alt)"><span class="metricseg__dot"></span>Facturat</button>
+                  </div>
+                  <div class="rangepick" data-rangepick>
+                    <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                      <i class="ph ph-calendar" aria-hidden="true"></i>
+                      <span data-rangepick-label>Ultimele 6 luni</span>
+                      <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                    </button>
+                    <div class="rangepick__menu" data-rangepick-menu>
+                      <button class="rangepick__opt is-active" type="button" data-range="6m">Ultimele 6 luni</button>
+                      <button class="rangepick__opt" type="button" data-range="12m">Ultimele 12 luni</button>
+                      <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
+                      <div class="rangepick__custom" data-rangepick-custom>
+                        <label class="rangepick__field"><span>De la</span><input type="date" value="2025-09-01" aria-label="Data de început" /></label>
+                        <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-06-01" aria-label="Data de sfârșit" /></label>
+                        <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </header>
-              <div class="panel-body panel-body--incasari">
-                <div class="echart-plot echart-plot--line" data-echart="incasari" role="img" aria-label="Evoluție încasări"></div>
+              <div class="panel-body stats-panel__body">
+                <div class="stats-summary" data-stats-summary></div>
+                <div class="stats-chart-host" data-stats-host role="img" aria-label="Evoluție încasări"></div>
               </div>
             </section>
           </div>
@@ -2264,437 +2327,547 @@
     })();
 
     (function () {
-      const chartNodes = Array.from(document.querySelectorAll('[data-echart]'));
+      const panels = Array.from(document.querySelectorAll('[data-stats-chart]'));
+      if (!panels.length || typeof echarts === 'undefined') return;
 
-      if (!chartNodes.length || typeof echarts === 'undefined') return;
+      const TODAY = new Date(2026, 5, 9);
+      const MONTHS = ['ian', 'feb', 'mar', 'apr', 'mai', 'iun', 'iul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+      const WDAYS = ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'];
+      const nf = new Intl.NumberFormat('ro-RO');
+      const CHART_FONT = 'Onest, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
-      const monthLabels = ['ian', 'feb', 'mar', 'apr', 'mai', 'iun'];
-      const chartData = {
-        programari: {
-          type: 'bar',
-          color: '#2563eb',
-          mutedColor: 'rgba(37, 99, 235, .42)',
-          labels: ['Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm', 'Dum'],
-          values: [22, 19, 31, 24, 42, 28, 36],
-          total: '196',
-          caption: 'confirmate',
-          avg: 29,
-          peakIndex: 4
+      const hash = (s) => {
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < s.length; i += 1) {
+          h ^= s.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return h >>> 0;
+      };
+
+      const mulberry = (a) => () => {
+        a |= 0;
+        a = a + 0x6D2B79F5 | 0;
+        let t = Math.imul(a ^ a >>> 15, 1 | a);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+
+      const series = (seed, n, min, max, opts = {}) => {
+        const r = mulberry(hash(seed));
+        const trend = opts.trend || 0;
+        const vol = opts.vol == null ? 0.5 : opts.vol;
+
+        return Array.from({ length: n }, (_, i) => {
+          const t = n > 1 ? i / (n - 1) : 0;
+          const base = min + (max - min) * (0.5 + trend * (t - 0.5));
+          const noise = (r() - 0.5) * (max - min) * vol;
+          return Math.max(0, Math.round(base + noise));
+        });
+      };
+
+      const sum = (arr) => arr.reduce((acc, val) => acc + val, 0);
+      const nfInt = (value) => nf.format(value);
+      const nfLei = (value) => `${nf.format(value)} lei`;
+      const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      const statsColor = (name, fallback) => cssVar(name) || fallback;
+      const statsProgramari = () => statsColor('--stats-programari', '#22d3ee');
+      const statsProgramariAlt = () => statsColor('--stats-programari-alt', '#facc15');
+      const statsPacienti = () => statsColor('--stats-pacienti', '#38bdf8');
+      const statsPacientiAlt = () => statsColor('--stats-pacienti-alt', '#a78bfa');
+      const statsIncasari = () => statsColor('--stats-incasari', '#a3e635');
+      const statsIncasariAlt = () => statsColor('--stats-incasari-alt', '#4ade80');
+      const statsFree = () => cssVar('--stats-free') || '#2f5874';
+      const hexA = (hex, a) => {
+        const c = hex.replace('#', '');
+        return `rgba(${parseInt(c.slice(0, 2), 16)},${parseInt(c.slice(2, 4), 16)},${parseInt(c.slice(4, 6), 16)},${a})`;
+      };
+
+      const tokens = () => ({
+        text: cssVar('--text'),
+        soft: cssVar('--soft'),
+        muted: cssVar('--muted'),
+        line: cssVar('--line'),
+        lineStrong: cssVar('--line-strong'),
+        panel: cssVar('--panel')
+      });
+
+      const fmtK = (value) => {
+        const v = Math.round(value);
+        if (v >= 10000) return `${Math.round(v / 1000)}k`;
+        if (v >= 1000) {
+          const k = v / 1000;
+          return `${Number.isInteger(k) ? k : Math.round(k * 10) / 10}k`;
+        }
+        return String(v);
+      };
+
+      const lastDays = (n) => {
+        const out = [];
+        for (let i = n - 1; i >= 0; i -= 1) {
+          const d = new Date(TODAY);
+          d.setDate(TODAY.getDate() - i);
+          out.push(d);
+        }
+        return out;
+      };
+
+      const lastMonths = (n) => Array.from(
+        { length: n },
+        (_, i) => new Date(TODAY.getFullYear(), TODAY.getMonth() - (n - 1 - i), 1)
+      );
+
+      const fmtDay = (d) => `${d.getDate() < 10 ? '0' : ''}${d.getDate()} ${MONTHS[d.getMonth()]}`;
+
+      const APPT_META = {
+        confirmate: { min: 6, max: 18, trend: .22, vol: .5, color: statsProgramari, name: 'Confirmate' },
+        anulate: { min: 0, max: 4, trend: -.1, vol: .95, color: statsProgramariAlt, name: 'Anulate' }
+      };
+
+      const LINE_META = {
+        pac_activi: { min: 280, max: 460, trend: .34, vol: .28, color: statsPacienti, name: 'Pacienți activi', fmt: nfInt },
+        pac_noi: { min: 10, max: 38, trend: .2, vol: .6, color: statsPacientiAlt, name: 'Pacienți noi', fmt: nfInt },
+        inc_incasat: { min: 12000, max: 31000, trend: .3, vol: .32, color: statsIncasari, name: 'Încasări', fmt: nfLei },
+        inc_facturat: { min: 16000, max: 38000, trend: .26, vol: .3, color: statsIncasariAlt, name: 'Facturat', fmt: nfLei }
+      };
+
+      const OCC = {
+        general: {
+          today: [{ k: 'Ocupate', v: 16 }, { k: 'Libere', v: 6 }],
+          week: [{ k: 'Ocupate', v: 14 }, { k: 'Libere', v: 8 }],
+          month: [{ k: 'Ocupate', v: 15 }, { k: 'Libere', v: 7 }],
+          unit: 'cabinete'
         },
-        ocupare: {
-          type: 'gauge',
-          color: '#2563eb',
-          value: 78,
-          occupied: 14,
-          free: 4
+        u1: {
+          today: [{ k: 'Ocupate', v: 6 }, { k: 'Libere', v: 2 }],
+          week: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 3 }],
+          month: [{ k: 'Ocupate', v: 6 }, { k: 'Libere', v: 2 }],
+          unit: 'cabinete'
         },
-        pacienti: {
-          type: 'line',
-          color: '#3b82f6',
-          fill: 'rgba(59, 130, 246, .22)',
-          labelColor: '#ffffff',
-          labels: monthLabels,
-          values: [720, 790, 880, 1010, 1110, 1284],
-          max: 1500,
-          ticks: [500, 1000, 1500],
-          valueLabel: '1.284',
-          suffix: ''
+        u2: {
+          today: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          week: [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
+          month: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          unit: 'cabinete'
         },
-        incasari: {
-          type: 'line',
-          color: '#3ecf8e',
-          fill: 'rgba(62, 207, 142, .18)',
-          labelColor: '#0f2639',
-          labels: monthLabels,
-          values: [38000, 42000, 56000, 63000, 72000, 86000],
-          max: 90000,
-          ticks: [30000, 60000, 90000],
-          valueLabel: '86k',
-          suffix: ' lei'
+        u3: {
+          today: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          week: [{ k: 'Ocupate', v: 5 }, { k: 'Libere', v: 2 }],
+          month: [{ k: 'Ocupate', v: 4 }, { k: 'Libere', v: 3 }],
+          unit: 'cabinete'
         }
       };
 
-      const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-      const rem = (value) => value * parseFloat(getComputedStyle(document.documentElement).fontSize || '16');
-      const formatNumber = (value) => new Intl.NumberFormat('ro-RO').format(value);
-      const formatAxis = (value) => value >= 10000 ? `${Math.round(value / 1000)}k` : formatNumber(value);
+      const occColors = () => [statsProgramari(), statsFree()];
 
-      const baseText = () => ({
-        text: cssVar('--text'),
-        muted: cssVar('--muted'),
-        line: cssVar('--line'),
-        panel: cssVar('--panel'),
-        fill: cssVar('--fill'),
-        bg: cssVar('--bg'),
-        labelFont: rem(.74)
+      const tooltipBox = (t) => ({
+        backgroundColor: t.panel,
+        borderColor: t.lineStrong,
+        borderWidth: 1,
+        padding: [9, 12],
+        textStyle: { color: t.text, fontFamily: CHART_FONT, fontSize: 12 },
+        extraCssText: `border-radius:8px;box-shadow:none;font-family:${CHART_FONT};`
       });
 
-      const tooltip = (formatter) => {
-        const vars = baseText();
+      const tooltipRow = (color, key, val) => (
+        `<div style="display:flex;align-items:center;gap:8px;font-size:12.5px;line-height:1.6">` +
+        `<span style="width:8px;height:8px;border-radius:50%;background:${color}"></span>` +
+        `<span style="color:${cssVar('--soft')}">${key}</span>` +
+        (val ? `<span style="margin-left:18px;font-weight:700;color:${cssVar('--text')}">${val}</span>` : '') +
+        '</div>'
+      );
 
-        return {
-          trigger: 'axis',
-          backgroundColor: vars.panel,
-          borderWidth: 0,
-          padding: [8, 10],
-          textStyle: {
-            color: vars.text,
-            fontFamily: 'Onest',
-            fontSize: rem(.78),
-            fontWeight: 600
-          },
-          axisPointer: {
-            type: 'line',
-            lineStyle: { color: vars.line, width: 1 }
-          },
-          formatter
-        };
+      const apptData = (metric, range, custom) => {
+        const meta = APPT_META[metric];
+        let days;
+
+        if (range === '7') days = 7;
+        else if (range === '30') days = 30;
+        else {
+          const from = new Date(custom.from);
+          const to = new Date(custom.to);
+          days = Math.max(2, Math.min(62, Math.round((to - from) / 86400000) + 1));
+        }
+
+        let dates = lastDays(days);
+        if (range === 'custom') {
+          const to = new Date(custom.to);
+          dates = Array.from({ length: days }, (_, i) => {
+            const d = new Date(to);
+            d.setDate(to.getDate() - (days - 1 - i));
+            return d;
+          });
+        }
+
+        const values = series(`appt-${metric}-${range}-${days}`, days, meta.min, meta.max, { trend: meta.trend, vol: meta.vol });
+        const points = dates.map((d, i) => ({
+          value: values[i],
+          axis: days <= 7 ? WDAYS[d.getDay()] : String(d.getDate()),
+          full: `${WDAYS[d.getDay()]} ${fmtDay(d)}`
+        }));
+
+        return { points, color: typeof meta.color === 'function' ? meta.color() : meta.color, name: meta.name, fmt: nfInt, summaryVal: sum(values), summaryUnit: 'programări' };
       };
 
-      const makeLineOption = (config) => {
-        const vars = baseText();
-        const lastIndex = config.values.length - 1;
-        const seriesData = config.values.map((value, index) => {
-          if (index !== lastIndex) return value;
+      const lineData = (metric, range, custom) => {
+        const meta = LINE_META[metric];
+        let months;
 
-          return {
-            value,
-            label: {
-              show: true,
-              position: 'top',
-              distance: 8,
-              offset: [-18, 0],
-              color: config.labelColor,
-              backgroundColor: config.color,
-              borderRadius: 7,
-              padding: [5, 12],
-              fontFamily: 'Onest',
-              fontSize: rem(.78),
-              fontWeight: 800,
-              formatter: config.valueLabel
-            }
-          };
-        });
+        if (range === '6m') months = 6;
+        else if (range === '12m') months = 12;
+        else {
+          const from = new Date(custom.from);
+          const to = new Date(custom.to);
+          months = Math.max(2, Math.min(24, (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth()) + 1));
+        }
+
+        const dates = range === 'custom'
+          ? Array.from({ length: months }, (_, i) => {
+              const to = new Date(custom.to);
+              return new Date(to.getFullYear(), to.getMonth() - (months - 1 - i), 1);
+            })
+          : lastMonths(months);
+        const values = series(`line-${metric}-${months}`, months, meta.min, meta.max, { trend: meta.trend, vol: meta.vol });
+        const points = dates.map((d, i) => ({ value: values[i], axis: MONTHS[d.getMonth()], full: `${MONTHS[d.getMonth()]} ${d.getFullYear()}` }));
+
+        return { points, color: typeof meta.color === 'function' ? meta.color() : meta.color, name: meta.name, fmt: meta.fmt, summaryVal: values[values.length - 1], summaryUnit: '' };
+      };
+
+      const panelData = (panel, state) => (
+        panel.dataset.statsChart === 'programari'
+          ? apptData(state.metric, state.range, state.custom)
+          : lineData(state.metric, state.range, state.custom)
+      );
+
+      const lineOption = (data, filled) => {
+        const t = tokens();
 
         return {
-          animationDuration: 700,
-          animationEasing: 'cubicOut',
-          grid: { left: 34, right: 12, top: 22, bottom: 28, containLabel: false },
-          tooltip: tooltip((params) => {
-            const point = params[0];
-            return `${point.axisValue}<br><strong>${formatAxis(point.value)}${config.suffix}</strong>`;
-          }),
+          grid: { left: 4, right: 8, top: 14, bottom: 4, containLabel: true },
+          tooltip: Object.assign({
+            trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: t.lineStrong, type: 'dashed' } },
+            formatter: (params) => {
+              const point = params[0];
+              return `<div style="font-weight:700;margin-bottom:6px">${data.points[point.dataIndex].full}</div>` +
+                tooltipRow(data.color, data.name, data.fmt(point.value));
+            }
+          }, tooltipBox(t)),
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: config.labels,
+            data: data.points.map((p) => p.axis),
             axisLine: { show: false },
             axisTick: { show: false },
-            axisLabel: {
-              color: vars.muted,
-              fontFamily: 'Onest',
-              fontSize: vars.labelFont,
-              fontWeight: 600,
-              margin: 14
-            }
+            axisLabel: { color: t.muted, fontFamily: CHART_FONT, fontWeight: 600, fontSize: 12, interval: 'auto', hideOverlap: true }
           },
           yAxis: {
             type: 'value',
-            min: 0,
-            max: config.max,
             splitNumber: 3,
-            interval: config.max / 3,
-            axisLine: { show: false },
-            axisTick: { show: false },
-            axisLabel: {
-              color: vars.muted,
-              fontFamily: 'Onest',
-              fontSize: vars.labelFont,
-              fontWeight: 600,
-              margin: 8,
-              formatter: (value) => config.ticks.includes(value) ? formatAxis(value) : ''
-            },
-            splitLine: { lineStyle: { color: vars.line, width: 1 } }
+            min: 0,
+            axisLabel: { color: t.muted, fontFamily: CHART_FONT, fontWeight: 600, fontSize: 11, formatter: fmtK },
+            splitLine: { lineStyle: { color: t.line } }
           },
           series: [{
             type: 'line',
-            data: seriesData,
-            smooth: true,
+            smooth: .5,
             symbol: 'circle',
-            symbolSize: (value, params) => params.dataIndex === lastIndex ? 8 : 0,
-            showSymbol: true,
-            lineStyle: { color: config.color, width: 2 },
-            itemStyle: { color: vars.panel, borderColor: config.color, borderWidth: 2 },
-            areaStyle: {
+            symbolSize: 7,
+            showSymbol: false,
+            data: data.points.map((p) => p.value),
+            lineStyle: { color: data.color, width: 2.6 },
+            itemStyle: { color: t.panel, borderColor: data.color, borderWidth: 2.6 },
+            areaStyle: filled ? {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: config.fill },
-                { offset: 1, color: 'rgba(0, 0, 0, 0)' }
-              ])
+                { offset: 0, color: hexA(data.color, .26) },
+                { offset: 1, color: hexA(data.color, .03) }
+              ]),
+              origin: 'start'
+            } : undefined,
+            emphasis: {
+              focus: 'series',
+              scale: 2.2,
+              itemStyle: { color: t.panel, borderColor: data.color, borderWidth: 3 }
             },
-            label: { show: false },
-            emphasis: { focus: 'series' }
+            animationDuration: 700,
+            animationEasing: 'cubicOut',
+            animationDurationUpdate: 650,
+            animationEasingUpdate: 'cubicInOut'
           }]
         };
       };
 
-      const makeBarOption = (config) => {
-        const vars = baseText();
-        const maxValue = Math.max(...config.values);
-        const seriesData = config.values.map((value, index) => ({
-          value,
-          itemStyle: {
-            color: index === config.peakIndex ? config.color : config.mutedColor
-          },
-          label: {
-            show: index === config.peakIndex,
-            position: 'top',
-            distance: 8,
-            color: '#ffffff',
-            backgroundColor: config.color,
-            borderRadius: 8,
-            padding: [5, 9],
-            fontFamily: 'Onest',
-            fontSize: rem(.78),
-            fontWeight: 800,
-            formatter: String(value)
-          }
-        }));
+      const barsOption = (data) => {
+        const t = tokens();
+        const max = Math.max(...data.points.map((p) => p.value)) || 1;
+        const peak = data.points.reduce((best, p, i, arr) => p.value > arr[best].value ? i : best, 0);
 
         return {
-          animationDuration: 650,
-          animationEasing: 'cubicOut',
-          grid: { left: 8, right: 8, top: 72, bottom: 30, containLabel: false },
-          graphic: [
-            {
-              type: 'text',
-              left: 0,
-              top: 0,
-              style: {
-                text: config.total,
-                fill: vars.text,
-                fontFamily: 'Onest',
-                fontSize: rem(2.95),
-                fontWeight: 800,
-                lineHeight: rem(2.55)
-              }
-            },
-            {
-              type: 'text',
-              left: 78,
-              top: 32,
-              style: {
-                text: config.caption,
-                fill: vars.muted,
-                fontFamily: 'Onest',
-                fontSize: rem(.82),
-                fontWeight: 650
-              }
+          grid: { left: 8, right: 8, top: 26, bottom: 24, containLabel: false },
+          tooltip: Object.assign({
+            trigger: 'axis',
+            axisPointer: { type: 'none' },
+            formatter: (params) => {
+              const point = params[0];
+              return `<div style="font-weight:700;margin-bottom:6px">${data.points[point.dataIndex].full}</div>` +
+                tooltipRow(data.color, data.name, data.fmt(point.value));
             }
-          ],
-          tooltip: tooltip((params) => {
-            const point = params[0];
-            return `${point.axisValue}<br><strong>${point.value} programări</strong>`;
-          }),
+          }, tooltipBox(t)),
           xAxis: {
             type: 'category',
-            data: config.labels,
+            data: data.points.map((p) => p.axis),
             axisLine: { show: false },
             axisTick: { show: false },
-            axisLabel: {
-              color: vars.muted,
-              fontFamily: 'Onest',
-              fontSize: vars.labelFont,
-              fontWeight: 600,
-              margin: 14
-            }
+            axisLabel: { color: t.muted, fontFamily: CHART_FONT, fontWeight: 600, fontSize: 12, interval: 'auto', hideOverlap: true }
           },
-          yAxis: {
-            type: 'value',
-            min: 0,
-            max: Math.ceil((maxValue + 10) / 10) * 10,
-            axisLabel: { show: false },
-            axisLine: { show: false },
-            axisTick: { show: false },
-            splitLine: { show: false }
-          },
+          yAxis: { type: 'value', show: false, max: max * 1.08 },
           series: [{
             type: 'bar',
-            data: seriesData,
-            barWidth: '52%',
-            itemStyle: {
-              borderRadius: [10, 10, 5, 5]
-            },
-            markLine: {
-              symbol: 'none',
-              animation: false,
-              data: [{ yAxis: config.avg }],
-              lineStyle: { color: vars.line, type: 'dashed', width: 1 },
-              label: {
-                show: true,
-                position: 'insideStartTop',
-                formatter: `${config.avg} medie`,
-                color: vars.bg,
-                backgroundColor: vars.text,
-                borderRadius: 999,
-                padding: [4, 8],
-                fontFamily: 'Onest',
-                fontSize: rem(.66),
-                fontWeight: 700
-              }
-            }
+            data: data.points.map((p, i) => ({
+              value: p.value,
+              itemStyle: { color: i === peak ? data.color : hexA(data.color, .2), borderRadius: [8, 8, 4, 4] }
+            })),
+            barWidth: data.points.length > 14 ? '70%' : '58%',
+            emphasis: { itemStyle: { color: data.color, opacity: 1, borderWidth: 0 } },
+            animationDuration: 600,
+            animationEasing: 'cubicOut'
           }]
         };
       };
 
-      const makeGaugeOption = (config) => {
-        const vars = baseText();
+      const gaugeOption = (unit, range) => {
+        const t = tokens();
+        const table = OCC[unit][range];
+        const total = sum(table.map((row) => row.v));
+        const occupied = Math.round(table[0].v / total * 100);
+        const colors = occColors();
 
         return {
-          animation: false,
-          tooltip: { show: false },
+          tooltip: Object.assign({
+            trigger: 'item',
+            formatter: () => (
+              '<div style="font-weight:700;margin-bottom:6px">Grad de ocupare</div>' +
+              table.map((row, i) => tooltipRow(colors[i], row.k, `${row.v} · ${Math.round(row.v / total * 100)}%`)).join('')
+            )
+          }, tooltipBox(t)),
           series: [{
             type: 'gauge',
-            startAngle: 90,
-            endAngle: -270,
-            radius: '76%',
-            center: ['50%', '45%'],
+            startAngle: 210,
+            endAngle: -30,
+            min: 0,
+            max: 100,
+            radius: '94%',
+            center: ['50%', '56%'],
+            progress: { show: true, width: 16, roundCap: true, itemStyle: { color: colors[0] } },
+            axisLine: { roundCap: true, lineStyle: { width: 16, color: [[1, hexA(colors[0], .16)]] } },
             pointer: { show: false },
-            progress: {
-              show: true,
-              roundCap: true,
-              width: 15,
-              itemStyle: {
-                color: config.color,
-                shadowColor: 'rgba(37, 99, 235, .22)',
-                shadowBlur: 14
-              }
-            },
-            axisLine: {
-              roundCap: true,
-              lineStyle: {
-                width: 15,
-                color: [[1, vars.fill]]
-              }
-            },
+            anchor: { show: false },
             axisTick: { show: false },
             splitLine: { show: false },
             axisLabel: { show: false },
-            anchor: { show: false },
-            title: {
-              show: true,
-              offsetCenter: [0, '18%'],
-              color: vars.muted,
-              fontFamily: 'Onest',
-              fontSize: rem(.78),
-              fontWeight: 650
-            },
             detail: {
               valueAnimation: false,
-              offsetCenter: [0, '-6%'],
-              formatter: '{value}%',
-              color: vars.text,
-              fontFamily: 'Onest',
-              fontSize: rem(2.15),
-              fontWeight: 800
+              formatter: (value) => `${Math.round(value)}%`,
+              offsetCenter: [0, '-2%'],
+              color: t.text,
+              fontFamily: CHART_FONT,
+              fontSize: 40,
+              fontWeight: 750
             },
-            data: [{ value: config.value, name: 'ocupat' }]
-          }],
-          graphic: [
-            {
-              type: 'group',
-              left: 'center',
-              bottom: 8,
-              children: [
-                {
-                  type: 'text',
-                  left: -58,
-                  top: 0,
-                  style: {
-                    text: String(config.occupied),
-                    fill: vars.text,
-                    align: 'center',
-                    fontFamily: 'Onest',
-                    fontSize: rem(1.25),
-                    fontWeight: 800,
-                    lineHeight: rem(1.25)
-                  }
-                },
-                {
-                  type: 'text',
-                  left: -58,
-                  top: 25,
-                  style: {
-                    text: 'locuri ocupate',
-                    fill: vars.muted,
-                    align: 'center',
-                    fontFamily: 'Onest',
-                    fontSize: rem(.72),
-                    fontWeight: 600
-                  }
-                },
-                {
-                  type: 'text',
-                  left: 58,
-                  top: 0,
-                  style: {
-                    text: String(config.free),
-                    fill: vars.text,
-                    align: 'center',
-                    fontFamily: 'Onest',
-                    fontSize: rem(1.25),
-                    fontWeight: 800,
-                    lineHeight: rem(1.25)
-                  }
-                },
-                {
-                  type: 'text',
-                  left: 58,
-                  top: 25,
-                  style: {
-                    text: 'locuri libere',
-                    fill: vars.muted,
-                    align: 'center',
-                    fontFamily: 'Onest',
-                    fontSize: rem(.72),
-                    fontWeight: 600
-                  }
-                }
-              ]
-            }
-          ]
+            title: { show: true, offsetCenter: [0, '26%'], color: t.muted, fontFamily: CHART_FONT, fontSize: 13, fontWeight: 600 },
+            data: [{ value: occupied, name: table[0].k.toLowerCase() }]
+          }]
         };
       };
 
-      const makeOption = (config) => {
-        if (config.type === 'bar') return makeBarOption(config);
-        if (config.type === 'gauge') return makeGaugeOption(config);
-        return makeLineOption(config);
+      const setSummary = (panel, value, unit, fmt) => {
+        const el = panel.querySelector('[data-stats-summary]');
+        if (!el) return;
+
+        el.innerHTML = `<span class="stats-summary__val">${(fmt || nfInt)(value)}</span>` +
+          (unit ? `<span class="stats-summary__unit">${unit}</span>` : '');
       };
 
-      const charts = chartNodes.map((node) => {
-        const key = node.dataset.echart;
-        const chart = echarts.init(node, null, { renderer: 'canvas' });
-        const apply = () => chart.setOption(makeOption(chartData[key]), true);
+      const controllers = panels.map((panel) => {
+        const host = panel.querySelector('[data-stats-host]');
+        const chart = echarts.init(host, null, { renderer: 'canvas' });
+        const activeMetric = panel.querySelector('.metricseg__btn.is-active');
+        const legend = panel.querySelector('[data-stats-legend]');
+        const state = {
+          metric: activeMetric?.dataset.metric || (panel.dataset.statsChart === 'ocupare' ? 'general' : null),
+          range: panel.dataset.range || '7',
+          viz: panel.dataset.statsViz || 'area',
+          custom: { from: '2026-01-01', to: '2026-01-30' }
+        };
 
-        apply();
+        const renderLegend = () => {
+          if (!legend) return;
 
-        return { chart, apply };
+          const table = OCC[state.metric][state.range];
+          const total = sum(table.map((row) => row.v));
+          const colors = occColors();
+          legend.innerHTML = table.map((row, i) => {
+            const pct = Math.round(row.v / total * 100);
+            return `<div class="stats-legend__row" data-i="${i}" style="--lgc:${colors[i]}">` +
+              `<span class="stats-legend__dot"></span><span class="stats-legend__name">${row.k}</span>` +
+              `<span><span class="stats-legend__val">${row.v}</span><span class="stats-legend__pct">${pct}%</span></span></div>`;
+          }).join('');
+
+          legend.querySelectorAll('.stats-legend__row').forEach((row) => {
+            row.addEventListener('pointerenter', () => {
+              row.classList.add('is-hot');
+              chart.dispatchAction({ type: 'showTip', seriesIndex: 0, dataIndex: 0 });
+            });
+            row.addEventListener('pointerleave', () => {
+              row.classList.remove('is-hot');
+              chart.dispatchAction({ type: 'hideTip' });
+            });
+          });
+        };
+
+        chart.on('mouseover', () => {
+          if (!legend) return;
+          legend.querySelectorAll('.stats-legend__row').forEach((row) => row.classList.add('is-hot'));
+        });
+        chart.on('mouseout', () => {
+          if (!legend) return;
+          legend.querySelectorAll('.stats-legend__row').forEach((row) => row.classList.remove('is-hot'));
+        });
+
+        const drawSeries = (disableAnimation = false) => {
+          const data = panelData(panel, state);
+          const option = state.viz === 'bars' ? barsOption(data) : lineOption(data, state.viz === 'area');
+          if (disableAnimation && state.viz !== 'bars') option.animation = false;
+          chart.setOption(option, true);
+          setSummary(panel, data.summaryVal, data.summaryUnit, data.fmt);
+        };
+
+        const render = () => {
+          if (panel.dataset.statsChart === 'ocupare') {
+            chart.resize();
+            chart.setOption(gaugeOption(state.metric, state.range), true);
+            renderLegend();
+            return;
+          }
+
+          if (state.viz === 'bars' || !panel._statsInited) {
+            drawSeries(false);
+            return;
+          }
+
+          host.style.opacity = '0';
+          setTimeout(() => {
+            drawSeries(true);
+            requestAnimationFrame(() => { host.style.opacity = '1'; });
+          }, 170);
+        };
+
+        panel.querySelectorAll('.metricseg__btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            panel.querySelectorAll('.metricseg__btn').forEach((item) => item.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            state.metric = btn.dataset.metric;
+            render();
+          });
+        });
+
+        const unitPick = panel.querySelector('[data-unitpick]');
+        if (unitPick) {
+          const toggle = unitPick.querySelector('[data-unitpick-toggle]');
+          const label = unitPick.querySelector('[data-unitpick-label]');
+          const opts = unitPick.querySelectorAll('[data-unit]');
+          const open = (value) => {
+            unitPick.classList.toggle('is-open', value);
+            toggle?.setAttribute('aria-expanded', String(value));
+          };
+
+          toggle?.addEventListener('click', (event) => {
+            event.stopPropagation();
+            open(!unitPick.classList.contains('is-open'));
+          });
+
+          opts.forEach((opt) => {
+            opt.addEventListener('click', (event) => {
+              event.stopPropagation();
+              opts.forEach((item) => item.classList.remove('is-active'));
+              opt.classList.add('is-active');
+              state.metric = opt.dataset.unit;
+              if (label) label.textContent = opt.textContent;
+              render();
+              open(false);
+            });
+          });
+
+          document.addEventListener('click', (event) => {
+            if (!unitPick.contains(event.target)) open(false);
+          });
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') open(false);
+          });
+        }
+
+        const rangePick = panel.querySelector('[data-rangepick]');
+        if (rangePick) {
+          const opts = rangePick.querySelectorAll('.rangepick__opt');
+          const label = rangePick.querySelector('[data-rangepick-label]');
+          const applyBtn = rangePick.querySelector('[data-rangepick-apply]');
+          const inputs = rangePick.querySelectorAll('.rangepick__field input');
+
+          opts.forEach((opt) => {
+            opt.addEventListener('click', () => {
+              if (opt.dataset.range === 'custom') return;
+              state.range = opt.dataset.range;
+              if (label) label.textContent = opt.textContent;
+              render();
+            });
+          });
+
+          applyBtn?.addEventListener('click', () => {
+            if (!inputs[0]?.value || !inputs[1]?.value) return;
+
+            state.range = 'custom';
+            state.custom = { from: inputs[0].value, to: inputs[1].value };
+            const fmt = (value) => {
+              const parts = value.split('-');
+              return `${parts[2]}.${parts[1]}.${parts[0]}`;
+            };
+            if (label) label.textContent = `${fmt(inputs[0].value)} - ${fmt(inputs[1].value)}`;
+            render();
+          });
+        }
+
+        panel._statsRender = render;
+        render();
+        panel._statsInited = true;
+
+        return { chart, panel, render };
       });
 
-      const resizeCharts = () => charts.forEach(({ chart }) => chart.resize());
-      const refreshCharts = () => charts.forEach(({ apply, chart }) => {
-        apply();
+      const resizeCharts = () => controllers.forEach(({ chart }) => chart.resize());
+      const refreshCharts = () => controllers.forEach(({ chart, render }) => {
+        render();
         chart.resize();
       });
+      const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(resizeCharts) : null;
 
-      const resizeObserver = 'ResizeObserver' in window
-        ? new ResizeObserver(resizeCharts)
-        : null;
-
-      chartNodes.forEach((node) => resizeObserver?.observe(node));
+      panels.forEach((panel) => {
+        const host = panel.querySelector('[data-stats-host]');
+        if (host) resizeObserver?.observe(host);
+      });
 
       window.addEventListener('resize', resizeCharts);
       window.addEventListener('smilesoft:themechange', refreshCharts);
+
+      if (document.fonts?.ready) {
+        document.fonts.ready
+          .then(() => requestAnimationFrame(refreshCharts))
+          .catch(() => {});
+      }
+      if (document.fonts?.load) {
+        document.fonts.load('600 12px Onest')
+          .then(() => requestAnimationFrame(refreshCharts))
+          .catch(() => {});
+      }
     })();
   </script>
 </body>
