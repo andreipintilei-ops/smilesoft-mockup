@@ -198,10 +198,21 @@
               </div>
 
               <header class="aura-panel__head">
-                <span class="aura__name">Aura</span>
-                <span class="aura__state"><span class="aura__state-dot" aria-hidden="true"></span><span class="aura__state-label" data-aura-label>Inactiv</span></span>
+                <span class="aura__name"><i class="ph-fill ph-sparkle" aria-hidden="true"></i>Aura</span>
+                <div class="aura-dev">
+                  <span class="aura__state"><span class="aura__state-dot" aria-hidden="true"></span><span class="aura__state-label" data-aura-label>Gata</span></span>
+                  <button class="aura-dev__toggle" type="button" aria-expanded="false" aria-label="Dev states"><i class="ph ph-dots-three" aria-hidden="true"></i></button>
+                  <div class="aura-dev__panel" hidden>
+                    <button class="aura-dev__btn is-on" type="button" data-aura-state="idle">Idle</button>
+                    <button class="aura-dev__btn" type="button" data-aura-state="listening">Listening</button>
+                    <button class="aura-dev__btn" type="button" data-aura-state="searching">Searching</button>
+                    <button class="aura-dev__btn" type="button" data-aura-state="error">Error</button>
+                    <button class="aura-dev__btn" type="button" data-aura-state="complete">Complete</button>
+                  </div>
+                </div>
               </header>
 
+              <div class="aura-panel__body">
               <div class="aura-panel__orbwrap">
                 <div class="aura aura--panel" role="img" aria-label="Aura orb" data-aura-orb>
                   <div class="aura__orbits">
@@ -219,8 +230,9 @@
                   </div>
                   <div class="aura__pulse"></div>
                   <div class="aura__face">
-                    <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
-                    <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+                    <svg class="aura__eye" viewBox="0 0 20 12"><path class="aura__eye-arc" d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"/><path class="aura__eye-x" d="M4.5 1.5 L15.5 10.5 M15.5 1.5 L4.5 10.5"/></svg>
+                    <svg class="aura__eye" viewBox="0 0 20 12"><path class="aura__eye-arc" d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"/><path class="aura__eye-x" d="M4.5 1.5 L15.5 10.5 M15.5 1.5 L4.5 10.5"/></svg>
+                    <svg class="aura__bigcheck" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L9 18 L20 6"/></svg>
                   </div>
                   <div class="aura__spark" style="top:8%; left:18%; animation-delay:0s"></div>
                   <div class="aura__spark" style="top:24%; left:86%; animation-delay:.7s"></div>
@@ -229,24 +241,30 @@
                 </div>
               </div>
 
-              <h1 class="aura-panel__ask">Cum te pot ajuta?</h1>
-
-              <div class="aura-panel__states" role="group" aria-label="Stari Aura">
-                <button class="aura-panel__state is-on" type="button" data-aura-state="idle">Idle</button>
-                <button class="aura-panel__state" type="button" data-aura-state="listening">Listening</button>
-                <button class="aura-panel__state" type="button" data-aura-state="searching">Searching</button>
-                <button class="aura-panel__state" type="button" data-aura-state="error">Error</button>
-                <button class="aura-panel__state" type="button" data-aura-state="complete">Complete</button>
+              <div class="aura-panel__text-group">
+                <h1 class="aura-panel__ask" data-aura-panel-ask>Cu ce te pot ajuta astăzi?</h1>
+                <div class="aura-panel__chips">
+                  <button class="aura-panel__chip" type="button"><i class="ph ph-user-plus" aria-hidden="true"></i>Adaugă pacient</button>
+                  <button class="aura-panel__chip" type="button"><i class="ph ph-calendar-plus" aria-hidden="true"></i>Adaugă programare</button>
+                  <button class="aura-panel__chip" type="button"><i class="ph ph-tooth" aria-hidden="true"></i>Vezi tratamente</button>
+                </div>
               </div>
 
-              <form class="aura-panel__field" onsubmit="return false">
-                <input class="aura-panel__input" type="text" placeholder="Scrie o comandă sau întreabă Aura…" aria-label="Întreabă Aura" />
+              <div class="aura-panel__actions">
+                <form class="aura-panel__field" onsubmit="return false">
+                  <input class="aura-panel__input" type="text" placeholder="Scrie o comandă sau întreabă Aura…" aria-label="Întreabă Aura" />
+                  <button class="aura-panel__send" type="submit" aria-label="Trimite"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></button>
+                </form>
                 <button class="aura-panel__mic" type="button" data-aura-panel-mic aria-label="Pornește ascultarea"><i class="ph-fill ph-microphone aura-panel__mic-i aura-panel__mic-i--mic" aria-hidden="true"></i><i class="ph-fill ph-stop aura-panel__mic-i aura-panel__mic-i--stop" aria-hidden="true"></i></button>
-              </form>
+              </div>
+              </div>
             </section>
             <aside class="hero-aside" aria-label="Programări azi">
               <div class="appts__head">
-                <h2 class="appts__title">Programări azi</h2>
+                <div class="appts__heading">
+                  <span class="appts__icon" aria-hidden="true"><i class="ph ph-calendar-dots"></i></span>
+                  <h2 class="appts__title">Programări azi</h2>
+                </div>
                 <a class="appts__all" href="#">Vezi toate</a>
               </div>
               <ul class="appts__list">
@@ -361,7 +379,7 @@
 
           <div class="midrow">
             <aside class="recall" aria-label="Recomandări revenire">
-              <h2 class="recall__title">Recomandări revenire</h2>
+              <h2 class="recall__title"><span class="recall__icon" aria-hidden="true"><i class="ph ph-clock-counter-clockwise"></i></span>Recomandări revenire</h2>
               <ul class="recall__list">
                 <li class="recall__item">
                   <span class="recall__body">
@@ -407,13 +425,11 @@
             <aside class="facturi" aria-label="Facturi de trimis">
               <header class="facturi__head">
                 <div class="facturi__heading">
+                  <span class="tablecard__icon" aria-hidden="true"><i class="ph ph-receipt"></i></span>
                   <h2>Facturi de trimis</h2>
                   <span class="facturi__count">3</span>
                 </div>
-                <div class="facturi__sum">
-                  <strong>18.450 <small>lei</small></strong>
-                  <span>facturat săpt.</span>
-                </div>
+
               </header>
 
               <ul class="facturi__list">
@@ -664,7 +680,6 @@
             <section class="panel panel--chart" aria-label="Programări">
               <header class="panel-header">
                 <div class="panel-title">
-                  <span class="panel-title__icon"><i class="ph ph-chart-bar" aria-hidden="true"></i></span>
                   <div><h2>Programări</h2><small>Confirmate pe perioada selectată</small></div>
                 </div>
                 <div class="rangepick" data-rangepick>
@@ -686,66 +701,54 @@
                 </div>
               </header>
               <div class="panel-body">
-                <div class="appointments-chart__summary">
-                  <strong>196</strong>
-                  <span>confirmate</span>
-                </div>
-                <div class="apptbars" style="--avg: 59">
-                  <div class="apptbars__grid">
-                    <span class="apptbars__avg" aria-hidden="true"><span class="apptbars__avg-label">29 medie</span></span>
-                    <button class="apptbar" type="button" style="--value: 42" aria-label="Luni: 22 programări"><i data-count="22"></i></button>
-                    <button class="apptbar" type="button" style="--value: 36" aria-label="Marți: 19 programări"><i data-count="19"></i></button>
-                    <button class="apptbar" type="button" style="--value: 68" aria-label="Miercuri: 31 programări"><i data-count="31"></i></button>
-                    <button class="apptbar" type="button" style="--value: 46" aria-label="Joi: 24 programări"><i data-count="24"></i></button>
-                    <button class="apptbar is-peak" type="button" style="--value: 88" aria-label="Vineri: 42 programări"><i data-count="42"></i></button>
-                    <button class="apptbar" type="button" style="--value: 58" aria-label="Sâmbătă: 28 programări"><i data-count="28"></i></button>
-                    <button class="apptbar" type="button" style="--value: 78" aria-label="Duminică: 36 programări"><i data-count="36"></i></button>
-                  </div>
-                  <div class="apptbars__days" aria-hidden="true">
-                    <span>Lun</span><span>Mar</span><span>Mie</span><span>Joi</span><span class="is-peak">Vin</span><span>Sâm</span><span>Dum</span>
-                  </div>
-                </div>
+                <div class="echart-plot echart-plot--bar" data-echart="programari" role="img" aria-label="Programări confirmate pe zile"></div>
               </div>
             </section>
 
-            <section class="panel panel--chart" aria-label="Pacienți">
+            <section class="panel panel--occupancy" aria-label="Grad de ocupare">
               <header class="panel-header">
                 <div class="panel-title">
-                  <span class="panel-title__icon"><i class="ph ph-users-three" aria-hidden="true"></i></span>
+                  <div><h2>Grad de ocupare</h2><small>Capacitate utilizată azi</small></div>
+                </div>
+              </header>
+              <div class="panel-body">
+                <div class="echart-plot echart-plot--gauge" data-echart="ocupare" role="img" aria-label="Grad de ocupare 78%"></div>
+              </div>
+            </section>
+
+            <section class="panel panel--chart panel--pacienti" aria-label="Pacienți">
+              <header class="panel-header">
+                <div class="panel-title">
                   <div><h2>Pacienți</h2><small>Activi în perioada selectată</small></div>
                 </div>
                 <div class="rangepick" data-rangepick>
                   <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
                     <i class="ph ph-calendar" aria-hidden="true"></i>
-                    <span data-rangepick-label>Ultimele 7 zile</span>
+                    <span data-rangepick-label>Ultimele 6 luni</span>
                     <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
                   </button>
-                  <div class="rangepick__menu" data-rangepick-menu>
-                    <button class="rangepick__opt is-active" type="button" data-range="7">Ultimele 7 zile</button>
-                    <button class="rangepick__opt" type="button" data-range="30">Ultimele 30 zile</button>
-                    <button class="rangepick__opt" type="button" data-range="custom">Perioadă personalizată</button>
-                    <div class="rangepick__custom" data-rangepick-custom>
-                      <label class="rangepick__field"><span>De la</span><input type="date" value="2026-01-01" aria-label="Data de început" /></label>
-                      <label class="rangepick__field"><span>Până la</span><input type="date" value="2026-01-30" aria-label="Data de sfârșit" /></label>
-                      <button class="rangepick__apply" type="button" data-rangepick-apply>Aplică perioada</button>
-                    </div>
-                  </div>
                 </div>
               </header>
-              <div class="panel-body">
-                <div class="appointments-chart__summary">
-                  <strong>1.284</strong>
-                  <span>pacienți activi</span>
+              <div class="panel-body panel-body--pacienti">
+                <div class="echart-plot echart-plot--line" data-echart="pacienti" role="img" aria-label="Evoluție pacienți activi"></div>
+              </div>
+            </section>
+
+            <section class="panel panel--chart panel--incasari" aria-label="Încasări">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <div><h2>Încasări</h2><small>Venituri în perioada selectată</small></div>
                 </div>
-                <svg class="mini-line" viewBox="0 0 680 240" role="img" aria-label="Evoluție pacienți activi">
-                  <path class="mini-line__grid" d="M40 56H640M40 120H640M40 184H640" />
-                  <path class="mini-line__area" d="M40 182 C140 172 224 156 326 134 C432 111 536 86 640 64 L640 210 L40 210 Z" />
-                  <path class="mini-line__path" d="M40 182 C140 172 224 156 326 134 C432 111 536 86 640 64" />
-                  <circle class="mini-line__dot" cx="640" cy="64" r="6" />
-                  <text class="chart-label" x="40" y="232">ian</text>
-                  <text class="chart-label" x="334" y="232">apr</text>
-                  <text class="chart-label" x="628" y="232">iun</text>
-                </svg>
+                <div class="rangepick" data-rangepick>
+                  <button class="appointments-chart__range" type="button" aria-haspopup="true" aria-expanded="false" data-rangepick-toggle>
+                    <i class="ph ph-calendar" aria-hidden="true"></i>
+                    <span data-rangepick-label>Ultimele 6 luni</span>
+                    <i class="ph ph-caret-down rangepick__caret" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </header>
+              <div class="panel-body panel-body--incasari">
+                <div class="echart-plot echart-plot--line" data-echart="incasari" role="img" aria-label="Evoluție încasări"></div>
               </div>
             </section>
           </div>
@@ -1067,8 +1070,9 @@
             </div>
             <div class="aura__pulse"></div>
             <div class="aura__face">
-              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
-              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+              <svg class="aura__eye" viewBox="0 0 20 12"><path class="aura__eye-arc" d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"/><path class="aura__eye-x" d="M4.5 1.5 L15.5 10.5 M15.5 1.5 L4.5 10.5"/></svg>
+              <svg class="aura__eye" viewBox="0 0 20 12"><path class="aura__eye-arc" d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"/><path class="aura__eye-x" d="M4.5 1.5 L15.5 10.5 M15.5 1.5 L4.5 10.5"/></svg>
+              <svg class="aura__bigcheck" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L9 18 L20 6"/></svg>
             </div>
           </div>
         </div>
@@ -1105,8 +1109,9 @@
             </div>
             <div class="aura__pulse"></div>
             <div class="aura__face">
-              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
-              <svg class="aura__eye" viewBox="0 0 20 12"><path d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"></path></svg>
+              <svg class="aura__eye" viewBox="0 0 20 12"><path class="aura__eye-arc" d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"/><path class="aura__eye-x" d="M4.5 1.5 L15.5 10.5 M15.5 1.5 L4.5 10.5"/></svg>
+              <svg class="aura__eye" viewBox="0 0 20 12"><path class="aura__eye-arc" d="M1.44 7.22 A9 9 0 0 1 18.56 7.22"/><path class="aura__eye-x" d="M4.5 1.5 L15.5 10.5 M15.5 1.5 L4.5 10.5"/></svg>
+              <svg class="aura__bigcheck" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 L9 18 L20 6"/></svg>
             </div>
           </div>
         </div>
@@ -1158,6 +1163,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
   <script src="https://unpkg.com/gsap@3.13.0/dist/gsap.min.js"></script>
   <script>
     const app = document.querySelector('.app');
@@ -1276,6 +1282,7 @@
         brandLogo?.setAttribute('src', theme === 'dark' ? 'Assets/logo-smilesoft-dark.svg' : 'Assets/Logo_smilesoft.svg');
         themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Activeaza modul luminos' : 'Activeaza modul intunecat');
         themeToggle.setAttribute('title', theme === 'dark' ? 'Mod luminos' : 'Mod intunecat');
+        window.dispatchEvent(new CustomEvent('smilesoft:themechange'));
       };
 
       const initialTheme = getStoredTheme() || document.documentElement.getAttribute('data-theme') || 'dark';
@@ -1663,7 +1670,7 @@
       if (auraMic && auraSection) {
         auraMic.addEventListener('click', () => {
           const listening = auraSection.classList.toggle('is-listening');
-          if (auraStateLabel) auraStateLabel.textContent = listening ? 'Ascult…' : 'Inactiv';
+          if (auraStateLabel) auraStateLabel.textContent = listening ? 'Ascult…' : 'Gata';
           auraMic.setAttribute('aria-label', listening ? 'Oprește ascultarea' : 'Pornește ascultarea');
           setAuraOrbState(listening ? ORB_STATE.listening : ORB_STATE.inactive);
         });
@@ -1956,7 +1963,23 @@
       const stageOrb = document.querySelector('#stageOrb');
       const statusLabel = auraPanel.querySelector('[data-aura-label]');
       const mic = auraPanel.querySelector('[data-aura-panel-mic]');
-      const stateButtons = Array.from(auraPanel.querySelectorAll('[data-aura-state]'));
+      const stateButtons = Array.from(auraPanel.querySelectorAll('.aura-dev__btn[data-aura-state]'));
+      const devToggle = auraPanel.querySelector('.aura-dev__toggle');
+      const devPanel = auraPanel.querySelector('.aura-dev__panel');
+      if (devToggle && devPanel) {
+        devToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = devPanel.hasAttribute('hidden');
+          devPanel.toggleAttribute('hidden', !open);
+          devToggle.setAttribute('aria-expanded', String(open));
+        });
+        document.addEventListener('click', (e) => {
+          if (!devPanel.hasAttribute('hidden') && !devPanel.contains(e.target)) {
+            devPanel.setAttribute('hidden', '');
+            devToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
       const edge = auraPanel.querySelector('.aura-panel__edge');
       const pulseLayers = auraOrbs.map((orb) => orb.querySelector('.aura__pulse')).filter(Boolean);
       const coreLayers = [auraPanel.querySelector('.aura__core')].filter(Boolean);
@@ -1968,9 +1991,34 @@
         [auraPanel.querySelector('.aura-panel__accent--right'), 'x', -1, 4.5, 3.5]
       ].filter(([el]) => el);
       const faces = auraOrbs.map((orb) => orb.querySelector('.aura__face')).filter(Boolean);
-      const eyePaths = auraOrbs.flatMap((orb) => Array.from(orb.querySelectorAll('.aura__eye path')));
+      const eyePaths = auraOrbs.flatMap((orb) => Array.from(orb.querySelectorAll('.aura__eye-arc')));
       const STATES = ['idle', 'listening', 'searching', 'error', 'complete'];
-      const LABELS = { idle: 'Inactiv', listening: 'Ascult', searching: 'Caut...', error: 'Eroare', complete: 'Gata' };
+      const LABELS = { idle: 'Gata', listening: 'Ascult', searching: 'Caut...', error: 'Eroare', complete: 'Succes' };
+      const ASK_TEXT = {
+        idle:      'Cu ce te pot ajuta astăzi?',
+        listening: 'Ascult...',
+        error:     'Nu am putut finaliza cererea.',
+        complete:  'Programarea a fost creată.',
+      };
+      const SEARCHING_STEPS = [
+        'Procesez informațiile...',
+        'Caut pacient...',
+        'Creez programarea...',
+      ];
+      let searchingTimer = null;
+      const clearSearchingTimer = () => { if (searchingTimer) { clearInterval(searchingTimer); searchingTimer = null; } };
+      const CHIPS = {
+        idle: [
+          { icon: 'ph-user-plus',    label: 'Adaugă pacient' },
+          { icon: 'ph-calendar-plus', label: 'Adaugă programare' },
+          { icon: 'ph-tooth',         label: 'Vezi tratamente' },
+        ],
+        complete: [
+          { icon: 'ph-calendar-check', label: 'Vezi programarea' },
+          { icon: 'ph-user',           label: 'Vezi pacientul' },
+          { icon: 'ph-arrow-counter-clockwise', label: 'Altă acțiune', action: 'idle' },
+        ],
+      };
       const EYE_HAPPY = 'M1.44 7.22 A9 9 0 0 1 18.56 7.22';
       const EYE_SAD = 'M1.44 4.78 A9 9 0 0 0 18.56 4.78';
       let currentState = 'idle';
@@ -2054,6 +2102,20 @@
         window.setAuraFloatingOrbState?.(state);
       };
 
+      const panelAsk = auraPanel.querySelector('[data-aura-panel-ask]');
+      const panelChips = auraPanel.querySelector('.aura-panel__chips');
+
+      const renderChips = (state) => {
+        if (!panelChips) return;
+        const list = CHIPS[state] || [];
+        if (!list.length) { panelChips.hidden = true; return; }
+        panelChips.hidden = false;
+        panelChips.innerHTML = list.map(({ icon, label, action }) => {
+          const actionAttr = action ? ` data-aura-action="${action}"` : '';
+          return `<button class="aura-panel__chip" type="button"${actionAttr}><i class="ph ${icon}" aria-hidden="true"></i>${label}</button>`;
+        }).join('');
+      };
+
       const setAuraState = (state) => {
         if (!STATES.includes(state)) state = 'idle';
         currentState = state;
@@ -2061,6 +2123,18 @@
         if (listening) startMic(); else stopMic();
         applyStateClasses(state);
         if (statusLabel) statusLabel.textContent = LABELS[state];
+        clearSearchingTimer();
+        if (state === 'searching') {
+          let step = 0;
+          if (panelAsk) panelAsk.textContent = SEARCHING_STEPS[0];
+          searchingTimer = setInterval(() => {
+            step = (step + 1) % SEARCHING_STEPS.length;
+            if (panelAsk) panelAsk.textContent = SEARCHING_STEPS[step];
+          }, 1800);
+        } else {
+          if (panelAsk) panelAsk.textContent = ASK_TEXT[state] || ASK_TEXT.idle;
+        }
+        renderChips(state);
         mic?.classList.toggle('is-active', listening);
         mic?.setAttribute('aria-label', listening ? 'Opreste ascultarea' : 'Porneste ascultarea');
         stateButtons.forEach((button) => {
@@ -2073,6 +2147,12 @@
         eyePaths.forEach((path) => path.setAttribute('d', state === 'error' ? EYE_SAD : EYE_HAPPY));
         if (!listening) clearReactiveGlow();
       };
+
+      panelChips?.addEventListener('click', (event) => {
+        const chip = event.target.closest('.aura-panel__chip[data-aura-action]');
+        if (!chip || !panelChips.contains(chip)) return;
+        if (chip.dataset.auraAction === 'idle') setAuraState('idle');
+      });
 
       window.setAuraDashboardState = setAuraState;
 
@@ -2184,21 +2264,437 @@
     })();
 
     (function () {
-      const appointmentBars = document.querySelectorAll('.appointments-chart__bar');
+      const chartNodes = Array.from(document.querySelectorAll('[data-echart]'));
 
-      appointmentBars.forEach((bar) => {
-        bar.addEventListener('click', () => {
-          appointmentBars.forEach((item) => {
-            item.classList.remove('is-peak');
-            item.setAttribute('aria-pressed', 'false');
-          });
+      if (!chartNodes.length || typeof echarts === 'undefined') return;
 
-          window.requestAnimationFrame(() => {
-            bar.classList.add('is-peak');
-            bar.setAttribute('aria-pressed', 'true');
-          });
-        });
+      const monthLabels = ['ian', 'feb', 'mar', 'apr', 'mai', 'iun'];
+      const chartData = {
+        programari: {
+          type: 'bar',
+          color: '#2563eb',
+          mutedColor: 'rgba(37, 99, 235, .42)',
+          labels: ['Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm', 'Dum'],
+          values: [22, 19, 31, 24, 42, 28, 36],
+          total: '196',
+          caption: 'confirmate',
+          avg: 29,
+          peakIndex: 4
+        },
+        ocupare: {
+          type: 'gauge',
+          color: '#2563eb',
+          value: 78,
+          occupied: 14,
+          free: 4
+        },
+        pacienti: {
+          type: 'line',
+          color: '#3b82f6',
+          fill: 'rgba(59, 130, 246, .22)',
+          labelColor: '#ffffff',
+          labels: monthLabels,
+          values: [720, 790, 880, 1010, 1110, 1284],
+          max: 1500,
+          ticks: [500, 1000, 1500],
+          valueLabel: '1.284',
+          suffix: ''
+        },
+        incasari: {
+          type: 'line',
+          color: '#3ecf8e',
+          fill: 'rgba(62, 207, 142, .18)',
+          labelColor: '#0f2639',
+          labels: monthLabels,
+          values: [38000, 42000, 56000, 63000, 72000, 86000],
+          max: 90000,
+          ticks: [30000, 60000, 90000],
+          valueLabel: '86k',
+          suffix: ' lei'
+        }
+      };
+
+      const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      const rem = (value) => value * parseFloat(getComputedStyle(document.documentElement).fontSize || '16');
+      const formatNumber = (value) => new Intl.NumberFormat('ro-RO').format(value);
+      const formatAxis = (value) => value >= 10000 ? `${Math.round(value / 1000)}k` : formatNumber(value);
+
+      const baseText = () => ({
+        text: cssVar('--text'),
+        muted: cssVar('--muted'),
+        line: cssVar('--line'),
+        panel: cssVar('--panel'),
+        fill: cssVar('--fill'),
+        bg: cssVar('--bg'),
+        labelFont: rem(.74)
       });
+
+      const tooltip = (formatter) => {
+        const vars = baseText();
+
+        return {
+          trigger: 'axis',
+          backgroundColor: vars.panel,
+          borderWidth: 0,
+          padding: [8, 10],
+          textStyle: {
+            color: vars.text,
+            fontFamily: 'Onest',
+            fontSize: rem(.78),
+            fontWeight: 600
+          },
+          axisPointer: {
+            type: 'line',
+            lineStyle: { color: vars.line, width: 1 }
+          },
+          formatter
+        };
+      };
+
+      const makeLineOption = (config) => {
+        const vars = baseText();
+        const lastIndex = config.values.length - 1;
+        const seriesData = config.values.map((value, index) => {
+          if (index !== lastIndex) return value;
+
+          return {
+            value,
+            label: {
+              show: true,
+              position: 'top',
+              distance: 8,
+              offset: [-18, 0],
+              color: config.labelColor,
+              backgroundColor: config.color,
+              borderRadius: 7,
+              padding: [5, 12],
+              fontFamily: 'Onest',
+              fontSize: rem(.78),
+              fontWeight: 800,
+              formatter: config.valueLabel
+            }
+          };
+        });
+
+        return {
+          animationDuration: 700,
+          animationEasing: 'cubicOut',
+          grid: { left: 34, right: 12, top: 22, bottom: 28, containLabel: false },
+          tooltip: tooltip((params) => {
+            const point = params[0];
+            return `${point.axisValue}<br><strong>${formatAxis(point.value)}${config.suffix}</strong>`;
+          }),
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: config.labels,
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: vars.muted,
+              fontFamily: 'Onest',
+              fontSize: vars.labelFont,
+              fontWeight: 600,
+              margin: 14
+            }
+          },
+          yAxis: {
+            type: 'value',
+            min: 0,
+            max: config.max,
+            splitNumber: 3,
+            interval: config.max / 3,
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: vars.muted,
+              fontFamily: 'Onest',
+              fontSize: vars.labelFont,
+              fontWeight: 600,
+              margin: 8,
+              formatter: (value) => config.ticks.includes(value) ? formatAxis(value) : ''
+            },
+            splitLine: { lineStyle: { color: vars.line, width: 1 } }
+          },
+          series: [{
+            type: 'line',
+            data: seriesData,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: (value, params) => params.dataIndex === lastIndex ? 8 : 0,
+            showSymbol: true,
+            lineStyle: { color: config.color, width: 2 },
+            itemStyle: { color: vars.panel, borderColor: config.color, borderWidth: 2 },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: config.fill },
+                { offset: 1, color: 'rgba(0, 0, 0, 0)' }
+              ])
+            },
+            label: { show: false },
+            emphasis: { focus: 'series' }
+          }]
+        };
+      };
+
+      const makeBarOption = (config) => {
+        const vars = baseText();
+        const maxValue = Math.max(...config.values);
+        const seriesData = config.values.map((value, index) => ({
+          value,
+          itemStyle: {
+            color: index === config.peakIndex ? config.color : config.mutedColor
+          },
+          label: {
+            show: index === config.peakIndex,
+            position: 'top',
+            distance: 8,
+            color: '#ffffff',
+            backgroundColor: config.color,
+            borderRadius: 8,
+            padding: [5, 9],
+            fontFamily: 'Onest',
+            fontSize: rem(.78),
+            fontWeight: 800,
+            formatter: String(value)
+          }
+        }));
+
+        return {
+          animationDuration: 650,
+          animationEasing: 'cubicOut',
+          grid: { left: 8, right: 8, top: 72, bottom: 30, containLabel: false },
+          graphic: [
+            {
+              type: 'text',
+              left: 0,
+              top: 0,
+              style: {
+                text: config.total,
+                fill: vars.text,
+                fontFamily: 'Onest',
+                fontSize: rem(2.95),
+                fontWeight: 800,
+                lineHeight: rem(2.55)
+              }
+            },
+            {
+              type: 'text',
+              left: 78,
+              top: 32,
+              style: {
+                text: config.caption,
+                fill: vars.muted,
+                fontFamily: 'Onest',
+                fontSize: rem(.82),
+                fontWeight: 650
+              }
+            }
+          ],
+          tooltip: tooltip((params) => {
+            const point = params[0];
+            return `${point.axisValue}<br><strong>${point.value} programări</strong>`;
+          }),
+          xAxis: {
+            type: 'category',
+            data: config.labels,
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: {
+              color: vars.muted,
+              fontFamily: 'Onest',
+              fontSize: vars.labelFont,
+              fontWeight: 600,
+              margin: 14
+            }
+          },
+          yAxis: {
+            type: 'value',
+            min: 0,
+            max: Math.ceil((maxValue + 10) / 10) * 10,
+            axisLabel: { show: false },
+            axisLine: { show: false },
+            axisTick: { show: false },
+            splitLine: { show: false }
+          },
+          series: [{
+            type: 'bar',
+            data: seriesData,
+            barWidth: '52%',
+            itemStyle: {
+              borderRadius: [10, 10, 5, 5]
+            },
+            markLine: {
+              symbol: 'none',
+              animation: false,
+              data: [{ yAxis: config.avg }],
+              lineStyle: { color: vars.line, type: 'dashed', width: 1 },
+              label: {
+                show: true,
+                position: 'insideStartTop',
+                formatter: `${config.avg} medie`,
+                color: vars.bg,
+                backgroundColor: vars.text,
+                borderRadius: 999,
+                padding: [4, 8],
+                fontFamily: 'Onest',
+                fontSize: rem(.66),
+                fontWeight: 700
+              }
+            }
+          }]
+        };
+      };
+
+      const makeGaugeOption = (config) => {
+        const vars = baseText();
+
+        return {
+          animation: false,
+          tooltip: { show: false },
+          series: [{
+            type: 'gauge',
+            startAngle: 90,
+            endAngle: -270,
+            radius: '76%',
+            center: ['50%', '45%'],
+            pointer: { show: false },
+            progress: {
+              show: true,
+              roundCap: true,
+              width: 15,
+              itemStyle: {
+                color: config.color,
+                shadowColor: 'rgba(37, 99, 235, .22)',
+                shadowBlur: 14
+              }
+            },
+            axisLine: {
+              roundCap: true,
+              lineStyle: {
+                width: 15,
+                color: [[1, vars.fill]]
+              }
+            },
+            axisTick: { show: false },
+            splitLine: { show: false },
+            axisLabel: { show: false },
+            anchor: { show: false },
+            title: {
+              show: true,
+              offsetCenter: [0, '18%'],
+              color: vars.muted,
+              fontFamily: 'Onest',
+              fontSize: rem(.78),
+              fontWeight: 650
+            },
+            detail: {
+              valueAnimation: false,
+              offsetCenter: [0, '-6%'],
+              formatter: '{value}%',
+              color: vars.text,
+              fontFamily: 'Onest',
+              fontSize: rem(2.15),
+              fontWeight: 800
+            },
+            data: [{ value: config.value, name: 'ocupat' }]
+          }],
+          graphic: [
+            {
+              type: 'group',
+              left: 'center',
+              bottom: 8,
+              children: [
+                {
+                  type: 'text',
+                  left: -58,
+                  top: 0,
+                  style: {
+                    text: String(config.occupied),
+                    fill: vars.text,
+                    align: 'center',
+                    fontFamily: 'Onest',
+                    fontSize: rem(1.25),
+                    fontWeight: 800,
+                    lineHeight: rem(1.25)
+                  }
+                },
+                {
+                  type: 'text',
+                  left: -58,
+                  top: 25,
+                  style: {
+                    text: 'locuri ocupate',
+                    fill: vars.muted,
+                    align: 'center',
+                    fontFamily: 'Onest',
+                    fontSize: rem(.72),
+                    fontWeight: 600
+                  }
+                },
+                {
+                  type: 'text',
+                  left: 58,
+                  top: 0,
+                  style: {
+                    text: String(config.free),
+                    fill: vars.text,
+                    align: 'center',
+                    fontFamily: 'Onest',
+                    fontSize: rem(1.25),
+                    fontWeight: 800,
+                    lineHeight: rem(1.25)
+                  }
+                },
+                {
+                  type: 'text',
+                  left: 58,
+                  top: 25,
+                  style: {
+                    text: 'locuri libere',
+                    fill: vars.muted,
+                    align: 'center',
+                    fontFamily: 'Onest',
+                    fontSize: rem(.72),
+                    fontWeight: 600
+                  }
+                }
+              ]
+            }
+          ]
+        };
+      };
+
+      const makeOption = (config) => {
+        if (config.type === 'bar') return makeBarOption(config);
+        if (config.type === 'gauge') return makeGaugeOption(config);
+        return makeLineOption(config);
+      };
+
+      const charts = chartNodes.map((node) => {
+        const key = node.dataset.echart;
+        const chart = echarts.init(node, null, { renderer: 'canvas' });
+        const apply = () => chart.setOption(makeOption(chartData[key]), true);
+
+        apply();
+
+        return { chart, apply };
+      });
+
+      const resizeCharts = () => charts.forEach(({ chart }) => chart.resize());
+      const refreshCharts = () => charts.forEach(({ apply, chart }) => {
+        apply();
+        chart.resize();
+      });
+
+      const resizeObserver = 'ResizeObserver' in window
+        ? new ResizeObserver(resizeCharts)
+        : null;
+
+      chartNodes.forEach((node) => resizeObserver?.observe(node));
+
+      window.addEventListener('resize', resizeCharts);
+      window.addEventListener('smilesoft:themechange', refreshCharts);
     })();
   </script>
 </body>
