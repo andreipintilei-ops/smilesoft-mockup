@@ -55,7 +55,7 @@
       --panel-2: #eef5f8;
       --line: rgba(17, 44, 65, .10);
       --line-strong: rgba(17, 44, 65, .18);
-      --text: #10063d;
+      --text: #000000;
       --soft: rgba(17, 44, 65, .72);
       --muted: rgba(17, 44, 65, .52);
       --muted-2: rgba(17, 44, 65, .36);
@@ -768,8 +768,8 @@
     .fab-orb:focus-visible { outline: 2px solid var(--coral); outline-offset: 6px; border-radius: 50%; }
 
     .fab-item {
-      right: 7px;
-      bottom: 7px;
+      right: 19px;
+      bottom: 19px;
       width: 58px;
       height: 58px;
       border: 1px solid var(--coral);
@@ -1803,7 +1803,7 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
-      gap: 13px;
+      gap: 0;
       padding: 26px 28px;
       border: 1px solid rgba(255, 255, 255, .06);
       border-radius: var(--radius-lg);
@@ -1818,33 +1818,45 @@
        dark-on-light (rose ink) below to keep contrast. Dark mode uses var(--panel)
        (set above); only the surface changes per theme. */
     html[data-theme="light"] .hero--aura {
-      background: radial-gradient(135% 120% at 50% 42%, #fdeef1 0%, #f9d3dc 55%, #f4c2d0 100%);
-      color: #5e2230;
-      border-color: rgba(241, 93, 111, .16);
+      background: #ffffff;
+      color: var(--text);
+      border: none;
     }
-    html[data-theme="light"] .hero--aura .aura__name { color: #5e2230; }
+    html[data-theme="light"] .hero--aura .aura__name { color: var(--text); }
     html[data-theme="light"] .hero--aura .aura__state {
-      background: rgba(255, 255, 255, .6);
-      color: #9a5a6b;
+      background: var(--fill);
+      color: var(--muted);
     }
     html[data-theme="light"] .hero--aura .aura-panel__state {
       border-color: rgba(241, 93, 111, .28);
-      color: #7a3343;
+      color: var(--text);
     }
     html[data-theme="light"] .hero--aura .aura-panel__state:hover,
     html[data-theme="light"] .hero--aura .aura-panel__state.is-on {
       border-color: rgba(241, 93, 111, .55);
-      background: rgba(241, 93, 111, .16);
-      color: #a62f43;
+      background: rgba(241, 93, 111, .12);
+      color: var(--text);
     }
     html[data-theme="light"] .hero--aura .aura-panel__field {
-      background: rgba(255, 255, 255, .72);
-      border-color: rgba(241, 93, 111, .22);
+      background: #ffffff;
+      border-color: var(--line);
     }
-    /* Light mode: drop the multicolor edge-glow layer entirely — it's tuned for
-       the dark panel and clutters the clean pastel-pink surface. (Dark mode keeps
-       it.) The orb itself is unaffected. */
-    html[data-theme="light"] .hero--aura .aura-panel__glowclip { display: none; }
+    html[data-theme="light"] .hero--aura .aura-panel__send { color: var(--muted); }
+    html[data-theme="light"] .hero--aura .aura-panel__send:hover { color: var(--text); }
+    /* Light mode: show the edge-glow layer at reduced opacity so the same
+       purple/coral/magenta hues show as a soft wash on the pastel-pink surface. */
+    html[data-theme="light"] .hero--aura .aura-panel__edge {
+      box-shadow:
+        inset 0   30px 34px -30px rgba(150, 92, 228, .28),
+        inset 0  -32px 36px -30px rgba(241, 93, 111, .34),
+        inset  32px 0  35px -32px rgba(228, 92, 182, .24),
+        inset -32px 0  35px -32px rgba(245, 112, 150, .24),
+        inset 0 0 20px -10px rgba(241, 93, 111, .08);
+    }
+    html[data-theme="light"] .hero--aura .aura-panel__accent--top    { background: radial-gradient(ellipse at 50% 0%,   rgba(150, 92, 228, .42), rgba(150, 92, 228, 0) 72%); }
+    html[data-theme="light"] .hero--aura .aura-panel__accent--bottom { background: radial-gradient(ellipse at 50% 100%, rgba(241, 93, 111, .48), rgba(241, 93, 111, 0) 72%); }
+    html[data-theme="light"] .hero--aura .aura-panel__accent--left   { background: radial-gradient(ellipse at 0%   50%, rgba(228, 92, 182, .42), rgba(228, 92, 182, 0) 72%); }
+    html[data-theme="light"] .hero--aura .aura-panel__accent--right  { background: radial-gradient(ellipse at 100% 50%, rgba(245, 112, 150, .42), rgba(245, 112, 150, 0) 72%); }
 
     .aura-panel__glowclip {
       position: absolute;
@@ -1853,7 +1865,10 @@
       overflow: hidden;
       border-radius: inherit;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.55s ease;
     }
+    .hero--aura.is-listening .aura-panel__glowclip { opacity: 1; }
 
     .aura-panel__edge {
       position: absolute;
@@ -1886,6 +1901,7 @@
     .aura-panel__accent--right { right: -22%; top: 14%; bottom: 14%; width: 52%; background: radial-gradient(ellipse at 100% 50%, rgba(245, 112, 150, .92), rgba(245, 112, 150, 0) 72%); }
 
     .aura-panel__head,
+    .aura-panel__body,
     .aura-panel__orbwrap,
     .aura-panel__ask,
     .aura-panel__states,
@@ -1895,6 +1911,7 @@
     }
 
     .aura-panel__head {
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1906,7 +1923,11 @@
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: -.01em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
+    .aura__name .ph-sparkle { font-size: 1.2rem; color: var(--coral); }
 
     .aura__state {
       display: inline-flex;
@@ -1935,12 +1956,31 @@
       animation: auraBadgeBlink 1.1s ease-in-out infinite;
     }
 
+    .aura-panel__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0;
+    }
     .aura-panel__orbwrap {
       display: grid;
       place-items: center;
-      min-height: 230px;
+      min-height: 180px;
       padding-top: 2px;
     }
+    .aura-panel__text-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .aura-panel__ask {
+      transition: opacity .2s ease;
+    }
+    .aura-panel__chips[hidden] { display: none; }
 
     .aura {
       --size: 190px;
@@ -2056,7 +2096,7 @@
         radial-gradient(circle at 34% 24%, rgba(255, 236, 242, .24) 0%, rgba(255, 200, 216, .08) 15%, transparent 32%),
         radial-gradient(circle at 50% 22%, rgba(255, 150, 182, .16) 0%, transparent 48%),
         radial-gradient(circle at 50% 100%, rgba(241, 93, 111, .20), transparent 52%),
-        radial-gradient(circle at 50% 36%, #1e2c4e 0%, #142039 52%, #0b1424 78%, #060b16 100%);
+        radial-gradient(circle at 50% 36%, #3a5080 0%, #2d4068 52%, #1f2f52 78%, #152444 100%);
       box-shadow:
         0 0 22px 5px rgba(241, 93, 111, .55),
         0 0 9px 2px rgba(255, 205, 214, .6),
@@ -2097,7 +2137,31 @@
       stroke: var(--aura-soft);
       stroke-width: 3;
       stroke-linecap: round;
+      transition: opacity 0.22s ease;
     }
+    .aura__eye-x { opacity: 0; }
+    .aura.is-error .aura__eye-arc { opacity: 0; }
+    .aura.is-error .aura__eye-x { opacity: 1; }
+    .aura__bigcheck {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(var(--size) * 0.28);
+      height: calc(var(--size) * 0.28);
+      overflow: visible;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .aura__bigcheck path {
+      fill: none;
+      stroke: #eafff2;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .aura.is-complete .aura__eye { opacity: 0; }
+    .aura.is-complete .aura__bigcheck { opacity: 1; }
     .aura--float .aura__eye path { stroke-width: 3.35; }
 
     /* Aura as the chat-header avatar — a clean mini orb (orbits hidden so the
@@ -2106,9 +2170,21 @@
     .aura--avatar .aura__face { gap: 5px; transform: translate3d(0, 1px, 0); }
     .aura--avatar .aura__eye {
       width: 5px;
-      filter: drop-shadow(0 0 3px rgba(255, 185, 200, .98));
+      filter: drop-shadow(0 0 1.5px rgba(255, 185, 200, .55));
     }
     .aura--avatar .aura__eye path { stroke-width: 4; }
+    .aura--avatar .aura__ring {
+      box-shadow:
+        0 0 0 .6px rgba(255, 243, 245, .7),
+        0 0 5px 1px rgba(255, 222, 228, .28),
+        inset 0 0 0 1.5px rgba(255, 240, 243, .6);
+    }
+    .aura--avatar .aura__body {
+      box-shadow:
+        0 0 8px 2px rgba(241, 93, 111, .18),
+        inset 0 6px 12px -4px rgba(255, 140, 175, .28),
+        inset 0 -6px 14px -4px rgba(255, 150, 182, .22);
+    }
 
     .aura__pulse {
       inset: 14%;
@@ -2150,11 +2226,48 @@
     .aura--float .aura__spark { display: none; }
 
     .hero--aura .aura-panel__ask {
-      margin: 16px 0 0;
+      margin: 0;
       color: currentColor;
-      font-size: clamp(1.25rem, 1.7vw, 1.5rem);
-      font-weight: 700;
-      letter-spacing: -.01em;
+      font-size: clamp(1.45rem, 2vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+    .aura-panel__chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .aura-panel__chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: var(--radius);
+      background: transparent;
+      color: rgba(255, 255, 255, .55);
+      font-size: .82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .aura-panel__chip:hover {
+      background: rgba(255, 255, 255, .06);
+      border-color: rgba(255, 255, 255, .28);
+      color: #fff;
+    }
+    .aura-panel__chip .ph { font-size: 15px; }
+    html[data-theme="light"] .aura-panel__chip {
+      border-color: var(--line);
+      color: var(--nav-text);
+    }
+    html[data-theme="light"] .aura-panel__chip:hover {
+      background: transparent;
+      border-color: var(--line-strong);
+      color: var(--text);
     }
 
     .aura-panel__states {
@@ -2182,15 +2295,20 @@
       color: #fff;
     }
 
+    .aura-panel__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
     .aura-panel__field {
       display: flex;
       align-items: center;
-      gap: 12px;
-      width: 100%;
-      margin-top: auto;
-      padding: 6px 6px 6px 18px;
+      gap: 8px;
+      flex: 1;
+      padding: 6px 6px 6px 14px;
       border: 1px solid rgba(255, 255, 255, .10);
-      border-radius: 999px;
+      border-radius: var(--radius);
       background: rgba(255, 255, 255, .05);
     }
     .aura-panel__input {
@@ -2203,22 +2321,39 @@
       font-size: .88rem;
     }
     .aura-panel__input::placeholder { color: var(--muted); }
-    .aura-panel__mic {
-      width: 40px;
-      height: 40px;
-      flex: 0 0 40px;
+    .aura-panel__send {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
       display: grid;
       place-items: center;
       border: 0;
-      border-radius: 50%;
+      border-radius: calc(var(--radius) - 2px);
+      background: transparent;
+      color: rgba(255, 255, 255, .5);
+      cursor: pointer;
+      transition: color .16s ease;
+    }
+    .aura-panel__send:hover { color: #fff; }
+    .aura-panel__send .ph { font-size: 16px; }
+    .aura-panel__mic:focus { outline: none; }
+    .aura-panel__mic {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: var(--radius);
       background: var(--coral);
       color: #fff;
+      cursor: pointer;
       transition: background .16s ease, box-shadow .16s ease;
     }
     .aura-panel__mic:hover,
     .hero--aura.is-listening .aura-panel__mic {
       background: var(--coral-hover);
-      box-shadow: 0 0 0 4px rgba(241, 93, 111, .18);
+      box-shadow: 0 0 0 3px rgba(241, 93, 111, .22);
     }
     .aura-panel__mic .ph,
     .aura-panel__mic .ph-fill { font-size: 19px; }
@@ -2307,16 +2442,40 @@
       background: var(--panel);
     }
 
+    .appts__heading {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .appts__icon,
+    .recall__icon {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--muted);
+    }
+    .appts__icon .ph,
+    .recall__icon .ph { font-size: 21px; }
+    .recall__title {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
     .appts__head {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
     }
     .appts__title {
       margin: 0;
-      font-size: .98rem;
+      font-size: 1.1rem;
       font-weight: 600;
+      letter-spacing: -.01em;
       color: var(--text);
     }
     .appts__all {
@@ -2447,7 +2606,9 @@
       background: var(--panel);
     }
     .recall__title {
-      margin: 0 0 6px;
+      margin: 0 0 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
       font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: -.01em;
@@ -2528,7 +2689,7 @@
     }
     .empty-state[hidden] { display: none; }
     /* faint/ghosted smiley above the message — var(--fill) is #f2f2f7 in light, a subtle blue-gray in dark */
-    .empty-state .ph { font-size: 34px; color: var(--fill); }
+    .empty-state .ph { font-size: 52px; color: var(--fill); }
     .empty-state p { margin: 0; color: var(--muted); font-size: .9rem; font-weight: 500; }
 
     .hero__main {
@@ -2790,13 +2951,22 @@
     }
 
     .tablecard__head {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 14px;
-      padding: 18px clamp(16px, 2.2vw, 24px);
-      border-bottom: 1px solid var(--line);
+      padding: 26px clamp(18px, 2.2vw, 26px) 24px;
+    }
+    .tablecard__head::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 22px;
+      right: 22px;
+      height: 1px;
+      background: var(--line);
     }
 
     .tablecard__heading {
@@ -3265,7 +3435,9 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 18px;
+      padding-bottom: 20px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--line);
     }
     .facturi__heading {
       display: flex;
@@ -3633,6 +3805,32 @@
       margin-top: 10px;
     }
 
+    /* ECharts dashboard cards */
+    .panel--pacienti .panel-header,
+    .panel--incasari .panel-header {
+      flex-wrap: wrap;
+    }
+
+    .panel-body--pacienti,
+    .panel-body--incasari {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      min-width: 0;
+      padding-top: 8px;
+    }
+
+    .echart-plot {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      height: 240px;
+      justify-self: stretch;
+    }
+
+    .echart-plot--gauge {
+      height: 252px;
+    }
+
     .mini-line {
       width: 100%;
       height: auto;
@@ -3917,13 +4115,69 @@
     }
 
     .panel-header {
-      min-height: 64px;
+      min-height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--line);
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .panel--chart .panel-header,
+    .panel--occupancy .panel-header { border-bottom: none; }
+    .panel--occupancy {
+      display: flex;
+      flex-direction: column;
+    }
+    .panel--wide {
+      grid-column: 1 / -1;
+    }
+    .panel--occupancy .panel-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 24px;
+    }
+    .occupancy-ring > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2px;
+      position: relative;
+    }
+    .occupancy-ring > div span {
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .occupancy-ring--big { --ring-size: 180px; }
+    .occupancy-ring--big .occupancy-ring__track,
+    .occupancy-ring--big .occupancy-ring__value { stroke-width: 7; }
+    .occupancy-ring--big strong { font-size: 2.4rem; }
+    .occupancy-stats {
+      display: flex;
+      gap: 32px;
+    }
+    .occupancy-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .occupancy-stat__val {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+    .occupancy-stat__key {
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 500;
     }
 
     .panel-title {
@@ -3936,9 +4190,10 @@
     .panel-title h2 {
       margin: 0;
       color: var(--text);
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 1.1;
-      letter-spacing: -.01em;
+      letter-spacing: -.015em;
+      font-weight: 650;
     }
 
     .panel-title small {
@@ -4427,6 +4682,20 @@
         gap: 8px;
       }
 
+      .panel--pacienti .panel-header,
+      .panel--incasari .panel-header {
+        align-items: flex-start;
+      }
+
+      .panel-body--pacienti,
+      .panel-body--incasari {
+        padding-top: 12px;
+      }
+
+      .echart-plot {
+        height: 220px;
+      }
+
       .shell {
         display: block;
       }
@@ -4489,3 +4758,57 @@
         margin-bottom: 14px;
       }
     }
+
+    /* ===== Aura dev panel ===== */
+    .aura-dev {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .aura-dev__toggle {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border: none;
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .14s ease, color .14s ease;
+    }
+    .aura-dev__toggle:hover,
+    .aura-dev__toggle[aria-expanded="true"] { background: var(--fill); color: var(--text); }
+    .aura-dev__toggle .ph { font-size: 17px; }
+
+    .aura-dev__panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 4px;
+      background: var(--panel);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+      min-width: 130px;
+    }
+    .aura-dev__panel[hidden] { display: none; }
+    .aura-dev__btn {
+      padding: 7px 12px;
+      border: none;
+      border-radius: calc(var(--radius) - 2px);
+      background: transparent;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: background .12s ease, color .12s ease;
+    }
+    .aura-dev__btn:hover { background: var(--fill-hover); color: var(--text); }
+    .aura-dev__btn.is-on { background: var(--fill); color: var(--text); font-weight: 600; }
