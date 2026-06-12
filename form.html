@@ -24,7 +24,11 @@
     --danger: #e5484d;
     --focus: rgba(46,92,255,.35);
     --ease: cubic-bezier(.22,.61,.36,1);
+    --text-scale: 1;
   }
+  html[data-text-size="small"] { --text-scale: .94; }
+  html[data-text-size="normal"] { --text-scale: 1; }
+  html[data-text-size="large"] { --text-scale: 1.14; }
 
   *, *::before, *::after { box-sizing: border-box; }
   html { touch-action: manipulation; }
@@ -166,6 +170,9 @@
   .opt:has(input:checked) .pt > span,
   .chip:has(input:checked) .pt > span { transform: translateY(-110%); }
 
+  .q--yesno .q__head { display: grid; gap: 14px; }
+  .q--yesno .opts { margin-top: 0; }
+
   /* plain checklist rows */
   .checkgrid { display: grid; gap: 2px; }
   .checkrow {
@@ -191,7 +198,7 @@
     width: calc(100% - 34px); min-height: 44px; padding: 10px 12px;
     background: #fff;
   }
-  .ckw:has(input[type="checkbox"]:checked) .in--det { display: block; }
+  .ckw:has(input:checked) .in--det { display: block; }
 
   /* fields */
   .fgroup { display: grid; gap: 14px; }
@@ -241,7 +248,7 @@
   .reveal .chips,
   .reveal .checkgrid { margin-top: 2px; }
   .subq .fgroup > .f {
-    padding: 14px 0;
+    padding: 10px 0;
     border-top: 1px solid var(--line);
   }
   .subq .fgroup > .f:first-child {
@@ -251,7 +258,7 @@
   .subq .fgroup > .f:last-child { padding-bottom: 0; }
   .subq .fgroup > .f > span {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     color: var(--ink);
     font-size: 13.5px;
     font-weight: 700;
@@ -259,11 +266,26 @@
   .subq .checkgrid,
   .subq .chips {
     display: grid;
+    gap: 3px;
     grid-template-columns: 1fr;
+  }
+  .subq .checkrow {
+    min-height: 34px;
+    padding: 4px 0;
   }
   .subq .chip { width: 100%; }
   .subq .chip { background: #f2f2f7; }
-  .subq .checkrow i { background: #f2f2f7; }
+  .subq .checkrow i {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: #f2f2f7;
+  }
+  .subq .ckw .in--det {
+    margin-top: 4px;
+    margin-bottom: 6px;
+    min-height: 42px;
+  }
 
   /* consent rows */
   .consent {
@@ -397,6 +419,62 @@
   .btn--next:active { background: var(--sel-press); }
   .foot.at-start { display: none; }
 
+  /* accessibility */
+  .textsize {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 80;
+    display: grid;
+    justify-items: end;
+    gap: 8px;
+  }
+  .textsize__toggle,
+  .textsize__btn {
+    border: 1px solid var(--ctrl-line);
+    background: var(--bg);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 12px 32px rgba(25,28,38,.14);
+  }
+  .textsize__toggle {
+    width: 54px;
+    height: 54px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+  }
+  .textsize__panel {
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 16px 42px rgba(25,28,38,.14);
+    backdrop-filter: blur(10px);
+  }
+  .textsize__panel[hidden] { display: none; }
+  .textsize__btn {
+    min-width: 42px;
+    height: 40px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+  .textsize__btn[data-text-size="small"] { font-size: 13px; }
+  .textsize__btn[data-text-size="normal"] { font-size: 16px; }
+  .textsize__btn[data-text-size="large"] { font-size: 19px; }
+  .textsize__btn[aria-pressed="true"] {
+    border-color: var(--sel);
+    background: var(--sel);
+    color: #fff;
+  }
+  .textsize__toggle:active,
+  .textsize__btn:active { transform: scale(.96); }
+
   /* done — full-screen centered, staged completion animation */
   body.on-done .main { padding-bottom: 24px; }
   .done { display: none; text-align: center; padding: 0 20px; }
@@ -441,6 +519,33 @@
     .f3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .f-idrow { grid-template-columns: 2fr 1fr; align-items: start; }
     .f-idmain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .q--yesno .q__head {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      column-gap: 20px;
+    }
+    .q--yesno .opts {
+      justify-self: end;
+      width: 176px;
+    }
+    .q--yesno .opt {
+      min-height: 38px;
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+    .ckw:has(input:checked) {
+      display: grid;
+      grid-template-columns: minmax(190px, max-content) minmax(220px, 1fr);
+      column-gap: 16px;
+      align-items: center;
+    }
+    .ckw:has(input:checked) .checkrow {
+      min-width: 0;
+    }
+    .ckw:has(input:checked) .in--det {
+      margin: 0;
+      width: 100%;
+    }
   }
 
   /* ── tablet ── */
@@ -477,6 +582,41 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .done.is-on .done__ic svg polyline { stroke-dashoffset: 0; }
     .done.is-on .done__ic::after { display: none; }
+  }
+
+  html[data-text-size] .brand__n { font-size: calc(16px * var(--text-scale)); }
+  html[data-text-size] .hdr__badge { font-size: calc(12.5px * var(--text-scale)); }
+  html[data-text-size] .title { font-size: calc(26px * var(--text-scale)); }
+  html[data-text-size] .lead { font-size: calc(15px * var(--text-scale)); }
+  html[data-text-size] .ssec__t { font-size: calc(15.5px * var(--text-scale)); }
+  html[data-text-size] .ssec__n { font-size: calc(13.5px * var(--text-scale)); }
+  html[data-text-size] .q__label { font-size: calc(16px * var(--text-scale)); }
+  html[data-text-size] .q__hint { font-size: calc(13.5px * var(--text-scale)); }
+  html[data-text-size] .opt { font-size: calc(15px * var(--text-scale)); }
+  html[data-text-size] .opts--3 .opt,
+  html[data-text-size] .chip { font-size: calc(14.5px * var(--text-scale)); }
+  html[data-text-size] .checkrow { font-size: calc(15px * var(--text-scale)); }
+  html[data-text-size] .f > span,
+  html[data-text-size] .reveal .f > span,
+  html[data-text-size] .gdoc h4 { font-size: calc(13px * var(--text-scale)); }
+  html[data-text-size] .subq .fgroup > .f > span { font-size: calc(13.5px * var(--text-scale)); }
+  html[data-text-size] .in,
+  html[data-text-size] .btn { font-size: calc(16px * var(--text-scale)); }
+  html[data-text-size] .linkbtn,
+  html[data-text-size] .foot__err,
+  html[data-text-size] .gdpr__cap { font-size: calc(13.5px * var(--text-scale)); }
+  html[data-text-size] .consent__t,
+  html[data-text-size] .pad__hint,
+  html[data-text-size] .sign__cap,
+  html[data-text-size] .start__note { font-size: calc(14.5px * var(--text-scale)); }
+  html[data-text-size] .gdoc { font-size: calc(13.5px * var(--text-scale)); }
+  html[data-text-size] .gdoc h3 { font-size: calc(14.5px * var(--text-scale)); }
+  html[data-text-size] .done h2 { font-size: calc(22px * var(--text-scale)); }
+  html[data-text-size] .done p { font-size: calc(15px * var(--text-scale)); }
+
+  @media (min-width: 840px) {
+    html[data-text-size] .title { font-size: calc(30px * var(--text-scale)); }
+    html[data-text-size] .start__name { font-size: calc(30px * var(--text-scale)); }
   }
 </style>
 </head>
@@ -517,6 +657,15 @@
   </div>
 </footer>
 
+<div class="textsize" id="textSizeTool">
+  <div class="textsize__panel" id="textSizePanel" role="group" aria-label="Dimensiune text" hidden>
+    <button class="textsize__btn" type="button" data-text-size="small" aria-label="Text mai mic">A-</button>
+    <button class="textsize__btn" type="button" data-text-size="normal" aria-label="Text normal">A</button>
+    <button class="textsize__btn" type="button" data-text-size="large" aria-label="Text mai mare">A+</button>
+  </div>
+  <button class="textsize__toggle" id="textSizeToggle" type="button" aria-label="Dimensiune text" aria-expanded="false" aria-controls="textSizePanel">Aa</button>
+</div>
+
 <script>
 (function () {
   'use strict';
@@ -552,8 +701,8 @@
 
   /* sub-categories revealed by question 885 (boli acute/cronice) — mirrors production data */
   var BOLI = [
-    { id: 886, label: 'Boli congenitale', items: [{ v: 'Nu' }, { v: 'Da', det: true }] },
-    { id: 887, label: 'Boli profesionale', items: [{ v: 'Nu' }, { v: 'Da', det: true }] },
+    { id: 886, label: 'Boli congenitale', single: true, items: [{ v: 'Nu' }, { v: 'Da', det: true }] },
+    { id: 887, label: 'Boli profesionale', single: true, items: [{ v: 'Nu' }, { v: 'Da', det: true }] },
     { id: 888, label: 'Boli de inimă', items: [{ v: 'Angină pectorală' }, { v: 'Infarct miocardic', det: true }, { v: 'Aritmii (fibrilații etc)' }, { v: 'Blocuri' }, { v: 'Insuficiență cardiacă', det: true }, { v: 'Valvulopatii', det: true }, { v: 'Endocardită infecțioasă' }, { v: 'Intervenții chirurgicale cardiace', det: true }, { v: 'Altele', det: true }] },
     { id: 889, label: 'Boli vasculare', items: [{ v: 'Arteriopatie obliterantă' }, { v: 'Tromboflebită' }, { v: 'Hipotensiune arterială' }] },
     { id: 890, label: 'Boli ale aparatului respirator', items: [{ v: 'Astm bronșic' }, { v: 'Emfizem pulmonar' }, { v: 'Bronșită cronică' }, { v: 'Tbc', det: true }, { v: 'Altele', det: true }] },
@@ -568,7 +717,7 @@
     { id: 899, label: 'Manifestări neuro-vegetative', items: [{ v: 'Atacuri de panică' }] },
     { id: 900, label: 'Boli hematologice', items: [{ v: 'Anemie' }, { v: 'Talasemie' }, { v: 'Leucemie acută' }, { v: 'Leucemie cronică' }, { v: 'Hemofilie' }, { v: 'Trombocitopenie' }, { v: 'Boala von willebrand' }, { v: 'Altele', det: true }] },
     { id: 901, label: 'Boli infecțioase', items: [{ v: 'Hepatită virală' }, { v: 'B' }, { v: 'C' }, { v: 'D' }, { v: 'Hiv' }, { v: 'Altele', det: true }] },
-    { id: 902, label: 'Neoplasme', items: [{ v: 'Nu' }, { v: 'Da', det: true }] }
+    { id: 902, label: 'Neoplasme', single: true, items: [{ v: 'Nu' }, { v: 'Da', det: true }] }
   ];
 
   /* ─── tiny builders ─── */
@@ -612,14 +761,17 @@
   }
 
   /* checklist rows; items with det:true reveal a detail input when checked */
-  function checkRows(base, items) {
+  function checkRows(base, items, o) {
+    o = o || {};
     return '<div class="checkgrid">' + items.map(function (it) {
       var v = it.v || it;
-      var name = base + '[' + v + ']';
-      var row = '<label class="checkrow"><input type="checkbox" name="' + name + '" value="' + v + '"><i>' + CHECK + '</i><span>' + v + '</span></label>';
+      var inputName = o.single ? base : base + '[' + v + ']';
+      var inputType = o.single ? 'radio' : 'checkbox';
+      var detName = o.single ? base + '[' + v + '][detalii]' : inputName + '[detalii]';
+      var row = '<label class="checkrow"><input type="' + inputType + '" name="' + inputName + '" value="' + v + '"><i>' + CHECK + '</i><span>' + v + '</span></label>';
       if (it.det) {
         return '<div class="ckw">' + row +
-          '<input class="in in--det" type="text" name="' + name + '[detalii]" placeholder="Detalii">' +
+          '<input class="in in--det" type="text" name="' + detName + '" placeholder="Detalii">' +
         '</div>';
       }
       return row;
@@ -635,10 +787,14 @@
   }
 
   function yesno(o) {
-    return '<div class="q">' +
-      '<div class="q__label">' + o.label + '</div>' +
-      (o.hint ? '<p class="q__hint">' + o.hint + '</p>' : '') +
-      opts(o.name, o.options || ['Da', 'Nu']) +
+    return '<div class="q q--yesno">' +
+      '<div class="q__head">' +
+        '<div class="q__copy">' +
+          '<div class="q__label">' + o.label + '</div>' +
+          (o.hint ? '<p class="q__hint">' + o.hint + '</p>' : '') +
+        '</div>' +
+        opts(o.name, o.options || ['Da', 'Nu']) +
+      '</div>' +
       (o.reveal
         ? '<div class="reveal subq" data-reveal-for="' + o.name + '" data-reveal-on="' + (o.on || 'Da') + '"><div class="fgroup">' + o.reveal + '</div></div>'
         : '') +
@@ -678,32 +834,32 @@
   var PERSONAL_HTML =
     card('Date de contact',
       '<div class="f3">' +
-        inp({ name: 'nume_pacient', label: 'Nume', ph: 'Nume', auto: 'family-name' }) +
-        inp({ name: 'prenume_pacient', label: 'Prenume', ph: 'Prenume', auto: 'given-name' }) +
-        '<label class="f"><span>Număr de telefon</span>' +
+        inp({ name: 'nume_pacient', ph: 'Nume', auto: 'family-name' }) +
+        inp({ name: 'prenume_pacient', ph: 'Prenume', auto: 'given-name' }) +
+        '<label class="f">' +
           '<div class="phone"><span class="phone__cc">+40</span>' +
           '<input class="in" type="tel" name="telefon_pacient" placeholder="740 123 456" inputmode="tel" autocomplete="tel"></div></label>' +
       '</div>') +
     card('Domiciliat în',
       '<div class="f3">' +
-        sel({ name: 'county_id', label: 'Județ', role: 'judet', placeholder: '-- Județ --', options: JUDETE, required: true }) +
-        '<div class="f"><span>Localitate</span><div id="locWrap">' +
+        sel({ name: 'county_id', role: 'judet', placeholder: '-- Județ --', options: JUDETE, required: true }) +
+        '<div class="f"><div id="locWrap">' +
           '<select class="in" name="id_city" required><option value="" disabled selected hidden>-- Localitate --</option></select>' +
         '</div></div>' +
-        inp({ name: 'adresa_pacient', label: 'Adresă', ph: 'stradă, număr, bloc, etaj', auto: 'street-address' }) +
+        inp({ name: 'adresa_pacient', ph: 'Adresă: stradă, număr, bloc, etaj', auto: 'street-address' }) +
       '</div>') +
     card('Legitimat(ă) cu',
       '<div class="f-idrow">' +
         '<div class="f-idmain">' +
-          sel({ name: 'tip_carte_identitate', label: 'Tip act', placeholder: '-- Tip act --', options: ['B.I', 'C.I'], required: true }) +
-          inp({ name: 'serie_carte_identitate', label: 'Seria', ph: 'serie' }) +
-          inp({ name: 'numar_carte_identitate', label: 'Nr.', ph: 'număr', mode: 'numeric' }) +
+          sel({ name: 'tip_carte_identitate', placeholder: '-- Tip act --', options: ['B.I', 'C.I'], required: true }) +
+          inp({ name: 'serie_carte_identitate', ph: 'Serie' }) +
+          inp({ name: 'numar_carte_identitate', ph: 'Număr', mode: 'numeric' }) +
         '</div>' +
-        sel({ name: 'sex_pacient', label: 'Sex', placeholder: '-- Sex --', options: ['Feminin', 'Masculin'], required: true }) +
+        sel({ name: 'sex_pacient', placeholder: '-- Sex --', options: ['Feminin', 'Masculin'], required: true }) +
       '</div>');
 
   var BOLI_HTML = BOLI.map(function (b) {
-    return '<div class="f"><span>' + b.label + '</span>' + checkRows('raspunsuri[885][' + b.id + ']', b.items) + '</div>';
+    return '<div class="f"><span>' + b.label + '</span>' + checkRows('raspunsuri[885][' + b.id + ']', b.items, { single: b.single }) + '</div>';
   }).join('') + inp({ name: 'raspunsuri[885][903]', label: 'Alte boli' });
 
   var FERTILA = 'Vor completa doar persoanele de sex feminin aflate la vârstă fertilă (14–55 de ani).';
@@ -837,7 +993,9 @@
       lead: 'Parcurgeți secțiunile de mai jos și completați ce vi se aplică.',
       html:
         ssec('Date pacient') + panel(PERSONAL_HTML) +
-        ssec('Sarcină și sănătate feminină', FERTILA) + panel(SARCINA_HTML) +
+        '<div data-sex-section="feminin">' +
+          ssec('Sarcină și sănătate feminină', FERTILA) + panel(SARCINA_HTML) +
+        '</div>' +
         ssec('Medicație și alergii') + panel(MEDICATIE_HTML) +
         ssec('Informații despre sănătatea dumneavoastră') + panel(SANATATE_HTML)
     },
@@ -856,6 +1014,7 @@
   var TOTAL = STEPS.length;
   var GDPR_IDX = 2;
   var KEY = 'mihadent_form_v6';
+  var TEXT_SIZE_KEY = 'mihadent_form2_text_size';
 
   /* ─── build DOM ─── */
 
@@ -914,6 +1073,18 @@
     });
   }
 
+  function syncSexSections() {
+    var sexEl = $('[name="sex_pacient"]');
+    var hideFemale = sexEl && sexEl.value === 'Masculin';
+    $$('[data-sex-section="feminin"]').forEach(function (section) {
+      if (hideFemale) {
+        clearScoped(section);
+        syncReveals(section);
+      }
+      section.hidden = !!hideFemale;
+    });
+  }
+
   /* header bar = scroll progress of the current step */
   function updateMeter() {
     var se = document.scrollingElement || document.documentElement;
@@ -926,24 +1097,32 @@
 
   var LOC_SELECT_PH = '<option value="" disabled selected hidden>-- Localitate --</option>';
 
+  function setLocSelectOptions(wrap, list, prev) {
+    wrap.innerHTML = '<select class="in" name="id_city" required>' + LOC_SELECT_PH + '</select>';
+    var select = $('[name="id_city"]', wrap);
+    list.forEach(function (name) {
+      var opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      select.appendChild(opt);
+    });
+    if (prev && list.indexOf(prev) === -1) {
+      var savedOpt = document.createElement('option');
+      savedOpt.value = prev;
+      savedOpt.textContent = prev;
+      select.appendChild(savedOpt);
+    }
+    if (prev) select.value = prev;
+  }
+
   function rebuildLoc(keepValue) {
     var wrap = $('#locWrap');
     if (!wrap) return;
     var judet = $('select[name="county_id"]').value;
     var prevEl = $('[name="id_city"]', wrap);
     var prev = keepValue && prevEl ? prevEl.value : '';
-    var list = LOC[judet];
-
-    if (!judet) {
-      wrap.innerHTML = '<select class="in" name="id_city" required>' + LOC_SELECT_PH + '</select>';
-    } else if (list) {
-      wrap.innerHTML = '<select class="in" name="id_city" required>' + LOC_SELECT_PH +
-        list.map(function (o) { return '<option>' + o + '</option>'; }).join('') + '</select>';
-      if (prev && list.indexOf(prev) !== -1) $('[name="id_city"]', wrap).value = prev;
-    } else {
-      wrap.innerHTML = '<input class="in" name="id_city" placeholder="Introduceți localitatea">';
-      if (prev) $('[name="id_city"]', wrap).value = prev;
-    }
+    var list = !judet ? [] : (LOC[judet] || ['Altă localitate']);
+    setLocSelectOptions(wrap, list, prev);
   }
 
   /* ─── navigation ─── */
@@ -1028,15 +1207,16 @@
       });
     }
 
-    if (t.type === 'checkbox' && !t.checked) {
-      var ckw = t.closest('.ckw');
-      if (ckw) {
+    if ((t.type === 'checkbox' || t.type === 'radio') && t.closest('.checkgrid')) {
+      var grid = t.closest('.checkgrid');
+      $$('.ckw', grid).forEach(function (ckw) {
         var det = $('.in--det', ckw);
-        if (det) det.value = '';
-      }
+        if (det && !$('input:checked', ckw)) det.value = '';
+      });
     }
 
     if (t.matches('select[data-role="judet"]')) rebuildLoc(false);
+    if (t.matches('select[name="sex_pacient"]')) syncSexSections();
 
     if (t.closest('.consent')) t.closest('.consent').classList.remove('is-missing');
 
@@ -1152,13 +1332,65 @@
     });
 
     syncReveals();
+    syncSexSections();
     var step = parseInt(v.step, 10);
     return (!isNaN(step) && step >= 0 && step < TOTAL) ? step : 0;
   }
 
+  /* ─── text size control ─── */
+
+  var textSizeTool = $('#textSizeTool');
+  var textSizeToggle = $('#textSizeToggle');
+  var textSizePanel = $('#textSizePanel');
+  var textSizeValues = ['small', 'normal', 'large'];
+
+  function setTextSize(size) {
+    if (textSizeValues.indexOf(size) === -1) size = 'normal';
+    document.documentElement.dataset.textSize = size;
+    $$('.textsize__btn', textSizeTool).forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.dataset.textSize === size ? 'true' : 'false');
+    });
+    try { localStorage.setItem(TEXT_SIZE_KEY, size); } catch (e) {}
+    requestAnimationFrame(function () {
+      updateMeter();
+      if (pad && cur === TOTAL - 1) sizePad();
+    });
+  }
+
+  function closeTextSizePanel() {
+    textSizePanel.hidden = true;
+    textSizeToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openTextSizePanel() {
+    textSizePanel.hidden = false;
+    textSizeToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  textSizeToggle.addEventListener('click', function () {
+    if (textSizePanel.hidden) openTextSizePanel();
+    else closeTextSizePanel();
+  });
+
+  textSizePanel.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-text-size]');
+    if (!btn) return;
+    setTextSize(btn.dataset.textSize);
+    closeTextSizePanel();
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!textSizePanel.hidden && !textSizeTool.contains(e.target)) closeTextSizePanel();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeTextSizePanel();
+  });
+
   /* ─── init ─── */
 
   document.documentElement.classList.add('preload');
+  try { setTextSize(localStorage.getItem(TEXT_SIZE_KEY) || 'normal'); } catch (e) { setTextSize('normal'); }
   show(restore(), { noScroll: true });
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
